@@ -16,7 +16,8 @@
 
 .def waitingcounter0 = R19
 .def waitingcounter1 = R20
-.def waitingcounter2 = R21
+;.def waitingcounter2 = R21
+.def keyboardPressed = R21
 .def registerBitCounter = R22
 
 .def memoryByteRegister = R23
@@ -32,7 +33,7 @@
 .equ dinoMemory = 0x0350
 
 .equ maxValueCounter0 = 255;255
-.equ maxValueCounter1 = 1;255
+.equ maxValueCounter1 = 2;255
 .equ maxValueCounter2 = 0;40
 
 .ORG 0x0000
@@ -40,6 +41,12 @@ RJMP init					; First instruction that is executed by the microcontroller
 
 .ORG 0x001A
 RJMP Timer1OverflowInterrupt
+
+.ORG 0x0020
+RJMP Timer0OverflowInterrupt
+
+.include "keyboard.inc"
+.include "drawings.inc"
 
 ////////////////////////////////////////////////////////////
 //-------------------------INIT---------------------------//
@@ -59,12 +66,22 @@ init:
 	SBI DDRB,5					; Pin PB5 is an output
 	CBI PORTB,5					; Output low => initial condition low!
 
+	; Configure a LED as output (to test things)
+	SBI DDRC,2					; Pin PC2 is an output 
+	SBI PORTC,2					; Output Vcc => upper LED turned off!
+
 	LDI XH, HIGH(bufferStartAddress)
 	LDI XL, LOW(bufferStartAddress)
 	SBIW XL,10
 
+
+	; Initialize dinosaur and draw first cactus
 	rcall initDino
 	rcall addCactus
+
+	; Make sure keyboardPressed is zero
+	CLR keyboardPressed
+
 ////////////////////////////////////////////
 //- Timer1 (16 bit timer) initialisation -//
 ////////////////////////////////////////////
@@ -75,11 +92,16 @@ init:
 	;set timer1 prescaler to 1024
 	LDI tempRegister, 0x05
 	STS TCCR1B,tempRegister
-	;set correct ‘reload values’ 65536 - 16 000 000/65536/1 = 65292 => MSB = 0b1111 1111 LSB = 0b0000 1100 (after rounding)
+	/* For 1 Hz */
+	;set correct ‘reload values’ 65536 - 16 000 000/1024/1 = 65536 - 15625 = 49911 => MSB = 0b1100 0010 LSB = 0b1111 0111 
+	/* For 5 Hz */
+	;set correct ‘reload values’ 65536 - 16 000 000/1024/5 = 65536 - 3125 = 62411 => MSB = 0b1111 0011 LSB = 0b1100 1011
 	;To do a 16-bit write, the high byte must be written before the low byte.
-	LDI tempRegister, 0b11100000
+	//LDI tempRegister, 0b11000010
+	LDI tempRegister, 0b11110011
 	STS TCNT1H, tempRegister
-	LDI tempRegister, 0b10001100
+	//LDI tempRegister, 0b11110111
+	LDI tempRegister, 0b11001011
 	STS TCNT1L, tempRegister
 	; Enable interrupts (SEI: global interrupt enable)
 	SEI
@@ -91,19 +113,36 @@ init:
 
 
 Timer1OverflowInterrupt:
+	push tempRegister
 	IN tempRegister, SREG
 	push tempRegister
-
-	LDI tempRegister, 0b11100000
+	/* Reset timer values */
+	//LDI tempRegister, 0b11000010		; 1 Hz
+	LDI tempRegister, 0b11110011		; 5 Hz
 	STS TCNT1H, tempRegister
-	LDI tempRegister, 0b10001100
+	//LDI tempRegister, 0b11110111		; 1 Hz
+	LDI tempRegister, 0b11001011		; 5 Hz
 	STS TCNT1L, tempRegister
 
+	/* Move the cactus */
 	rcall moveCactus
 
-	pop tempRegister
-	OUT SREG, tempRegister
-	reti
+	/* Check if keyboard was pressed. If it has been pressed, let dino stay up for 10s, then initialize it again at start location */
+	CPI keyboardPressed,1
+	BRLO timer1Ret
+	INC keyboardPressed
+	CPI keyboardPressed,10
+	BRLO timer1Ret
+	rcall initDino
+	LDI keyboardPressed,0		; implementation is not ideal, you can still keep keyboard pressed and dino will stay up. Will be fixed later
+
+	timer1Ret:
+		pop tempRegister
+		OUT SREG, tempRegister
+		pop tempRegister
+		reti
+
+Timer0OverflowInterrupt:
 
 ////////////////////////////////////////////////////////////
 //-------------------------MAIN---------------------------//
@@ -111,16 +150,7 @@ Timer1OverflowInterrupt:
 
 main:
 	RCALL clearScreen
-
-	/*
-	LDI xpos,38
-	LDI ypos,12
-	RCALL drawPixel
-
-	LDI xpos,37
-	LDI ypos,12
-	RCALL drawPixel*/
-
+	rcall checkKeyboard
 	rcall drawDino
 	rcall drawCactus
 
@@ -207,24 +237,26 @@ RETI
 waitingLoop:
 	
 	CLR waitingcounter0
+	CLR waitingcounter1
 	outerLoop:
-		CPI waitingcounter0,maxValueCounter0
-		BREQ finishLoop
 		INC waitingcounter0
-		CLR waitingcounter1
+		CPI waitingcounter0,maxValueCounter0
+		BRNE outerLoop
+		;CLR waitingcounter1
 
 		middleLoop:
-			CPI waitingcounter1,maxValueCounter1
-			BREQ outerLoop
+			CLR waitingcounter0
 			INC waitingcounter1
+			CPI waitingcounter1,maxValueCounter1
+			BRNE outerLoop
+			/* Inner loop will not work like this if you uncomment now
 			CLR waitingcounter2
-
 			innerLoop:
 		
 				CPI waitingcounter2,maxValueCounter2
 				BREQ middleLoop
 				INC waitingcounter2
-				RJMP innerLoop
+				RJMP innerLoop*/
 	
 	finishLoop:
 RETI
@@ -247,213 +279,3 @@ clearScreen:
 	POP XL
 	POP XH
 RETI
-
-
-drawPixel:
-
-	PUSH xpos
-	PUSH ypos
-
-	PUSH XH
-	PUSH XL
-
-	LDI XH, HIGH(bufferStartAddress)
-	LDI XL, LOW(bufferStartAddress)
-
-	CPI ypos,7
-	BRLO UpperPartScreen
-
-		SUBI ypos,7
-		ADIW xpos, 40
-
-	UpperPartScreen:
-
-		LDI tempRegister,10
-		MUL ypos,tempRegister
-		ADD XL,mulLSB
-
-		MOV tempRegister,xpos
-		LSR tempregister
-		LSR tempregister
-		LSR tempregister
-		ADD XL,tempregister
-		
-		ANDI xpos, 0b00000111
-		LDI counter,0
-		LDI tempregister,1
-		bitContent:
-			CP xpos,counter
-			BREQ bitFound
-			LSL tempregister
-			INC counter
-			RJMP bitContent
-		
-		bitfound:
-		
-		LD xpos, X
-		OR tempregister,xpos
-		ST X+,tempregister	
-	
-	POP XL
-	POP XH
-
-	POP ypos
-	POP xpos
-
-RETI
-
-
-addCactus:
-	push xpos
-	push ypos
-
-	push XH
-	push XL
-
-	LDI XH, HIGH(cactusMemory)			// Point to start of cactusMemory
-	LDI XL, LOW(cactusMemory)
-
-	LDI xpos, 38							// xpos of cactus
-	ST X+, xpos
-	LDI ypos, 10							// ypos of cactus
-	ST X+, ypos
-
-	pop XL
-	pop XH
-
-	pop ypos
-	pop xpos
-	ret
-
-drawCactus:
-	push xpos
-	push ypos
-
-	push XH
-	push XL
-
-	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
-	LDI XH, HIGH(cactusMemory) 
-	LDI XL, LOW(cactusMemory)
-	LD xpos, X+						// R16 contains xpos
-	LD ypos, X+						// R17 contains ypos
-
-	drawNextCactus:
-		rcall drawPixel
-		inc ypos
-		rcall drawPixel
-		inc xpos
-		rcall drawPixel
-		dec xpos
-		dec xpos
-		rcall drawPixel
-		inc xpos
-		inc ypos
-		rcall drawPixel
-		inc ypos
-		rcall drawPixel
-
-		;LD xpos, X+
-		;CPI xpos,0
-		;BREQ drawCactusRet				// If xpos of next cactus to draw is zero, then return from function
-		;LD ypos, X+
-		;RJMP drawNextCactus
-
-
-	drawCactusRet:
-		pop XL
-		pop XH
-		pop ypos
-		pop xpos
-		ret
-
-moveCactus:
-	push xpos
-	push XH
-	push XL
-
-	LDI XH, HIGH(cactusMemory) 
-	LDI XL, LOW(cactusMemory)
-
-	LD xpos, X
-	DEC xpos			// Move cactus 1 xpos to the left
-	;CPI xpos,1
-	BRNE moveCactusRet
-	LDI xpos, 38		// In case cactus will fall off of screen, redraw it at beginning (to test stuff)
-
-	moveCactusRet:
-		ST X, xpos
-		pop XL
-		pop XH
-		pop xpos
-		ret
-
-drawDino:
-	push xpos
-	push ypos
-
-	push XH
-	push XL
-
-	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
-	LDI XH, HIGH(dinoMemory) 
-	LDI XL, LOW(dinoMemory)
-	LD xpos, X+						// R16 contains xpos
-	LD ypos, X						// R17 contains ypos
-
-	rcall drawPixel
-	dec xpos
-	rcall drawPixel
-	inc ypos
-	rcall drawPixel
-	inc ypos
-	rcall drawPixel
-	inc xpos
-	rcall drawPixel
-	dec xpos
-	inc ypos
-	rcall drawPixel
-	inc ypos
-	rcall drawPixel
-	inc ypos
-	rcall drawPixel
-	dec ypos
-	dec ypos
-	dec xpos
-	rcall drawPixel
-	dec ypos
-	rcall drawPixel
-	dec xpos
-	rcall drawPixel
-	inc ypos
-	rcall drawPixel
-	inc ypos
-	rcall drawPixel
-	inc ypos
-	rcall drawPixel
-	
-	pop XL
-	pop XH
-	pop ypos
-	pop xpos
-	ret
-
-initDino:
-	push xpos
-	push ypos
-	push XH
-	push XL
-
-	LDI XH, HIGH(dinoMemory)			// Point to start of cactusMemory
-	LDI XL, LOW(dinoMemory)
-
-	LDI xpos, 4							// xpos of cactus
-	ST X+, xpos
-	LDI ypos, 8
-	ST X+, ypos
-
-	pop XL
-	pop XH
-	pop ypos
-	pop xpos
-	ret
