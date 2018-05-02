@@ -1,8 +1,8 @@
 ;
-; ProjectDino.asm
+; Task9.asm
 ;
 ; Created: 28/04/2018 17:37:02
-; Authors : Remco Royen & Johan Jacobs
+; Author : Remco Royen
 ;
 
 .INCLUDE "m328pdef.inc"			; Load addresses of (I/O) registers
@@ -26,19 +26,24 @@
 
 ;.def XL = R26
 ;.def XH = R27
-;.def YL = R28
-;.def YH = R29
+
+.equ bufferStartAddress = 0x0100
+.equ cactusMemory = 0x0300
+.equ dinoMemory = 0x0350
 
 .equ maxValueCounter0 = 255;255
-.equ maxValueCounter1 = 3;255
+.equ maxValueCounter1 = 1;255
 .equ maxValueCounter2 = 0;40
-.equ cactusMemory = 0x0400
-.equ dinoMemory = 0x0450
 
 .ORG 0x0000
 RJMP init					; First instruction that is executed by the microcontroller
+
 .ORG 0x001A
 RJMP Timer1OverflowInterrupt
+
+////////////////////////////////////////////////////////////
+//-------------------------INIT---------------------------//
+////////////////////////////////////////////////////////////
 
 init:
 
@@ -54,23 +59,20 @@ init:
 	SBI DDRB,5					; Pin PB5 is an output
 	CBI PORTB,5					; Output low => initial condition low!
 
-	LDI XH,0x01
-	CLR XL
-	LDI YH,0x01
-	CLR YL
+	LDI XH, HIGH(bufferStartAddress)
+	LDI XL, LOW(bufferStartAddress)
+	SBIW XL,10
 
-	RCALL clearScreen
+	rcall initDino
+	rcall addCactus
+////////////////////////////////////////////
+//- Timer1 (16 bit timer) initialisation -//
+////////////////////////////////////////////
 
-	LDI xpos,38
-	LDI ypos,12
-
-
-	/* Added code from Johan */
-
-	; Select normal counter mode
+; Select normal counter mode
 	LDI tempRegister, 0x0
 	STS TCCR1A, tempRegister
-	;set timer0 prescaler to 1024
+	;set timer1 prescaler to 1024
 	LDI tempRegister, 0x05
 	STS TCCR1B,tempRegister
 	;set correct ‘reload values’ 65536 - 16 000 000/65536/1 = 65292 => MSB = 0b1111 1111 LSB = 0b0000 1100 (after rounding)
@@ -83,20 +85,10 @@ init:
 	SEI
 	LDI tempRegister, 1
 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
+	
 
-	rcall initDino
-	rcall drawDino
-
-	rcall addCactus
-
-	CLR tempRegister
-	SBR tempRegister,0x01
-	ST X+,tempRegister
-
-	LDI XH,0x01
-	CLR XL
-	SBIW XH:XL,10
 	RJMP main
+
 
 Timer1OverflowInterrupt:
 	IN tempRegister, SREG
@@ -113,94 +105,104 @@ Timer1OverflowInterrupt:
 	OUT SREG, tempRegister
 	reti
 
+////////////////////////////////////////////////////////////
+//-------------------------MAIN---------------------------//
+////////////////////////////////////////////////////////////
+
 main:
-	ADIW XH:XL,20
-	INC illuminatedRow
-	CPI illuminatedRow,8
-	BRNE notmax
-	;rcall moveCactus
-	rcall clearScreen
+	RCALL clearScreen
+
+	/*
+	LDI xpos,38
+	LDI ypos,12
+	RCALL drawPixel
+
+	LDI xpos,37
+	LDI ypos,12
+	RCALL drawPixel*/
+
 	rcall drawDino
 	rcall drawCactus
-	LDI illuminatedRow,1 // Re-initialize
-	LDI XH,0x01
-	CLR XL
-	ADIW XH:XL,10
-	notmax:
-	;RCALL waitingLoop
-	;rcall clearScreen
-	;rcall drawCactus
+
+	RCALL flushMemory
+RJMP main
+
+
+flushMemory:
+
+	PUSH XH
+	PUSH XL
+
+	CLR illuminatedRow
+	LDI XH, HIGH(bufferStartAddress)
+	LDI XL, LOW(bufferStartAddress)
+	SBIW XL,10
+
+	nextRow:
+		ADIW XL,20
+		INC illuminatedRow
+		CPI illuminatedRow,8
+		BRNE notmax
+
+			POP XL
+			POP XH
+			RETI
+		notmax:
+		;RCALL waitingLoop
+
+		LDI counter,80
+		columnbits:
+			LD memoryByteRegister,-X ; -X = predec while X+ = postdec
+			LDI registerBitCounter,8
+
+			bitsOfRegister:
+				SBRC memoryByteRegister,7
+				RJMP pixelOn
+
+				; Pixel off
+				CBI PORTB,3
+				RJMP administration
+					
+				; Pixel on
+				pixelOn:
+					SBI PORTB,3
+				
+				administration:	
+				SBI PORTB,5
+				CBI PORTB,5
+				DEC counter
+				BREQ rows
+				DEC registerBitCounter
+				BREQ columnbits
+				LSL memoryByteRegister
+				RJMP bitsOfRegister	
+
+			rows:
+			LDI counter,8
+			rowbits:
+
+				CP counter, illuminatedRow
+				BREQ rowSet
+					CBI PORTB,3
+					RJMP nextStep
 	
-	LDI counter,80
-	columnbits:
-		LD memoryByteRegister,-X ; -X = predec while X+ = postdec
-		LDI registerBitCounter,8
+				rowSet:
+					SBI PORTB,3
 
-		bitsOfRegister:
-			SBRC memoryByteRegister,7
-			RJMP pixelOn
-
-			; Pixel off
-				CBI PORTB,3
-				SBI PORTB,5
-				CBI PORTB,5
-				DEC counter
-				BREQ rows
-				DEC registerBitCounter
-				BREQ columnbits
-				LSL memoryByteRegister
-				RJMP bitsOfRegister
-			
-			; Pixel on
-			pixelOn:
-				SBI PORTB,3
-				SBI PORTB,5
-				CBI PORTB,5
-				DEC counter
-				BREQ rows
-				DEC registerBitCounter
-				BREQ columnbits
-				LSL memoryByteRegister
-				RJMP bitsOfRegister		
-
-		rows:
-		LDI counter,8
-		rowbits:
-
-			CP counter, illuminatedRow
-			BREQ rowSet
-
-				CBI PORTB,3
+				nextStep:
 				SBI PORTB,5
 				CBI PORTB,5
 				DEC counter
 				BREQ latching
 				RJMP rowbits
 
-			rowSet:
+		latching:
+		SBI PORTB,4; Without waiting it also works (IF PROBLEM? LOOK AT THIS)
+		RCALL waitingLoop
+		CBI PORTB,4
+		RJMP nextRow
 
-				SBI PORTB,3
-				SBI PORTB,5
-				CBI PORTB,5
-				DEC counter
-				BREQ latching
-				RJMP rowbits
-
-	latching:
-	SBI PORTB,4; Without waiting it also works (IF PROBLEM? LOOK AT THIS)
-	RCALL waitingLoop
-	/*
-	LDI tempRegister, 255			; Loop for a while
-
-	loop1:
-		DEC tempRegister
-		BRNE loop1*/
-
-	CBI PORTB,4
-
-	RJMP main
-
-
+RETI
 
 waitingLoop:
 	
@@ -225,26 +227,38 @@ waitingLoop:
 				RJMP innerLoop
 	
 	finishLoop:
-	reti
+RETI
+
 
 clearScreen:
-	
+	push XH
+	push XL
+
+	LDI XH,0x01
+	CLR XL
+
 	LDI counter,70
 	CLR tempRegister
 	clearingLoop:
-		ST Y+,tempRegister
+		ST X+,tempRegister
 		DEC counter
 		BRNE clearingLoop
 
-	LDI YH,0x01
-	CLR YL
+	POP XL
+	POP XH
+RETI
 
-	RETI
 
 drawPixel:
 
 	PUSH xpos
 	PUSH ypos
+
+	PUSH XH
+	PUSH XL
+
+	LDI XH, HIGH(bufferStartAddress)
+	LDI XL, LOW(bufferStartAddress)
 
 	CPI ypos,7
 	BRLO UpperPartScreen
@@ -256,13 +270,13 @@ drawPixel:
 
 		LDI tempRegister,10
 		MUL ypos,tempRegister
-		ADD YL,mulLSB
+		ADD XL,mulLSB
 
 		MOV tempRegister,xpos
 		LSR tempregister
 		LSR tempregister
 		LSR tempregister
-		ADD YL,tempregister
+		ADD XL,tempregister
 		
 		ANDI xpos, 0b00000111
 		LDI counter,0
@@ -276,22 +290,25 @@ drawPixel:
 		
 		bitfound:
 		
-		LD xpos, Y
+		LD xpos, X
 		OR tempregister,xpos
-		ST Y+,tempregister	
+		ST X+,tempregister	
 	
-		LDI YH,0x01
-		CLR YL
+	POP XL
+	POP XH
 
 	POP ypos
 	POP xpos
 
-	RETI
+RETI
 
 
 addCactus:
 	push xpos
 	push ypos
+
+	push XH
+	push XL
 
 	LDI XH, HIGH(cactusMemory)			// Point to start of cactusMemory
 	LDI XL, LOW(cactusMemory)
@@ -301,6 +318,9 @@ addCactus:
 	LDI ypos, 10							// ypos of cactus
 	ST X+, ypos
 
+	pop XL
+	pop XH
+
 	pop ypos
 	pop xpos
 	ret
@@ -308,6 +328,9 @@ addCactus:
 drawCactus:
 	push xpos
 	push ypos
+
+	push XH
+	push XL
 
 	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
 	LDI XH, HIGH(cactusMemory) 
@@ -338,12 +361,16 @@ drawCactus:
 
 
 	drawCactusRet:
+		pop XL
+		pop XH
 		pop ypos
 		pop xpos
 		ret
 
 moveCactus:
 	push xpos
+	push XH
+	push XL
 
 	LDI XH, HIGH(cactusMemory) 
 	LDI XL, LOW(cactusMemory)
@@ -356,12 +383,17 @@ moveCactus:
 
 	moveCactusRet:
 		ST X, xpos
+		pop XL
+		pop XH
 		pop xpos
 		ret
 
 drawDino:
 	push xpos
 	push ypos
+
+	push XH
+	push XL
 
 	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
 	LDI XH, HIGH(dinoMemory) 
@@ -400,6 +432,8 @@ drawDino:
 	inc ypos
 	rcall drawPixel
 	
+	pop XL
+	pop XH
 	pop ypos
 	pop xpos
 	ret
@@ -407,6 +441,8 @@ drawDino:
 initDino:
 	push xpos
 	push ypos
+	push XH
+	push XL
 
 	LDI XH, HIGH(dinoMemory)			// Point to start of cactusMemory
 	LDI XL, LOW(dinoMemory)
@@ -416,6 +452,8 @@ initDino:
 	LDI ypos, 8
 	ST X+, ypos
 
+	pop XL
+	pop XH
 	pop ypos
 	pop xpos
 	ret
