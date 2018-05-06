@@ -132,7 +132,7 @@
 	RJMP checkKeyboard*/
 
 	nothingPressed:
-		CPI keyboardPressed, 10			; Check if dino has landed
+		CPI keyboardPressed, 155			; Check if dino has landed
 		BRLO checkKeyboardRet
 		CLR keyboardPressed
 

@@ -31,7 +31,6 @@
 .equ bufferStartAddress = 0x0100
 .equ cactusMemory = 0x0300
 .equ dinoMemory = 0x0350
-;.equ jumpCounter = 0x0360
 
 .equ maxValueCounter0 = 255;255
 .equ maxValueCounter1 = 2;255
@@ -71,9 +70,7 @@ init:
 	SBI DDRC,2					; Pin PC2 is an output 
 	SBI PORTC,2					; Output Vcc => upper LED turned off!
 
-	LDI XH, HIGH(bufferStartAddress)
-	LDI XL, LOW(bufferStartAddress)
-	SBIW XL,10
+
 
 
 	; Initialize dinosaur and draw first cactus
@@ -83,7 +80,11 @@ init:
 	; Make sure keyboardPressed is zero
 	CLR keyboardPressed
 
-	; Make sure jumpcounter is zero
+
+	; This is needed for ???
+	LDI XH, HIGH(bufferStartAddress)
+	LDI XL, LOW(bufferStartAddress)
+	SBIW XL,10
 
 ////////////////////////////////////////////
 //- Timer1 (16 bit timer) initialisation -//
@@ -164,9 +165,12 @@ Timer1OverflowInterrupt:
 		reti
 
 Timer0OverflowInterrupt:
+	push XH
+	push XL
 	push tempRegister
 	IN tempRegister, SREG
 	push tempRegister
+
 	/* Reset timer values */
 	LDI tempRegister, 4
 	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
@@ -176,14 +180,21 @@ Timer0OverflowInterrupt:
 	BRLO timer0Ret					; Branch if Lower
 	
 	INC keyboardPressed
-	CPI keyboardPressed,10
-	BRNE timer0Ret
+	CPI keyboardPressed,155
+	BRNE timer0LoadMax
 	rcall initDino
+
+	timer0LoadMax:
+		CPI keyboardPressed, 156
+		BRLO timer0Ret
+		LDI keyboardPressed, 155	; Prevent overflows from happening. Overflows could cause the dino to jump up again, a few seconds after landing.
 
 	timer0Ret:
 		pop tempRegister
 		OUT SREG, tempRegister
 		pop tempRegister
+		pop XL
+		pop XH
 		reti
 
 ////////////////////////////////////////////////////////////
