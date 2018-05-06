@@ -16,7 +16,6 @@
 
 .def waitingcounter0 = R19
 .def waitingcounter1 = R20
-;.def waitingcounter2 = R21
 .def keyboardPressed = R21
 .def registerBitCounter = R22
 
@@ -24,9 +23,6 @@
 
 .def xpos = R24
 .def ypos = R25
-
-;.def XL = R26
-;.def XH = R27
 
 .equ bufferStartAddress = 0x0100
 .equ cactusMemory = 0x0300
@@ -70,9 +66,6 @@ init:
 	SBI DDRC,2					; Pin PC2 is an output 
 	SBI PORTC,2					; Output Vcc => upper LED turned off!
 
-
-
-
 	; Initialize dinosaur and draw first cactus
 	rcall initDino
 	rcall addCactus
@@ -100,11 +93,10 @@ init:
 	;set correct ‘reload values’ 65536 - 16 000 000/1024/1 = 65536 - 15625 = 49911 => MSB = 0b1100 0010 LSB = 0b1111 0111 
 	/* For 5 Hz */
 	;set correct ‘reload values’ 65536 - 16 000 000/1024/5 = 65536 - 3125 = 62411 => MSB = 0b1111 0011 LSB = 0b1100 1011
+
 	;To do a 16-bit write, the high byte must be written before the low byte.
-	//LDI tempRegister, 0b11000010
 	LDI tempRegister, 0b11110011
 	STS TCNT1H, tempRegister
-	//LDI tempRegister, 0b11110111
 	LDI tempRegister, 0b11001011
 	STS TCNT1L, tempRegister
 
@@ -140,23 +132,13 @@ Timer1OverflowInterrupt:
 	IN tempRegister, SREG
 	push tempRegister
 	/* Reset timer values */
-	//LDI tempRegister, 0b11000010		; 1 Hz
 	LDI tempRegister, 0b11110011		; 5 Hz
 	STS TCNT1H, tempRegister
-	//LDI tempRegister, 0b11110111		; 1 Hz
 	LDI tempRegister, 0b11001011		; 5 Hz
 	STS TCNT1L, tempRegister
 
 	/* Move the cactus */
 	rcall moveCactus
-
-	/* Check if keyboard was pressed. If it has been pressed, let dino stay up for 10s, then initialize it again at start location 
-	CPI keyboardPressed,1
-	BRLO timer1Ret					; Branch if Lower
-	INC keyboardPressed
-	CPI keyboardPressed,10
-	BRNE timer1Ret
-	rcall initDino*/
 
 	timer1Ret:
 		pop tempRegister
@@ -180,7 +162,7 @@ Timer0OverflowInterrupt:
 	BRLO timer0Ret					; Branch if Lower
 	
 	INC keyboardPressed
-	CPI keyboardPressed,155
+	CPI keyboardPressed,155			; IMPORTANT: if you change this value here, don't forget to change it in the keyboard function (label nothingPressed)
 	BRNE timer0LoadMax
 	rcall initDino
 
@@ -302,14 +284,6 @@ waitingLoop:
 			INC waitingcounter1
 			CPI waitingcounter1,maxValueCounter1
 			BRNE outerLoop
-			/* Inner loop will not work like this if you uncomment now
-			CLR waitingcounter2
-			innerLoop:
-		
-				CPI waitingcounter2,maxValueCounter2
-				BREQ middleLoop
-				INC waitingcounter2
-				RJMP innerLoop*/
 	
 	finishLoop:
 RETI

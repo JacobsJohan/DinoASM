@@ -1,0 +1,73 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc</DIR>
+  <DIR>D:\Program Files D\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc</FILE>
+  <FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE>
+  <FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\Debug\ProjectDino.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>ProjectDino.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>ProjectDino.map</FILE>
+  <FILE>ProjectDino.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <init><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>55</LINE></init>
+  <Timer1OverflowInterrupt><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>138</LINE></Timer1OverflowInterrupt>
+  <Timer0OverflowInterrupt><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>167</LINE></Timer0OverflowInterrupt>
+  <checkKeyboard><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>7</LINE></checkKeyboard>
+  <readColumns><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>52</LINE></readColumns>
+  <nothingPressed><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>134</LINE></nothingPressed>
+  <evaluate><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>91</LINE></evaluate>
+  <button8><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>99</LINE></button8>
+  <checkKeyboardRet><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>139</LINE></checkKeyboardRet>
+  <dinoJump><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>145</LINE></dinoJump>
+  <dinoJumpRet><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>169</LINE></dinoJumpRet>
+  <drawPixel><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>7</LINE></drawPixel>
+  <UpperPartScreen><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>24</LINE></UpperPartScreen>
+  <bitContent><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>39</LINE></bitContent>
+  <bitFound><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>46</LINE></bitFound>
+  <addCactus><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>61</LINE></addCactus>
+  <drawCactus><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>83</LINE></drawCactus>
+  <drawNextCactus><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>96</LINE></drawNextCactus>
+  <drawCactusRet><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>118</LINE></drawCactusRet>
+  <moveCactus><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>125</LINE></moveCactus>
+  <moveCactusRet><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>139</LINE></moveCactusRet>
+  <drawDino><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>146</LINE></drawDino>
+  <initDino><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>196</LINE></initDino>
+  <main><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>204</LINE></main>
+  <timer1Ret><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>161</LINE></timer1Ret>
+  <timer0Ret><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>192</LINE></timer0Ret>
+  <timer0LoadMax><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>187</LINE></timer0LoadMax>
+  <clearScreen><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>318</LINE></clearScreen>
+  <flushMemory><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>214</LINE></flushMemory>
+  <nextRow><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>224</LINE></nextRow>
+  <notmax><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>233</LINE></notmax>
+  <columnbits><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>237</LINE></columnbits>
+  <bitsOfRegister><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>241</LINE></bitsOfRegister>
+  <pixelOn><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>250</LINE></pixelOn>
+  <administration><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>253</LINE></administration>
+  <rows><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>263</LINE></rows>
+  <rowbits><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>265</LINE></rowbits>
+  <rowSet><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>272</LINE></rowSet>
+  <nextStep><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>275</LINE></nextStep>
+  <latching><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>282</LINE></latching>
+  <waitingLoop><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>290</LINE></waitingLoop>
+  <outerLoop><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>294</LINE></outerLoop>
+  <middleLoop><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>300</LINE></middleLoop>
+  <finishLoop><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>314</LINE></finishLoop>
+  <clearingLoop><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>327</LINE></clearingLoop>
+ </LABELS>
+</ASSEMBLER_INFO>
