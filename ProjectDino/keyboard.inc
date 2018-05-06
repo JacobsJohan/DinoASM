@@ -7,6 +7,7 @@
  checkKeyboard:
 	push R16
 	push R17
+	push R18
 	; Configure rows as inputs
 	CBI DDRD,4
 	SBI PORTD,4
@@ -44,7 +45,7 @@
 	LSL R16
 	SBIS PIND, 7
 	RJMP readColumns
-	RJMP checkKeyboardRet					; If nothing is pressed, return to rest of program
+	RJMP nothingPressed					; If nothing is pressed, return to rest of program
 
 
 
@@ -85,7 +86,7 @@
 	LSL R17
 	SBIS PIND, 3
 	RJMP evaluate
-	RJMP checkKeyboardRet			; All columns are high so no button was pressed
+	RJMP nothingPressed			; All columns are high so no button was pressed
 
 	evaluate:
 	ADD R16, R17
@@ -96,6 +97,8 @@
 	RJMP checkKeyboardRet
 
 	button8:
+		CPI keyboardPressed,0
+		BRNE checkKeyboardRet
 		rcall dinoJump
 		RJMP checkKeyboardRet
 
@@ -128,7 +131,13 @@
 	CBI PORTC,3
 	RJMP checkKeyboard*/
 
+	nothingPressed:
+		CPI keyboardPressed, 10			; Check if dino has landed
+		BRLO checkKeyboardRet
+		CLR keyboardPressed
+
 	checkKeyboardRet:
+		pop R18
 		pop R17
 		pop R16
 		ret
@@ -143,8 +152,8 @@ dinoJump:
 	push XL
 
 
-	CPI keyboardPressed,1
-	BRSH dinoJumpRet								; If keyboard has been pressed and dino hasn't landed, skip rest of jump
+	;CPI keyboardPressed,1
+	;BRSH dinoJumpRet								; If keyboard has been pressed and dino hasn't landed, skip rest of jump (Branch if Same or Higher)
 	INC keyboardPressed
 
 	LDI XH, HIGH(dinoMemory)

@@ -31,6 +31,7 @@
 .equ bufferStartAddress = 0x0100
 .equ cactusMemory = 0x0300
 .equ dinoMemory = 0x0350
+;.equ jumpCounter = 0x0360
 
 .equ maxValueCounter0 = 255;255
 .equ maxValueCounter1 = 2;255
@@ -82,6 +83,8 @@ init:
 	; Make sure keyboardPressed is zero
 	CLR keyboardPressed
 
+	; Make sure jumpcounter is zero
+
 ////////////////////////////////////////////
 //- Timer1 (16 bit timer) initialisation -//
 ////////////////////////////////////////////
@@ -103,10 +106,29 @@ init:
 	//LDI tempRegister, 0b11110111
 	LDI tempRegister, 0b11001011
 	STS TCNT1L, tempRegister
-	; Enable interrupts (SEI: global interrupt enable)
-	SEI
+
+///////////////////////////////////////////
+//- Timer0 (8 bit timer) initialisation -//
+///////////////////////////////////////////
+
+	; Select normal counter mode
+	LDI tempRegister, 0x0
+	OUT TCCR0A, tempRegister
+	;set timer0 prescaler to 1024
+	LDI tempRegister, 0x05
+	OUT TCCR0B,tempRegister
+	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
+	LDI tempRegister, 4
+	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
+
+//////////////////////////
+//- Enable interrupts -//
+/////////////////////////
+
+	SEI									; (SEI: global interrupt enable)
 	LDI tempRegister, 1
 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
+	STS TIMSK0, tempRegister			; set peripheral interrupt flag
 	
 
 	RJMP main
@@ -127,14 +149,13 @@ Timer1OverflowInterrupt:
 	/* Move the cactus */
 	rcall moveCactus
 
-	/* Check if keyboard was pressed. If it has been pressed, let dino stay up for 10s, then initialize it again at start location */
+	/* Check if keyboard was pressed. If it has been pressed, let dino stay up for 10s, then initialize it again at start location 
 	CPI keyboardPressed,1
-	BRLO timer1Ret
+	BRLO timer1Ret					; Branch if Lower
 	INC keyboardPressed
 	CPI keyboardPressed,10
-	BRLO timer1Ret
-	rcall initDino
-	LDI keyboardPressed,0		; implementation is not ideal, you can still keep keyboard pressed and dino will stay up. Will be fixed later
+	BRNE timer1Ret
+	rcall initDino*/
 
 	timer1Ret:
 		pop tempRegister
@@ -143,6 +164,27 @@ Timer1OverflowInterrupt:
 		reti
 
 Timer0OverflowInterrupt:
+	push tempRegister
+	IN tempRegister, SREG
+	push tempRegister
+	/* Reset timer values */
+	LDI tempRegister, 4
+	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
+
+	/* Check if keyboard was pressed. If it has been pressed, let dino stay up for 10s, then initialize it again at start location */
+	CPI keyboardPressed,1
+	BRLO timer0Ret					; Branch if Lower
+	
+	INC keyboardPressed
+	CPI keyboardPressed,10
+	BRNE timer0Ret
+	rcall initDino
+
+	timer0Ret:
+		pop tempRegister
+		OUT SREG, tempRegister
+		pop tempRegister
+		reti
 
 ////////////////////////////////////////////////////////////
 //-------------------------MAIN---------------------------//
