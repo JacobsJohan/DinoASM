@@ -194,31 +194,31 @@ Timer0OverflowInterrupt:
 	INC keyboardPressed
 	CPI keyboardPressed, 2
 	BREQ dinoJump
-	CPI keyboardPressed, 10
+	CPI keyboardPressed, 7
 	BREQ dinoJump
-	CPI keyboardPressed, 18
+	CPI keyboardPressed, 12
 	BREQ dinoJump
-	CPI keyboardPressed, 26
+	CPI keyboardPressed, 17
 	BREQ dinoJump
-	CPI keyboardPressed, 34
+	CPI keyboardPressed, 22
 	BREQ dinoJump
-	CPI keyboardPressed, 42
+	CPI keyboardPressed, 27
 	BREQ dinoJump
 	; Move dino 1 pixel down
 	CPI keyboardPressed, 92
 	BREQ dinoDrop
-	CPI keyboardPressed, 100
+	CPI keyboardPressed, 97
 	BREQ dinoDrop
-	CPI keyboardPressed, 108
+	CPI keyboardPressed, 102
 	BREQ dinoDrop
-	CPI keyboardPressed, 116
+	CPI keyboardPressed, 107
 	BREQ dinoDrop
-	CPI keyboardPressed, 124
+	CPI keyboardPressed, 112
 	BREQ dinoDrop
-	CPI keyboardPressed, 132
+	CPI keyboardPressed, 117
 	BREQ dinoDrop
 	; reset keyboard pressed register
-	CPI keyboardPressed, 133			
+	CPI keyboardPressed, 118			
 	BREQ preventOverflow
 	RJMP timer0Ret						; Skip everything in other cases
 	dinoJump:

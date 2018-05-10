@@ -55,7 +55,7 @@
 		AND counter,tempregister
 		CPI counter,0
 		BREQ noCollision
-			//SER gameState		// This is commented in Remco code
+			SER gameState		// Comment this to turn off collision
 
 		noCollision:
 		; Draw updated field
@@ -167,19 +167,20 @@ moveCactus:
 	LDI XL, LOW(cactusMemory)
 
 	moveNextCactus:
-	CPI tempregister,0
-	BREQ noCactiLeft
-	DEC tempregister
+		CPI tempregister,0
+		BREQ noCactiLeft
+		DEC tempregister
 
-	LD xpos, X
-	DEC xpos			// Move cactus 1 xpos to the left
-	BRNE store
+		LD xpos, X
+		DEC xpos			// Move cactus 1 xpos to the left
+		BRNE store
 
-	DEC nmbrOfCacti
-	RCALL deleteFirstCactus
-	INC XL
-	INC XL
-	RJMP moveNextCactus
+		DEC nmbrOfCacti
+		//RCALL deleteFirstCactus
+		rcall addCactus
+		INC XL
+		INC XL
+		RJMP moveNextCactus
 
 	store:
 		ST X, xpos
