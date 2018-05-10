@@ -2,7 +2,7 @@
  * keyboard.inc
  *
  *  Created: 2/05/2018 17:07:28
- *   Author: Johan Laptop
+ *   Author: Johan Jacobs & Remco Royen
  */ 
 
  /* Registers R16, R17 and R18 are used in this function together with xpos (=R24) and ypos (=R25)*/
@@ -93,10 +93,11 @@
 	evaluate:
 	ADD R16, R17
 
-	LDI R18, 0x48				; Evaluate button 8: 0100 1000
+	LDI R18, 0b01001000				; Evaluate button 8: 0100 1000
 	CP R16, R18
 	BREQ button8
-	LDI R18, 0b01000001				; Evaluate button 8: 0100 0001
+
+	LDI R18, 0b01000001				; Evaluate button 0: 0100 0001
 	CP R16, R18
 	BREQ button0
 	RJMP checkKeyboardRet
@@ -104,7 +105,8 @@
 	button8:
 		CPI keyboardPressed,0
 		BRNE checkKeyboardRet
-		rcall dinoJump
+		INC keyboardPressed
+		//rcall dinoJump
 		RJMP checkKeyboardRet
 
 	button0:
@@ -143,9 +145,9 @@
 	RJMP checkKeyboard*/
 
 	nothingPressed:
-		CPI keyboardPressed, 100			; Check if dino has landed
+		CPI keyboardPressed, 132			; Check if dino has landed
 		BRLO checkKeyboardRet
-		CLR keyboardPressed
+		CLR keyboardPressed				; Only reset this register if the key has been released
 
 	checkKeyboardRet:
 		pop R18
@@ -153,32 +155,40 @@
 		pop R16
 		ret
 
-dinoJump:
-	push xpos
+/*dinoJumpold:
 	push ypos
 	push tempRegister
 	push XH
 	push XL
 
+	dinoJump:
+		LDI XH, HIGH(dinoMemory)
+		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
+		LD tempRegister, X				; Load old ypos
+		DEC tempRegister				; Decrease ypos (go up)
+		ST X,tempRegister				; Store ypos
+		RJMP timer0Ret
 
-	;CPI keyboardPressed,1
-	;BRSH dinoJumpRet								; If keyboard has been pressed and dino hasn't landed, skip rest of jump (Branch if Same or Higher)
-	INC keyboardPressed
+	dinoDrop:
+		LDI XH, HIGH(dinoMemory)
+		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
+		LD tempRegister, X				; Load old ypos
+		INC tempRegister				; Increase ypos (go down)
+		ST X,tempRegister				; Store ypos
+		RJMP timer0Ret
 
-	LDI XH, HIGH(dinoMemory)
-	LDI XL, LOW(dinoMemory)
-		
-	LDI xpos, 4							// xpos of dino
-	ST X+, xpos
-	LDI ypos, 2
-	ST X+, ypos
-
-	; Start timer to make dinosaur drop to the floor again
 
 	dinoJumpRet:
 		pop XL
 		pop XH
 		pop tempRegister
 		pop ypos
-		pop xpos
-		ret
+		ret*/
+
+
+/* Keyboard layout for evaluation */
+
+/* Button 7: 1000 1000 | Button 8: 0100 1000 | Button 9: 0010 1000 | Button F: 0001 1000 */
+/* Button 4: 1000 0100 | Button 5: 0100 0100 | Button 6: 0010 0100 | Button E: 0001 0100 */
+/* Button 1: 1000 0010 | Button 2: 0100 0010 | Button 3: 0010 0010 | Button D: 0001 0010 */
+/* Button A: 1000 0001 | Button 0: 0100 0001 | Button B: 0010 0001 | Button C: 0001 0001 */

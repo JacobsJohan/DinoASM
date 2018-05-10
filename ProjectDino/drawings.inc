@@ -2,12 +2,15 @@
  * drawings.inc
  *
  *  Created: 2/05/2018 19:50:45
- *   Author: Johan Laptop
+ *   Authors: Johan Jacobs & Remco Royen
  */ 
  drawPixel:
 
 	PUSH xpos
 	PUSH ypos
+
+	PUSH counter
+	PUSH tempregister
 
 	PUSH XH
 	PUSH XL
@@ -52,7 +55,7 @@
 		AND counter,tempregister
 		CPI counter,0
 		BREQ noCollision
-			SER gameState
+			//SER gameState		// This is commented in Remco code
 
 		noCollision:
 		; Draw updated field
@@ -61,6 +64,9 @@
 	
 	POP XL
 	POP XH
+
+	POP tempregister
+	POP counter
 
 	POP ypos
 	POP xpos
@@ -72,20 +78,30 @@ addCactus:
 	push xpos
 	push ypos
 
+	PUSH tempregister
+
 	push XH
 	push XL
 
 	LDI XH, HIGH(cactusMemory)			// Point to start of cactusMemory
 	LDI XL, LOW(cactusMemory)
 
+	MOV tempregister, nmbrOfCacti
+	LSL tempregister
+
+	ADD XL , tempregister
+
 	LDI xpos, 38							// xpos of cactus
 	ST X+, xpos
 	LDI ypos, 10							// ypos of cactus
 	ST X+, ypos
 
+	INC nmbrOfCacti
+
 	pop XL
 	pop XH
 
+	pop tempregister
 	pop ypos
 	pop xpos
 	ret
@@ -93,17 +109,27 @@ addCactus:
 drawCactus:
 	push xpos
 	push ypos
+	push nmbrOfCacti
 
+	push tempregister
 	push XH
 	push XL
+
+	MOV tempregister,nmbrOfCacti
 
 	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
 	LDI XH, HIGH(cactusMemory) 
 	LDI XL, LOW(cactusMemory)
-	LD xpos, X+						// R16 contains xpos
-	LD ypos, X+						// R17 contains ypos
 
 	drawNextCactus:
+		CPI tempregister,0
+		BREQ noCactusLeft 
+		DEC tempregister
+
+	testing:
+		LD xpos, X+
+		LD ypos, X+	
+
 		rcall drawPixel
 		inc ypos
 		rcall drawPixel
@@ -118,38 +144,54 @@ drawCactus:
 		inc ypos
 		rcall drawPixel
 
-		;LD xpos, X+
-		;CPI xpos,0
-		;BREQ drawCactusRet				// If xpos of next cactus to draw is zero, then return from function
-		;LD ypos, X+
-		;RJMP drawNextCactus
 
-
-	drawCactusRet:
+	noCactusLeft:	
 		pop XL
 		pop XH
+		pop tempregister
+		pop nmbrOfCacti
+
 		pop ypos
 		pop xpos
 		ret
 
 moveCactus:
 	push xpos
+	push tempRegister
 	push XH
 	push XL
+
+	mov tempregister, nmbrOfCacti
 
 	LDI XH, HIGH(cactusMemory) 
 	LDI XL, LOW(cactusMemory)
 
+	moveNextCactus:
+	CPI tempregister,0
+	BREQ noCactiLeft
+	DEC tempregister
+
 	LD xpos, X
 	DEC xpos			// Move cactus 1 xpos to the left
-	;CPI xpos,1
-	BRNE moveCactusRet
-	LDI xpos, 38		// In case cactus will fall off of screen, redraw it at beginning (to test stuff)
+	BRNE store
 
-	moveCactusRet:
+	DEC nmbrOfCacti
+	RCALL deleteFirstCactus
+	INC XL
+	INC XL
+	RJMP moveNextCactus
+
+	store:
 		ST X, xpos
+
+		INC XL
+		INC XL
+		RJMP moveNextCactus
+
+	noCactiLeft:
 		pop XL
 		pop XH
+		pop tempregister
 		pop xpos
 		ret
 
@@ -163,8 +205,8 @@ drawDino:
 	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
 	LDI XH, HIGH(dinoMemory) 
 	LDI XL, LOW(dinoMemory)
-	LD xpos, X+						// R16 contains xpos
-	LD ypos, X						// R17 contains ypos
+	LD xpos, X+
+	LD ypos, X
 
 	rcall drawPixel
 	dec xpos
@@ -221,4 +263,39 @@ initDino:
 	pop XH
 	pop ypos
 	pop xpos
+	ret
+
+deleteFirstCactus:
+
+	push xpos
+	push tempregister
+	PUSH nmbrOfCacti
+	push XH
+	push XL
+
+	mov tempregister, nmbrOfCacti
+
+	LDI XH, HIGH(cactusMemory) 
+	LDI XL, LOW(cactusMemory)
+
+	LSL tempregister
+
+	stillDeleting:
+		BREQ deletingDone
+		ADIW XL,2
+		LD tempregister,X
+		DEC XL
+		DEC XL
+		ST X+,tempregister
+		DEC tempregister
+		RJMP stillDeleting
+
+
+	deletingDone:
+	pop XL
+	pop XH
+	pop nmbrOfCacti
+	pop tempregister
+	pop xpos
+	
 	ret

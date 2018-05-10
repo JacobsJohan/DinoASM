@@ -1,14 +1,19 @@
 ;
-; Task9.asm
+; The dinosaur game
 ;
 ; Created: 28/04/2018 17:37:02
-; Author : Remco Royen
+; Authors : Remco Royen & Johan Jacobs
 ;
 
 .INCLUDE "m328pdef.inc"			; Load addresses of (I/O) registers
 
 .def mulLSB = R0
 .def mulMSB = R1
+
+.def memoryByteRegister = R2
+
+.def maxNmbrOfCacti = R3
+.def nmbrOfCacti = R4
 
 .def counter = R16				; Register that serves for all kind of counter actions
 .def illuminatedRow = R17		; Indicates the row that will be illuminated
@@ -19,14 +24,12 @@
 .def keyboardPressed = R21
 .def registerBitCounter = R22
 
-.def memoryByteRegister = R2
+.def gameState = R23 ; = 0x00 -> Playing
+					 ; = 0xFF -> Wait for button to play
 
 .def xpos = R24
 .def ypos = R25
 
-
-.def gameState = R23 ; = 0x00 -> Playing
-					 ; = 0xFF -> Wait for button to play
 
 .equ bufferStartAddress = 0x0100
 .equ cactusMemory = 0x0300
@@ -79,6 +82,13 @@ init:
 	; Configure a LED as output (to test things)
 	SBI DDRC,2					; Pin PC2 is an output 
 	SBI PORTC,2					; Output Vcc => upper LED turned off!
+
+	; No cacti drawn
+	CLR nmbrOfCacti
+
+	; First level only one cactus
+	CLR maxNmbrOfCacti
+	INC maxNmbrOfCacti
 
 	; Initialize dinosaur and draw first cactus
 	rcall initDino
@@ -174,19 +184,61 @@ Timer0OverflowInterrupt:
 	LDI tempRegister, 4
 	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
 
-	/* Check if keyboard was pressed. If it has been pressed, let dino stay up for 10s, then initialize it again at start location */
+	/*  Check if jump key was pressed. If it has been pressed, the dinosaur will move up, float, and move down. 
+		Most of this could be written in a function call, but that would probably waste more time. Unfortunately 
+		I don't see a less redundant way for all of the compare statements. */
 	CPI keyboardPressed,1
 	BRLO timer0Ret					; Branch if Lower
-	
-	INC keyboardPressed
-	CPI keyboardPressed,100
-	BRNE timer0LoadMax
-	rcall initDino
 
-	timer0LoadMax:
-		CPI keyboardPressed, 101
-		BRLO timer0Ret
-		LDI keyboardPressed, 100	; Prevent overflows from happening. Overflows could cause the dino to jump up again, a few seconds after landing.
+	; Move dino 1 pixel up
+	INC keyboardPressed
+	CPI keyboardPressed, 2
+	BREQ dinoJump
+	CPI keyboardPressed, 10
+	BREQ dinoJump
+	CPI keyboardPressed, 18
+	BREQ dinoJump
+	CPI keyboardPressed, 26
+	BREQ dinoJump
+	CPI keyboardPressed, 34
+	BREQ dinoJump
+	CPI keyboardPressed, 42
+	BREQ dinoJump
+	; Move dino 1 pixel down
+	CPI keyboardPressed, 92
+	BREQ dinoDrop
+	CPI keyboardPressed, 100
+	BREQ dinoDrop
+	CPI keyboardPressed, 108
+	BREQ dinoDrop
+	CPI keyboardPressed, 116
+	BREQ dinoDrop
+	CPI keyboardPressed, 124
+	BREQ dinoDrop
+	CPI keyboardPressed, 132
+	BREQ dinoDrop
+	; reset keyboard pressed register
+	CPI keyboardPressed, 133			
+	BREQ preventOverflow
+	RJMP timer0Ret						; Skip everything in other cases
+	dinoJump:
+		LDI XH, HIGH(dinoMemory)
+		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
+		LD tempRegister, X				; Load old ypos
+		DEC tempRegister				; Decrease ypos (go up)
+		ST X,tempRegister				; Store ypos
+		RJMP timer0Ret
+
+	dinoDrop:
+		LDI XH, HIGH(dinoMemory)
+		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
+		LD tempRegister, X				; Load old ypos
+		INC tempRegister				; Increase ypos (go down)
+		ST X,tempRegister				; Store ypos
+		RJMP timer0Ret
+
+	preventOverflow:
+		DEC keyboardPressed				; Make sure this is the same value in nothingPressed in keyboard.inc
 
 	timer0Ret:
 		pop tempRegister
@@ -216,21 +268,16 @@ Timer0OverflowInterrupt:
 ////////////////////////////////////////////////////////////
 
 main:
+	RCALL flushMemory
+	RCALL clearScreen
+	rcall drawDino
+	rcall checkKeyboard
 
 	CPI gameState,0
 	BREQ playing
-		RCALL clearScreen
-		rcall drawDino
-		rcall checkKeyboard
-		RCALL flushMemory
-		RJMP main
-
+		RJMP init
 	playing:
-		RCALL clearScreen
-		rcall checkKeyboard
-		rcall drawDino
 		rcall drawCactus
-		RCALL flushMemory
 RJMP main
 
 
@@ -318,22 +365,12 @@ waitingLoop:
 		INC waitingcounter0
 		CPI waitingcounter0,maxValueCounter0
 		BRNE outerLoop
-		;CLR waitingcounter1
 
 		middleLoop:
 			CLR waitingcounter0
 			INC waitingcounter1
 			CPI waitingcounter1,maxValueCounter1
-			BRNE outerLoop
-			/* Inner loop will not work like this if you uncomment now
-			CLR waitingcounter2
-			innerLoop:
-		
-				CPI waitingcounter2,maxValueCounter2
-				BREQ middleLoop
-				INC waitingcounter2
-				RJMP innerLoop*/
-	
+			BRNE outerLoop	
 	finishLoop:
 RET
 
