@@ -4,6 +4,8 @@
  *  Created: 2/05/2018 17:07:28
  *   Author: Johan Laptop
  */ 
+
+ /* Registers R16, R17 and R18 are used in this function together with xpos (=R24) and ypos (=R25)*/
  checkKeyboard:
 	push R16
 	push R17
@@ -94,12 +96,21 @@
 	LDI R18, 0x48				; Evaluate button 8: 0100 1000
 	CP R16, R18
 	BREQ button8
+	LDI R18, 0b01000001				; Evaluate button 8: 0100 0001
+	CP R16, R18
+	BREQ button0
 	RJMP checkKeyboardRet
 
 	button8:
 		CPI keyboardPressed,0
 		BRNE checkKeyboardRet
 		rcall dinoJump
+		RJMP checkKeyboardRet
+
+	button0:
+		CPI keyboardPressed,0
+		BRNE checkKeyboardRet
+		CLR gameState
 		RJMP checkKeyboardRet
 
 
@@ -132,7 +143,7 @@
 	RJMP checkKeyboard*/
 
 	nothingPressed:
-		CPI keyboardPressed, 155			; Check if dino has landed
+		CPI keyboardPressed, 100			; Check if dino has landed
 		BRLO checkKeyboardRet
 		CLR keyboardPressed
 
@@ -143,8 +154,6 @@
 		ret
 
 dinoJump:
-	; Turn on LED to test this
-	;CBI PORTC,2									; Turn LED on
 	push xpos
 	push ypos
 	push tempRegister

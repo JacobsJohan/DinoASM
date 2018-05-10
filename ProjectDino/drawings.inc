@@ -45,7 +45,17 @@
 		
 		bitfound:
 		
-		LD xpos, X
+		LD xpos, X ; The old byte content is stored in xpos
+
+		; Collision detect
+		MOV counter,xpos ; Counter is used as a temp register
+		AND counter,tempregister
+		CPI counter,0
+		BREQ noCollision
+			SER gameState
+
+		noCollision:
+		; Draw updated field
 		OR tempregister,xpos
 		ST X+,tempregister	
 	
@@ -55,7 +65,7 @@
 	POP ypos
 	POP xpos
 
-RETI
+RET
 
 
 addCactus:

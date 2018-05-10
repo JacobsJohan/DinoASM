@@ -19,21 +19,29 @@
 .def keyboardPressed = R21
 .def registerBitCounter = R22
 
-.def memoryByteRegister = R23
+.def memoryByteRegister = R2
 
 .def xpos = R24
 .def ypos = R25
 
+
+.def gameState = R23 ; = 0x00 -> Playing
+					 ; = 0xFF -> Wait for button to play
+
 .equ bufferStartAddress = 0x0100
 .equ cactusMemory = 0x0300
 .equ dinoMemory = 0x0350
+.equ speedMemory = 0x360
 
 .equ maxValueCounter0 = 255;255
 .equ maxValueCounter1 = 2;255
 .equ maxValueCounter2 = 0;40
 
 .ORG 0x0000
-RJMP init					; First instruction that is executed by the microcontroller
+RJMP initGameState					; First instruction that is executed by the microcontroller
+
+.ORG 0x0012
+RJMP Timer2OverflowInterrupt
 
 .ORG 0x001A
 RJMP Timer1OverflowInterrupt
@@ -41,12 +49,18 @@ RJMP Timer1OverflowInterrupt
 .ORG 0x0020
 RJMP Timer0OverflowInterrupt
 
+
 .include "keyboard.inc"
 .include "drawings.inc"
 
 ////////////////////////////////////////////////////////////
 //-------------------------INIT---------------------------//
 ////////////////////////////////////////////////////////////
+
+initGameState:
+
+	; Begin in idle state
+	SER gameState
 
 init:
 
@@ -73,36 +87,28 @@ init:
 	; Make sure keyboardPressed is zero
 	CLR keyboardPressed
 
+	////////////////////////////////////////////
+	//- Timer1 (16 bit timer) initialisation -//
+	////////////////////////////////////////////
 
-	; This is needed for ???
-	LDI XH, HIGH(bufferStartAddress)
-	LDI XL, LOW(bufferStartAddress)
-	SBIW XL,10
-
-////////////////////////////////////////////
-//- Timer1 (16 bit timer) initialisation -//
-////////////////////////////////////////////
-
-; Select normal counter mode
+	; Select normal counter mode
 	LDI tempRegister, 0x0
 	STS TCCR1A, tempRegister
-	;set timer1 prescaler to 1024
-	LDI tempRegister, 0x05
+	;set timer1 prescaler to 64 == 011, 1024 == 101 (Important: this is different for 8 bit timer)
+	LDI tempRegister, 0x03
 	STS TCCR1B,tempRegister
-	/* For 1 Hz */
-	;set correct ‘reload values’ 65536 - 16 000 000/1024/1 = 65536 - 15625 = 49911 => MSB = 0b1100 0010 LSB = 0b1111 0111 
-	/* For 5 Hz */
-	;set correct ‘reload values’ 65536 - 16 000 000/1024/5 = 65536 - 3125 = 62411 => MSB = 0b1111 0011 LSB = 0b1100 1011
 
-	;To do a 16-bit write, the high byte must be written before the low byte.
-	LDI tempRegister, 0b11110011
-	STS TCNT1H, tempRegister
-	LDI tempRegister, 0b11001011
-	STS TCNT1L, tempRegister
+	/* Initial timer value will be 5 Hz. As the game progresses, the frequency at which the cacti move should be increased. We will do this by adding an immediate to the Y registers and storing this in TCNT1.  */
+	; Prescaler 64: 65536 - 16 000 000/64/5 = 65536 - 50000 = 15536 => 00111100 10110000
+	LDI YH, 0b00111100
+	LDI YL, 0b10110000
 
-///////////////////////////////////////////
-//- Timer0 (8 bit timer) initialisation -//
-///////////////////////////////////////////
+	STS TCNT1H, YH
+	STS TCNT1L, YL
+
+	///////////////////////////////////////////
+	//- Timer0 (8 bit timer) initialisation -//
+	///////////////////////////////////////////
 
 	; Select normal counter mode
 	LDI tempRegister, 0x0
@@ -114,16 +120,29 @@ init:
 	LDI tempRegister, 4
 	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
 
-//////////////////////////
-//- Enable interrupts -//
-/////////////////////////
+	///////////////////////////////////////////
+	//- Timer2 (8 bit timer) initialisation -//
+	///////////////////////////////////////////
+
+	; Select normal counter mode
+	LDI tempRegister, 0x0
+	STS TCCR2A, tempRegister
+	;set timer2 prescaler to 1024 == 111, 
+	LDI tempRegister, 0x07
+	STS TCCR2B,tempRegister
+	;set correct ‘reload values’ 256 - 16 000 000/1024/61 = 0 (after rounding)
+	LDI tempRegister, 0
+	STS TCNT2,tempRegister
+
+	//////////////////////////
+	//- Enable interrupts -//
+	/////////////////////////
 
 	SEI									; (SEI: global interrupt enable)
 	LDI tempRegister, 1
 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
-	STS TIMSK0, tempRegister			; set peripheral interrupt flag
-	
-
+	STS TIMSK0, tempRegister
+	STS TIMSK2, tempRegister
 	RJMP main
 
 
@@ -132,10 +151,8 @@ Timer1OverflowInterrupt:
 	IN tempRegister, SREG
 	push tempRegister
 	/* Reset timer values */
-	LDI tempRegister, 0b11110011		; 5 Hz
-	STS TCNT1H, tempRegister
-	LDI tempRegister, 0b11001011		; 5 Hz
-	STS TCNT1L, tempRegister
+	STS TCNT1H, YH
+	STS TCNT1L, YL
 
 	/* Move the cactus */
 	rcall moveCactus
@@ -144,7 +161,7 @@ Timer1OverflowInterrupt:
 		pop tempRegister
 		OUT SREG, tempRegister
 		pop tempRegister
-		reti
+		RETI
 
 Timer0OverflowInterrupt:
 	push XH
@@ -162,14 +179,14 @@ Timer0OverflowInterrupt:
 	BRLO timer0Ret					; Branch if Lower
 	
 	INC keyboardPressed
-	CPI keyboardPressed,155			; IMPORTANT: if you change this value here, don't forget to change it in the keyboard function (label nothingPressed)
+	CPI keyboardPressed,100
 	BRNE timer0LoadMax
 	rcall initDino
 
 	timer0LoadMax:
-		CPI keyboardPressed, 156
+		CPI keyboardPressed, 101
 		BRLO timer0Ret
-		LDI keyboardPressed, 155	; Prevent overflows from happening. Overflows could cause the dino to jump up again, a few seconds after landing.
+		LDI keyboardPressed, 100	; Prevent overflows from happening. Overflows could cause the dino to jump up again, a few seconds after landing.
 
 	timer0Ret:
 		pop tempRegister
@@ -177,19 +194,43 @@ Timer0OverflowInterrupt:
 		pop tempRegister
 		pop XL
 		pop XH
-		reti
+		RETI
+
+	/* Timer2 is used to increase the speed of the cacti at a constant rate */
+	Timer2OverflowInterrupt:
+		PUSH tempRegister
+		IN tempRegister, SREG
+		PUSH tempRegister
+
+		LDI tempRegister, 0
+		STS TCNT2,tempRegister
+		ADIW YL, 10
+
+		POP tempRegister
+		OUT SREG, tempRegister
+		POP tempRegister
+		RETI
 
 ////////////////////////////////////////////////////////////
 //-------------------------MAIN---------------------------//
 ////////////////////////////////////////////////////////////
 
 main:
-	RCALL clearScreen
-	rcall checkKeyboard
-	rcall drawDino
-	rcall drawCactus
 
-	RCALL flushMemory
+	CPI gameState,0
+	BREQ playing
+		RCALL clearScreen
+		rcall drawDino
+		rcall checkKeyboard
+		RCALL flushMemory
+		RJMP main
+
+	playing:
+		RCALL clearScreen
+		rcall checkKeyboard
+		rcall drawDino
+		rcall drawCactus
+		RCALL flushMemory
 RJMP main
 
 
@@ -211,7 +252,7 @@ flushMemory:
 
 			POP XL
 			POP XH
-			RETI
+			RET
 		notmax:
 		;RCALL waitingLoop
 
@@ -267,7 +308,7 @@ flushMemory:
 		CBI PORTB,4
 		RJMP nextRow
 
-RETI
+RET
 
 waitingLoop:
 	
@@ -284,9 +325,17 @@ waitingLoop:
 			INC waitingcounter1
 			CPI waitingcounter1,maxValueCounter1
 			BRNE outerLoop
+			/* Inner loop will not work like this if you uncomment now
+			CLR waitingcounter2
+			innerLoop:
+		
+				CPI waitingcounter2,maxValueCounter2
+				BREQ middleLoop
+				INC waitingcounter2
+				RJMP innerLoop*/
 	
 	finishLoop:
-RETI
+RET
 
 
 clearScreen:
@@ -305,4 +354,4 @@ clearScreen:
 
 	POP XL
 	POP XH
-RETI
+RET
