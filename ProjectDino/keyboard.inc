@@ -93,26 +93,39 @@
 	evaluate:
 	ADD R16, R17
 
-	LDI R18, 0b01001000				; Evaluate button 8: 0100 1000
+	LDI R18, 0b10001000				; Evaluate button 7: 1000 1000
 	CP R16, R18
-	BREQ button8
+	BREQ button7
 
-	LDI R18, 0b01000001				; Evaluate button 0: 0100 0001
+	LDI R18, 0b10000001				; Evaluate button A: 1000 0001
 	CP R16, R18
-	BREQ button0
+	BREQ buttonA
+
+	LDI R18, 0b10000010				; Evaluate button 1: 1000 0010
+	CP R16, R18
+	BREQ button1
 	RJMP checkKeyboardRet
 
-	button8:
+	button7:
 		CPI keyboardPressed,0
 		BRNE checkKeyboardRet
 		INC keyboardPressed
-		//rcall dinoJump
+		;rcall dinoJump
 		RJMP checkKeyboardRet
 
-	button0:
+	buttonA:
 		CPI keyboardPressed,0
 		BRNE checkKeyboardRet
+		//LDS randomNumber,TCNT0 // THERE IS SOMETHING WRONG WITH THE SEED
+		//LDI randomNumber, 26
 		CLR gameState
+		RJMP checkKeyboardRet
+
+	button1:
+		CPI keyboardPressed,0
+		BRNE checkKeyboardRet
+		INC keyboardPressed
+		RCALL addCactus
 		RJMP checkKeyboardRet
 
 

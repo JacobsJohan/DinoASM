@@ -5,6 +5,8 @@
 ; Authors : Remco Royen & Johan Jacobs
 ;
 
+// Y wordt niet gebruikt als pointer, toch? Mssch het ergens duidelijk bijschrijven want ik was ook effe in de war
+
 .INCLUDE "m328pdef.inc"			; Load addresses of (I/O) registers
 
 .def mulLSB = R0
@@ -14,6 +16,17 @@
 
 .def maxNmbrOfCacti = R3
 .def nmbrOfCacti = R4
+
+.def randomNumber = R5 // First iteration this is the seed, afterwards it is a pseudo-random number by use of LFSR
+
+// Is there a more efficient way to do this?
+.def randomSR1 = R6
+.def randomSR2 = R7
+.def randomSR3 = R8
+.def randomSR4 = R9
+.def randomSR5 = R10
+
+.def normalOrExtreme = R11
 
 .def counter = R16				; Register that serves for all kind of counter actions
 .def illuminatedRow = R17		; Indicates the row that will be illuminated
@@ -41,7 +54,7 @@
 .equ maxValueCounter2 = 0;40
 
 .ORG 0x0000
-RJMP initGameState					; First instruction that is executed by the microcontroller
+RJMP initOnlyOnce				; First instruction that is executed by the microcontroller
 
 .ORG 0x0012
 RJMP Timer2OverflowInterrupt
@@ -60,10 +73,26 @@ RJMP Timer0OverflowInterrupt
 //-------------------------INIT---------------------------//
 ////////////////////////////////////////////////////////////
 
-initGameState:
+initOnlyOnce:
 
 	; Begin in idle state
 	SER gameState
+	RCALL clearScreen
+
+	
+	///////////////////////////////////////////
+	//- Timer0 (8 bit timer) initialisation -//
+	///////////////////////////////////////////
+
+	; Select normal counter mode
+	LDI tempRegister, 0x0
+	OUT TCCR0A, tempRegister
+	;set timer0 prescaler to 1024
+	LDI tempRegister, 0x05
+	OUT TCCR0B,tempRegister
+	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
+	LDI tempRegister, 4
+	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
 
 init:
 
@@ -89,6 +118,10 @@ init:
 	; First level only one cactus
 	CLR maxNmbrOfCacti
 	INC maxNmbrOfCacti
+	INC maxNmbrOfCacti
+	INC maxNmbrOfCacti
+
+	CLR normalOrExtreme
 
 	; Initialize dinosaur and draw first cactus
 	rcall initDino
@@ -115,20 +148,6 @@ init:
 
 	STS TCNT1H, YH
 	STS TCNT1L, YL
-
-	///////////////////////////////////////////
-	//- Timer0 (8 bit timer) initialisation -//
-	///////////////////////////////////////////
-
-	; Select normal counter mode
-	LDI tempRegister, 0x0
-	OUT TCCR0A, tempRegister
-	;set timer0 prescaler to 1024
-	LDI tempRegister, 0x05
-	OUT TCCR0B,tempRegister
-	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
-	LDI tempRegister, 4
-	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
 
 	///////////////////////////////////////////
 	//- Timer2 (8 bit timer) initialisation -//
@@ -160,14 +179,34 @@ Timer1OverflowInterrupt:
 	push tempRegister
 	IN tempRegister, SREG
 	push tempRegister
+	push counter //counter is here used as a temporary variable
 	/* Reset timer values */
 	STS TCNT1H, YH
 	STS TCNT1L, YL
 
 	/* Move the cactus */
 	rcall moveCactus
+	//RCALL newCactusOrNot
+
+	mov tempregister,normalOrExtreme
+	LDI counter,1
+	AND normalOrExtreme,counter
+
+	LSR tempregister
+	CPI tempregister,100 ; After 100 mouvements the screen switches to extreme mode
+	BREQ  modeSwitching
+		INC tempregister
+		LSL tempregister
+		OR normalOrExtreme,tempregister
+		RJMP timer1Ret
+
+	modeSwitching:
+		CLR tempregister
+		INC tempregister
+		EOR normalOrExtreme,tempregister
 
 	timer1Ret:
+		pop counter
 		pop tempRegister
 		OUT SREG, tempRegister
 		pop tempRegister
@@ -309,12 +348,21 @@ flushMemory:
 			LDI registerBitCounter,8
 
 			bitsOfRegister:
+				SBRS normalOrExtreme,0
+				RJMP normalMode
+				extremeMode:
+				SBRS memoryByteRegister,7
+				RJMP pixelOn
+				RJMP pixelOff
+
+				normalMode:
 				SBRC memoryByteRegister,7
 				RJMP pixelOn
 
 				; Pixel off
-				CBI PORTB,3
-				RJMP administration
+				pixelOff:
+					CBI PORTB,3
+					RJMP administration
 					
 				; Pixel on
 				pixelOn:

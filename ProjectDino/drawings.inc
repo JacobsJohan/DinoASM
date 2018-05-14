@@ -4,6 +4,9 @@
  *  Created: 2/05/2018 19:50:45
  *   Authors: Johan Jacobs & Remco Royen
  */ 
+
+ .include "PRNG.inc"
+
  drawPixel:
 
 	PUSH xpos
@@ -77,9 +80,7 @@ RET
 addCactus:
 	push xpos
 	push ypos
-
 	PUSH tempregister
-
 	push XH
 	push XL
 
@@ -94,13 +95,12 @@ addCactus:
 	LDI xpos, 38							// xpos of cactus
 	ST X+, xpos
 	LDI ypos, 10							// ypos of cactus
-	ST X+, ypos
+	ST X, ypos
 
 	INC nmbrOfCacti
 
 	pop XL
 	pop XH
-
 	pop tempregister
 	pop ypos
 	pop xpos
@@ -110,7 +110,6 @@ drawCactus:
 	push xpos
 	push ypos
 	push nmbrOfCacti
-
 	push tempregister
 	push XH
 	push XL
@@ -126,7 +125,6 @@ drawCactus:
 		BREQ noCactusLeft 
 		DEC tempregister
 
-	testing:
 		LD xpos, X+
 		LD ypos, X+	
 
@@ -144,13 +142,14 @@ drawCactus:
 		inc ypos
 		rcall drawPixel
 
+		RJMP drawNextCactus
+
 
 	noCactusLeft:	
 		pop XL
 		pop XH
 		pop tempregister
 		pop nmbrOfCacti
-
 		pop ypos
 		pop xpos
 		ret
@@ -174,20 +173,20 @@ moveCactus:
 		LD xpos, X
 		DEC xpos			// Move cactus 1 xpos to the left
 		BRNE store
+			//Cactus is at the end left, must be deleted
+			DEC nmbrOfCacti
+			RCALL deleteFirstCactus
+			rcall addCactus
+			INC XL
+			INC XL
+			RJMP moveNextCactus
 
-		DEC nmbrOfCacti
-		//RCALL deleteFirstCactus
-		rcall addCactus
-		INC XL
-		INC XL
-		RJMP moveNextCactus
+		store:
+			ST X, xpos
 
-	store:
-		ST X, xpos
-
-		INC XL
-		INC XL
-		RJMP moveNextCactus
+			INC XL
+			INC XL
+			RJMP moveNextCactus
 
 	noCactiLeft:
 		pop XL
@@ -284,10 +283,10 @@ deleteFirstCactus:
 	stillDeleting:
 		BREQ deletingDone
 		ADIW XL,2
-		LD tempregister,X
+		LD xpos,X
 		DEC XL
 		DEC XL
-		ST X+,tempregister
+		ST X+,xpos
 		DEC tempregister
 		RJMP stillDeleting
 
@@ -299,4 +298,26 @@ deleteFirstCactus:
 	pop tempregister
 	pop xpos
 	
+	ret
+
+newCactusOrNot:
+	PUSH tempregister
+	PUSH maxNmbrOfCacti
+
+	INC maxNmbrOfCacti
+	CP maxNmbrOfCacti,nmbrOfCacti
+	BREQ noNewCactus // No new cactus if max nmbr of cacti for this level is met
+
+	//RCALL random
+	
+	MOV tempregister,randomNumber
+
+	CPI tempregister,28
+	BRSH noNewCactus // A 1/9 (approximation) chance of new cactus
+
+	RCALL addCactus
+
+	noNewCactus:
+	POP maxNmbrOfCacti
+	POP tempregister
 	ret
