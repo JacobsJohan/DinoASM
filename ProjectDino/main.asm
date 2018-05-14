@@ -28,12 +28,13 @@
 
 .def normalOrExtreme = R11
 
+.def timer0ResetCounter = R14	; Count to 100 before increasing speed of dinosaur jumps
+.def timer0ResetVal = R15		; Value to increase TCNT0 over time (faster interrupts)
+
 .def counter = R16				; Register that serves for all kind of counter actions
 .def illuminatedRow = R17		; Indicates the row that will be illuminated
 .def tempRegister = R18			; Temporary register for short-time savings
 
-.def waitingcounter0 = R19
-.def waitingcounter1 = R20
 .def keyboardPressed = R21
 .def registerBitCounter = R22
 
@@ -47,7 +48,6 @@
 .equ bufferStartAddress = 0x0100
 .equ cactusMemory = 0x0300
 .equ dinoMemory = 0x0350
-.equ speedMemory = 0x360
 
 .equ maxValueCounter0 = 255;255
 .equ maxValueCounter1 = 2;255
@@ -91,11 +91,16 @@ initOnlyOnce:
 	LDI tempRegister, 0x05
 	OUT TCCR0B,tempRegister
 	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
-	LDI tempRegister, 4
-	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
+	;LDI tempRegister, 4
+	;OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
+
+	LDI tempRegister, 60
+	MOV timer0ResetVal, tempRegister
+	OUT TCNT0,timer0ResetVal		; TCNT0 = Timer/counter
+	
 
 init:
-
+	
 	; Configure output pin PB3 (Data input screen)
 	SBI DDRB,3					; Pin PB3 is an output
 	CBI PORTB,3					; Output low => initial condition low!
@@ -129,6 +134,11 @@ init:
 
 	; Make sure keyboardPressed is zero
 	CLR keyboardPressed
+
+	; Clear timer0 variables
+	CLR timer0ResetCounter
+	CLR timer0ResetVal
+
 
 	////////////////////////////////////////////
 	//- Timer1 (16 bit timer) initialisation -//
@@ -220,8 +230,9 @@ Timer0OverflowInterrupt:
 	push tempRegister
 
 	/* Reset timer values */
-	LDI tempRegister, 4
-	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
+	;LDI tempRegister, 4
+	;OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
+	OUT TCNT0,timer0ResetVal
 
 	/*  Check if jump key was pressed. If it has been pressed, the dinosaur will move up, float, and move down. 
 		Most of this could be written in a function call, but that would probably waste more time. Unfortunately 
@@ -244,10 +255,6 @@ Timer0OverflowInterrupt:
 	CPI keyboardPressed, 27
 	BREQ dinoJump
 	; Move dino 1 pixel down
-	CPI keyboardPressed, 92
-	BREQ dinoDrop
-	CPI keyboardPressed, 97
-	BREQ dinoDrop
 	CPI keyboardPressed, 102
 	BREQ dinoDrop
 	CPI keyboardPressed, 107
@@ -256,8 +263,12 @@ Timer0OverflowInterrupt:
 	BREQ dinoDrop
 	CPI keyboardPressed, 117
 	BREQ dinoDrop
+	CPI keyboardPressed, 122
+	BREQ dinoDrop
+	CPI keyboardPressed, 127
+	BREQ dinoDrop
 	; reset keyboard pressed register
-	CPI keyboardPressed, 118			
+	CPI keyboardPressed, 128			
 	BREQ preventOverflow
 	RJMP timer0Ret						; Skip everything in other cases
 	dinoJump:
@@ -295,8 +306,22 @@ Timer0OverflowInterrupt:
 
 		LDI tempRegister, 0
 		STS TCNT2,tempRegister
+
+		LDI tempRegister, 140
+		CP timer0ResetVal, tempRegister			; Check if maximum jump speed was reached
+		BRSH timer2Return
+
+		INC timer0ResetCounter
 		ADIW YL, 10
 
+		INC timer0ResetCounter
+		LDI tempRegister, 30						; Should be 25.6 to update cactus movement with the same speed as dino jump movement
+		CP timer0ResetCounter, tempRegister
+		BRLO timer2Return
+		INC timer0ResetVal
+		CLR timer0ResetCounter
+
+		timer2Return:
 		POP tempRegister
 		OUT SREG, tempRegister
 		POP tempRegister
@@ -406,20 +431,23 @@ flushMemory:
 RET
 
 waitingLoop:
-	
-	CLR waitingcounter0
-	CLR waitingcounter1
+	push tempRegister
+	push counter
+	CLR tempRegister
+	CLR counter
 	outerLoop:
-		INC waitingcounter0
-		CPI waitingcounter0,maxValueCounter0
+		INC tempRegister
+		CPI tempRegister,maxValueCounter0
 		BRNE outerLoop
 
 		middleLoop:
-			CLR waitingcounter0
-			INC waitingcounter1
-			CPI waitingcounter1,maxValueCounter1
+			CLR tempRegister
+			INC counter
+			CPI counter,maxValueCounter1
 			BRNE outerLoop	
 	finishLoop:
+	pop counter
+	pop tempRegister
 RET
 
 
