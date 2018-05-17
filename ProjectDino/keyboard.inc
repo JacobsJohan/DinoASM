@@ -107,6 +107,9 @@
 	RJMP checkKeyboardRet
 
 	button7:
+		LDI tempRegister,1
+		CP keyboardPressed,tempRegister
+		BREQ checkKeyboardRet
 		CPI dinoJumping,0
 		BRNE checkKeyboardRet
 		INC keyboardPressed

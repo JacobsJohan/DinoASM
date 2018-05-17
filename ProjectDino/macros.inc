@@ -8,7 +8,7 @@
 	PUSH @0			; Save current value
 	subtract:
 		SUB @0, @1
-		BRGE subtract
+		BRSH subtract
 	ADD @0,@1
 	MOV tempRegister,@0
 	POP @0

@@ -263,7 +263,7 @@ Timer0OverflowInterrupt:
 		RJMP checkDropping
 	
 	dinoFloat:
-		CPI dinoJumping,200
+		CPI dinoJumping,150
 		BRLO timer0Ret
 
 
