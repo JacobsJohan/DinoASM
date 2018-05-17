@@ -426,6 +426,7 @@ flushMemory:
 		SBI PORTB,4; Without waiting it also works (IF PROBLEM? LOOK AT THIS)
 		RCALL waitingLoop
 		CBI PORTB,4
+		RCALL waitingLoop
 		RJMP nextRow
 
 RET
