@@ -32,12 +32,12 @@
   <Timer0OverflowInterrupt><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm</FILE><LINE>228</LINE></Timer0OverflowInterrupt>
   <checkKeyboard><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>9</LINE></checkKeyboard>
   <readColumns><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>54</LINE></readColumns>
-  <nothingPressed><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>135</LINE></nothingPressed>
+  <nothingPressed><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>138</LINE></nothingPressed>
   <evaluate><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>93</LINE></evaluate>
   <button7><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>109</LINE></button7>
   <buttonA><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>120</LINE></buttonA>
-  <button1><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>128</LINE></button1>
-  <checkKeyboardRet><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>141</LINE></checkKeyboardRet>
+  <button1><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>130</LINE></button1>
+  <checkKeyboardRet><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc</FILE><LINE>144</LINE></checkKeyboardRet>
   <addCactus><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc</FILE><LINE>80</LINE></addCactus>
   <random><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\PRNG.inc</FILE><LINE>8</LINE></random>
   <nextbit><FILE>D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\PRNG.inc</FILE><LINE>14</LINE></nextbit>

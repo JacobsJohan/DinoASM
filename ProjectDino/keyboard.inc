@@ -118,17 +118,20 @@
 		RJMP checkKeyboardRet
 
 	buttonA:
-		CPI dinoJumping,0
-		BRNE checkKeyboardRet
+		LDI tempRegister,1
+		CP keyboardPressed,tempRegister
+		BREQ checkKeyboardRet
+		INC keyboardPressed
 		//LDS randomNumber,TCNT0 // THERE IS SOMETHING WRONG WITH THE SEED
 		//LDI randomNumber, 26
 		CLR gameState
 		RJMP checkKeyboardRet
 
 	button1:
-		CPI dinoJumping,0
-		BRNE checkKeyboardRet
-		INC dinoJumping
+		LDI tempRegister,1
+		CP keyboardPressed,tempRegister
+		BREQ checkKeyboardRet
+		INC keyboardPressed
 		RCALL addCactus
 		RJMP checkKeyboardRet
 

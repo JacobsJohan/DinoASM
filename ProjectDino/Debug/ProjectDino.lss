@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm Thu May 17 21:24:36 2018
+AVRASM ver. 2.2.7  D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm Thu May 17 21:34:59 2018
 
 [builtin](2): Including file 'D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc'
 D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(10): Including file 'D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc'
@@ -1095,16 +1095,16 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
                                  .equ maxValueCounter2 = 0;40
                                  
                                  .ORG 0x0000
-000000 c164                      RJMP initOnlyOnce				; First instruction that is executed by the microcontroller
+000000 c167                      RJMP initOnlyOnce				; First instruction that is executed by the microcontroller
                                  
                                  .ORG 0x0012
-000012 c1e0                      RJMP Timer2OverflowInterrupt
+000012 c1e3                      RJMP Timer2OverflowInterrupt
                                  
                                  .ORG 0x001A
-00001a c184                      RJMP Timer1OverflowInterrupt
+00001a c187                      RJMP Timer1OverflowInterrupt
                                  
                                  .ORG 0x0020
-000020 c199                      RJMP Timer0OverflowInterrupt
+000020 c19c                      RJMP Timer0OverflowInterrupt
                                  
                                  
                                  .include "keyboard.inc"
@@ -1157,7 +1157,7 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
 00003d 0f00                      	LSL R16
 00003e 9b4f                      	SBIS PIND, 7
 00003f c001                      	RJMP readColumns
-000040 c039                      	RJMP nothingPressed					; If nothing is pressed, return to rest of program
+000040 c03c                      	RJMP nothingPressed					; If nothing is pressed, return to rest of program
                                  
                                  
                                  
@@ -1198,7 +1198,7 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
 00005a 0f11                      	LSL R17
 00005b 9b4b                      	SBIS PIND, 3
 00005c c001                      	RJMP evaluate
-00005d c01c                      	RJMP nothingPressed			; All columns are high so no button was pressed
+00005d c01f                      	RJMP nothingPressed			; All columns are high so no button was pressed
                                  
                                  	evaluate:
 00005e 0f01                      	ADD R16, R17
@@ -1213,46 +1213,49 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
                                  
 000065 e822                      	LDI R18, 0b10000010				; Evaluate button 1: 1000 0010
 000066 1702                      	CP R16, R18
-000067 f069                      	BREQ button1
-000068 c012                      	RJMP checkKeyboardRet
+000067 f079                      	BREQ button1
+000068 c015                      	RJMP checkKeyboardRet
                                  
                                  	button7:
 000069 e021                      		LDI tempRegister,1
 00006a 16d2                      		CP keyboardPressed,tempRegister
-00006b f079                      		BREQ checkKeyboardRet
+00006b f091                      		BREQ checkKeyboardRet
 00006c 3050                      		CPI dinoJumping,0
-00006d f469                      		BRNE checkKeyboardRet
+00006d f481                      		BRNE checkKeyboardRet
 00006e 94d3                      		INC keyboardPressed
 00006f e054                      		LDI dinoJumping,4
                                  		;rcall dinoJump
-000070 c00a                      		RJMP checkKeyboardRet
+000070 c00d                      		RJMP checkKeyboardRet
                                  
                                  	buttonA:
-000071 3050                      		CPI dinoJumping,0
-000072 f441                      		BRNE checkKeyboardRet
+000071 e021                      		LDI tempRegister,1
+000072 16d2                      		CP keyboardPressed,tempRegister
+000073 f051                      		BREQ checkKeyboardRet
+000074 94d3                      		INC keyboardPressed
                                  		//LDS randomNumber,TCNT0 // THERE IS SOMETHING WRONG WITH THE SEED
                                  		//LDI randomNumber, 26
-000073 2777                      		CLR gameState
-000074 c006                      		RJMP checkKeyboardRet
+000075 2777                      		CLR gameState
+000076 c007                      		RJMP checkKeyboardRet
                                  
                                  	button1:
-000075 3050                      		CPI dinoJumping,0
-000076 f421                      		BRNE checkKeyboardRet
-000077 9553                      		INC dinoJumping
-000078 d03b                      		RCALL addCactus
-000079 c001                      		RJMP checkKeyboardRet
+000077 e021                      		LDI tempRegister,1
+000078 16d2                      		CP keyboardPressed,tempRegister
+000079 f021                      		BREQ checkKeyboardRet
+00007a 94d3                      		INC keyboardPressed
+00007b d03b                      		RCALL addCactus
+00007c c001                      		RJMP checkKeyboardRet
                                  
                                  	nothingPressed:
-00007a 24dd                      		CLR keyboardPressed
+00007d 24dd                      		CLR keyboardPressed
                                  		;CPI dinoJumping, 127			; Check if dino has landed
                                  		;BRLO checkKeyboardRet
                                  		;CLR dinoJumping				; Only reset this register if the key has been released
                                  
                                  	checkKeyboardRet:
-00007b 912f                      		pop R18
-00007c 911f                      		pop R17
-00007d 910f                      		pop R16
-00007e 9508                      		ret
+00007e 912f                      		pop R18
+00007f 911f                      		pop R17
+000080 910f                      		pop R16
+000081 9508                      		ret
                                  
                                  /*dinoJumpold:
                                  	push ypos
@@ -1307,339 +1310,339 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
                                   */ 
                                  
                                   random:
-00007f 932f                      	PUSH tempregister
-000080 930f                      	PUSH counter
+000082 932f                      	PUSH tempregister
+000083 930f                      	PUSH counter
                                  
-000081 e005                      	LDI counter,5
+000084 e005                      	LDI counter,5
                                  
                                  	nextbit:
-000082 950a                      		DEC counter
-000083 f011                      		BREQ randomFinished
+000085 950a                      		DEC counter
+000086 f011                      		BREQ randomFinished
                                  
                                  
-000084 9456                      		LSR randomNumber
-000085 cffc                      		RJMP nextbit
+000087 9456                      		LSR randomNumber
+000088 cffc                      		RJMP nextbit
                                  
                                  	randomFinished:
-000086 910f                      	POP counter
-000087 912f                      	POP tempregister
-000088 9508                      	RET
+000089 910f                      	POP counter
+00008a 912f                      	POP tempregister
+00008b 9508                      	RET
                                  
                                   drawPixel:
                                  
-000089 938f                      	PUSH xpos
-00008a 939f                      	PUSH ypos
+00008c 938f                      	PUSH xpos
+00008d 939f                      	PUSH ypos
                                  
-00008b 930f                      	PUSH counter
-00008c 932f                      	PUSH tempregister
+00008e 930f                      	PUSH counter
+00008f 932f                      	PUSH tempregister
                                  
-00008d 93bf                      	PUSH XH
-00008e 93af                      	PUSH XL
+000090 93bf                      	PUSH XH
+000091 93af                      	PUSH XL
                                  
-00008f e0b1                      	LDI XH, HIGH(bufferStartAddress)
-000090 e0a0                      	LDI XL, LOW(bufferStartAddress)
+000092 e0b1                      	LDI XH, HIGH(bufferStartAddress)
+000093 e0a0                      	LDI XL, LOW(bufferStartAddress)
                                  
-000091 3097                      	CPI ypos,7
-000092 f010                      	BRLO UpperPartScreen
+000094 3097                      	CPI ypos,7
+000095 f010                      	BRLO UpperPartScreen
                                  
-000093 5097                      		SUBI ypos,7
-000094 9688                      		ADIW xpos, 40
+000096 5097                      		SUBI ypos,7
+000097 9688                      		ADIW xpos, 40
                                  
                                  	UpperPartScreen:
                                  
-000095 e02a                      		LDI tempRegister,10
-000096 9f92                      		MUL ypos,tempRegister
-000097 0da0                      		ADD XL,mulLSB
+000098 e02a                      		LDI tempRegister,10
+000099 9f92                      		MUL ypos,tempRegister
+00009a 0da0                      		ADD XL,mulLSB
                                  
-000098 2f28                      		MOV tempRegister,xpos
-000099 9526                      		LSR tempregister
-00009a 9526                      		LSR tempregister
-00009b 9526                      		LSR tempregister
-00009c 0fa2                      		ADD XL,tempregister
+00009b 2f28                      		MOV tempRegister,xpos
+00009c 9526                      		LSR tempregister
+00009d 9526                      		LSR tempregister
+00009e 9526                      		LSR tempregister
+00009f 0fa2                      		ADD XL,tempregister
                                  		
-00009d 7087                      		ANDI xpos, 0b00000111
-00009e e000                      		LDI counter,0
-00009f e021                      		LDI tempregister,1
+0000a0 7087                      		ANDI xpos, 0b00000111
+0000a1 e000                      		LDI counter,0
+0000a2 e021                      		LDI tempregister,1
                                  		bitContent:
-0000a0 1780                      			CP xpos,counter
-0000a1 f019                      			BREQ bitFound
-0000a2 0f22                      			LSL tempregister
-0000a3 9503                      			INC counter
-0000a4 cffb                      			RJMP bitContent
+0000a3 1780                      			CP xpos,counter
+0000a4 f019                      			BREQ bitFound
+0000a5 0f22                      			LSL tempregister
+0000a6 9503                      			INC counter
+0000a7 cffb                      			RJMP bitContent
                                  		
                                  		bitfound:
                                  		
-0000a5 918c                      		LD xpos, X ; The old byte content is stored in xpos
+0000a8 918c                      		LD xpos, X ; The old byte content is stored in xpos
                                  
                                  		; Collision detect
-0000a6 2f08                      		MOV counter,xpos ; Counter is used as a temp register
-0000a7 2302                      		AND counter,tempregister
-0000a8 3000                      		CPI counter,0
-0000a9 f009                      		BREQ noCollision
-0000aa ef7f                      			SER gameState		// Comment this to turn off collision
+0000a9 2f08                      		MOV counter,xpos ; Counter is used as a temp register
+0000aa 2302                      		AND counter,tempregister
+0000ab 3000                      		CPI counter,0
+0000ac f009                      		BREQ noCollision
+0000ad ef7f                      			SER gameState		// Comment this to turn off collision
                                  
                                  		noCollision:
                                  		; Draw updated field
-0000ab 2b28                      		OR tempregister,xpos
-0000ac 932d                      		ST X+,tempregister	
+0000ae 2b28                      		OR tempregister,xpos
+0000af 932d                      		ST X+,tempregister	
                                  	
-0000ad 91af                      	POP XL
-0000ae 91bf                      	POP XH
+0000b0 91af                      	POP XL
+0000b1 91bf                      	POP XH
                                  
-0000af 912f                      	POP tempregister
-0000b0 910f                      	POP counter
+0000b2 912f                      	POP tempregister
+0000b3 910f                      	POP counter
                                  
-0000b1 919f                      	POP ypos
-0000b2 918f                      	POP xpos
+0000b4 919f                      	POP ypos
+0000b5 918f                      	POP xpos
                                  
-0000b3 9508                      RET
+0000b6 9508                      RET
                                  
                                  
                                  addCactus:
-0000b4 938f                      	push xpos
-0000b5 939f                      	push ypos
-0000b6 932f                      	PUSH tempregister
-0000b7 93bf                      	push XH
-0000b8 93af                      	push XL
+0000b7 938f                      	push xpos
+0000b8 939f                      	push ypos
+0000b9 932f                      	PUSH tempregister
+0000ba 93bf                      	push XH
+0000bb 93af                      	push XL
                                  
-0000b9 e0b3                      	LDI XH, HIGH(cactusMemory)			// Point to start of cactusMemory
-0000ba e0a0                      	LDI XL, LOW(cactusMemory)
+0000bc e0b3                      	LDI XH, HIGH(cactusMemory)			// Point to start of cactusMemory
+0000bd e0a0                      	LDI XL, LOW(cactusMemory)
                                  
-0000bb 2d24                      	MOV tempregister, nmbrOfCacti
-0000bc 0f22                      	LSL tempregister
+0000be 2d24                      	MOV tempregister, nmbrOfCacti
+0000bf 0f22                      	LSL tempregister
                                  
-0000bd 0fa2                      	ADD XL , tempregister
+0000c0 0fa2                      	ADD XL , tempregister
                                  
-0000be e286                      	LDI xpos, 38							// xpos of cactus
-0000bf 938d                      	ST X+, xpos
-0000c0 e09a                      	LDI ypos, 10							// ypos of cactus
-0000c1 939c                      	ST X, ypos
+0000c1 e286                      	LDI xpos, 38							// xpos of cactus
+0000c2 938d                      	ST X+, xpos
+0000c3 e09a                      	LDI ypos, 10							// ypos of cactus
+0000c4 939c                      	ST X, ypos
                                  
-0000c2 9443                      	INC nmbrOfCacti
+0000c5 9443                      	INC nmbrOfCacti
                                  
-0000c3 91af                      	pop XL
-0000c4 91bf                      	pop XH
-0000c5 912f                      	pop tempregister
-0000c6 919f                      	pop ypos
-0000c7 918f                      	pop xpos
-0000c8 9508                      	ret
+0000c6 91af                      	pop XL
+0000c7 91bf                      	pop XH
+0000c8 912f                      	pop tempregister
+0000c9 919f                      	pop ypos
+0000ca 918f                      	pop xpos
+0000cb 9508                      	ret
                                  
                                  drawCactus:
-0000c9 938f                      	push xpos
-0000ca 939f                      	push ypos
-0000cb 924f                      	push nmbrOfCacti
-0000cc 932f                      	push tempregister
-0000cd 93bf                      	push XH
-0000ce 93af                      	push XL
+0000cc 938f                      	push xpos
+0000cd 939f                      	push ypos
+0000ce 924f                      	push nmbrOfCacti
+0000cf 932f                      	push tempregister
+0000d0 93bf                      	push XH
+0000d1 93af                      	push XL
                                  
-0000cf 2d24                      	MOV tempregister,nmbrOfCacti
+0000d2 2d24                      	MOV tempregister,nmbrOfCacti
                                  
                                  	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
-0000d0 e0b3                      	LDI XH, HIGH(cactusMemory) 
-0000d1 e0a0                      	LDI XL, LOW(cactusMemory)
+0000d3 e0b3                      	LDI XH, HIGH(cactusMemory) 
+0000d4 e0a0                      	LDI XL, LOW(cactusMemory)
                                  
                                  	drawNextCactus:
-0000d2 3020                      		CPI tempregister,0
-0000d3 f089                      		BREQ noCactusLeft 
-0000d4 952a                      		DEC tempregister
+0000d5 3020                      		CPI tempregister,0
+0000d6 f089                      		BREQ noCactusLeft 
+0000d7 952a                      		DEC tempregister
                                  
-0000d5 918d                      		LD xpos, X+
-0000d6 919d                      		LD ypos, X+	
+0000d8 918d                      		LD xpos, X+
+0000d9 919d                      		LD ypos, X+	
                                  
-0000d7 dfb1                      		rcall drawPixel
-0000d8 9593                      		inc ypos
-0000d9 dfaf                      		rcall drawPixel
-0000da 9583                      		inc xpos
-0000db dfad                      		rcall drawPixel
-0000dc 958a                      		dec xpos
-0000dd 958a                      		dec xpos
-0000de dfaa                      		rcall drawPixel
-0000df 9583                      		inc xpos
-0000e0 9593                      		inc ypos
-0000e1 dfa7                      		rcall drawPixel
-0000e2 9593                      		inc ypos
-0000e3 dfa5                      		rcall drawPixel
+0000da dfb1                      		rcall drawPixel
+0000db 9593                      		inc ypos
+0000dc dfaf                      		rcall drawPixel
+0000dd 9583                      		inc xpos
+0000de dfad                      		rcall drawPixel
+0000df 958a                      		dec xpos
+0000e0 958a                      		dec xpos
+0000e1 dfaa                      		rcall drawPixel
+0000e2 9583                      		inc xpos
+0000e3 9593                      		inc ypos
+0000e4 dfa7                      		rcall drawPixel
+0000e5 9593                      		inc ypos
+0000e6 dfa5                      		rcall drawPixel
                                  
-0000e4 cfed                      		RJMP drawNextCactus
+0000e7 cfed                      		RJMP drawNextCactus
                                  
                                  
                                  	noCactusLeft:	
-0000e5 91af                      		pop XL
-0000e6 91bf                      		pop XH
-0000e7 912f                      		pop tempregister
-0000e8 904f                      		pop nmbrOfCacti
-0000e9 919f                      		pop ypos
-0000ea 918f                      		pop xpos
-0000eb 9508                      		ret
+0000e8 91af                      		pop XL
+0000e9 91bf                      		pop XH
+0000ea 912f                      		pop tempregister
+0000eb 904f                      		pop nmbrOfCacti
+0000ec 919f                      		pop ypos
+0000ed 918f                      		pop xpos
+0000ee 9508                      		ret
                                  
                                  moveCactus:
-0000ec 938f                      	push xpos
-0000ed 932f                      	push tempRegister
-0000ee 93bf                      	push XH
-0000ef 93af                      	push XL
+0000ef 938f                      	push xpos
+0000f0 932f                      	push tempRegister
+0000f1 93bf                      	push XH
+0000f2 93af                      	push XL
                                  
-0000f0 2d24                      	mov tempregister, nmbrOfCacti
+0000f3 2d24                      	mov tempregister, nmbrOfCacti
                                  
-0000f1 e0b3                      	LDI XH, HIGH(cactusMemory) 
-0000f2 e0a0                      	LDI XL, LOW(cactusMemory)
+0000f4 e0b3                      	LDI XH, HIGH(cactusMemory) 
+0000f5 e0a0                      	LDI XL, LOW(cactusMemory)
                                  
                                  	moveNextCactus:
-0000f3 3020                      		CPI tempregister,0
-0000f4 f071                      		BREQ noCactiLeft
-0000f5 952a                      		DEC tempregister
+0000f6 3020                      		CPI tempregister,0
+0000f7 f071                      		BREQ noCactiLeft
+0000f8 952a                      		DEC tempregister
                                  
-0000f6 918c                      		LD xpos, X
-0000f7 958a                      		DEC xpos			// Move cactus 1 xpos to the left
-0000f8 f431                      		BRNE store
+0000f9 918c                      		LD xpos, X
+0000fa 958a                      		DEC xpos			// Move cactus 1 xpos to the left
+0000fb f431                      		BRNE store
                                  			//Cactus is at the end left, must be deleted
-0000f9 944a                      			DEC nmbrOfCacti
-0000fa d047                      			RCALL deleteFirstCactus
-0000fb dfb8                      			rcall addCactus
-0000fc 95a3                      			INC XL
-0000fd 95a3                      			INC XL
-0000fe cff4                      			RJMP moveNextCactus
+0000fc 944a                      			DEC nmbrOfCacti
+0000fd d047                      			RCALL deleteFirstCactus
+0000fe dfb8                      			rcall addCactus
+0000ff 95a3                      			INC XL
+000100 95a3                      			INC XL
+000101 cff4                      			RJMP moveNextCactus
                                  
                                  		store:
-0000ff 938c                      			ST X, xpos
+000102 938c                      			ST X, xpos
                                  
-000100 95a3                      			INC XL
-000101 95a3                      			INC XL
-000102 cff0                      			RJMP moveNextCactus
+000103 95a3                      			INC XL
+000104 95a3                      			INC XL
+000105 cff0                      			RJMP moveNextCactus
                                  
                                  	noCactiLeft:
-000103 91af                      		pop XL
-000104 91bf                      		pop XH
-000105 912f                      		pop tempregister
-000106 918f                      		pop xpos
-000107 9508                      		ret
+000106 91af                      		pop XL
+000107 91bf                      		pop XH
+000108 912f                      		pop tempregister
+000109 918f                      		pop xpos
+00010a 9508                      		ret
                                  
                                  drawDino:
-000108 938f                      	push xpos
-000109 939f                      	push ypos
+00010b 938f                      	push xpos
+00010c 939f                      	push ypos
                                  
-00010a 93bf                      	push XH
-00010b 93af                      	push XL
+00010d 93bf                      	push XH
+00010e 93af                      	push XL
                                  
                                  	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
-00010c e0b3                      	LDI XH, HIGH(dinoMemory) 
-00010d e5a0                      	LDI XL, LOW(dinoMemory)
-00010e 918d                      	LD xpos, X+
-00010f 919c                      	LD ypos, X
+00010f e0b3                      	LDI XH, HIGH(dinoMemory) 
+000110 e5a0                      	LDI XL, LOW(dinoMemory)
+000111 918d                      	LD xpos, X+
+000112 919c                      	LD ypos, X
                                  
-000110 df78                      	rcall drawPixel
-000111 958a                      	dec xpos
-000112 df76                      	rcall drawPixel
-000113 9593                      	inc ypos
-000114 df74                      	rcall drawPixel
-000115 9593                      	inc ypos
-000116 df72                      	rcall drawPixel
-000117 9583                      	inc xpos
-000118 df70                      	rcall drawPixel
-000119 958a                      	dec xpos
-00011a 9593                      	inc ypos
-00011b df6d                      	rcall drawPixel
-00011c 9593                      	inc ypos
-00011d df6b                      	rcall drawPixel
-00011e 9593                      	inc ypos
-00011f df69                      	rcall drawPixel
-000120 959a                      	dec ypos
-000121 959a                      	dec ypos
-000122 958a                      	dec xpos
-000123 df65                      	rcall drawPixel
+000113 df78                      	rcall drawPixel
+000114 958a                      	dec xpos
+000115 df76                      	rcall drawPixel
+000116 9593                      	inc ypos
+000117 df74                      	rcall drawPixel
+000118 9593                      	inc ypos
+000119 df72                      	rcall drawPixel
+00011a 9583                      	inc xpos
+00011b df70                      	rcall drawPixel
+00011c 958a                      	dec xpos
+00011d 9593                      	inc ypos
+00011e df6d                      	rcall drawPixel
+00011f 9593                      	inc ypos
+000120 df6b                      	rcall drawPixel
+000121 9593                      	inc ypos
+000122 df69                      	rcall drawPixel
+000123 959a                      	dec ypos
 000124 959a                      	dec ypos
-000125 df63                      	rcall drawPixel
-000126 958a                      	dec xpos
-000127 df61                      	rcall drawPixel
-000128 9593                      	inc ypos
-000129 df5f                      	rcall drawPixel
-00012a 9593                      	inc ypos
-00012b df5d                      	rcall drawPixel
-00012c 9593                      	inc ypos
-00012d df5b                      	rcall drawPixel
+000125 958a                      	dec xpos
+000126 df65                      	rcall drawPixel
+000127 959a                      	dec ypos
+000128 df63                      	rcall drawPixel
+000129 958a                      	dec xpos
+00012a df61                      	rcall drawPixel
+00012b 9593                      	inc ypos
+00012c df5f                      	rcall drawPixel
+00012d 9593                      	inc ypos
+00012e df5d                      	rcall drawPixel
+00012f 9593                      	inc ypos
+000130 df5b                      	rcall drawPixel
                                  	
-00012e 91af                      	pop XL
-00012f 91bf                      	pop XH
-000130 919f                      	pop ypos
-000131 918f                      	pop xpos
-000132 9508                      	ret
+000131 91af                      	pop XL
+000132 91bf                      	pop XH
+000133 919f                      	pop ypos
+000134 918f                      	pop xpos
+000135 9508                      	ret
                                  
                                  initDino:
-000133 938f                      	push xpos
-000134 939f                      	push ypos
-000135 93bf                      	push XH
-000136 93af                      	push XL
+000136 938f                      	push xpos
+000137 939f                      	push ypos
+000138 93bf                      	push XH
+000139 93af                      	push XL
                                  
-000137 e0b3                      	LDI XH, HIGH(dinoMemory)			// Point to start of dinoMemory
-000138 e5a0                      	LDI XL, LOW(dinoMemory)
+00013a e0b3                      	LDI XH, HIGH(dinoMemory)			// Point to start of dinoMemory
+00013b e5a0                      	LDI XL, LOW(dinoMemory)
                                  
-000139 e084                      	LDI xpos, 4							// xpos of dino
-00013a 938d                      	ST X+, xpos
-00013b e098                      	LDI ypos, 8
-00013c 939d                      	ST X+, ypos
+00013c e084                      	LDI xpos, 4							// xpos of dino
+00013d 938d                      	ST X+, xpos
+00013e e098                      	LDI ypos, 8
+00013f 939d                      	ST X+, ypos
                                  
-00013d 91af                      	pop XL
-00013e 91bf                      	pop XH
-00013f 919f                      	pop ypos
-000140 918f                      	pop xpos
-000141 9508                      	ret
+000140 91af                      	pop XL
+000141 91bf                      	pop XH
+000142 919f                      	pop ypos
+000143 918f                      	pop xpos
+000144 9508                      	ret
                                  
                                  deleteFirstCactus:
                                  
-000142 938f                      	push xpos
-000143 932f                      	push tempregister
-000144 924f                      	PUSH nmbrOfCacti
-000145 93bf                      	push XH
-000146 93af                      	push XL
+000145 938f                      	push xpos
+000146 932f                      	push tempregister
+000147 924f                      	PUSH nmbrOfCacti
+000148 93bf                      	push XH
+000149 93af                      	push XL
                                  
-000147 2d24                      	mov tempregister, nmbrOfCacti
+00014a 2d24                      	mov tempregister, nmbrOfCacti
                                  
-000148 e0b3                      	LDI XH, HIGH(cactusMemory) 
-000149 e0a0                      	LDI XL, LOW(cactusMemory)
+00014b e0b3                      	LDI XH, HIGH(cactusMemory) 
+00014c e0a0                      	LDI XL, LOW(cactusMemory)
                                  
-00014a 0f22                      	LSL tempregister
+00014d 0f22                      	LSL tempregister
                                  
                                  	stillDeleting:
-00014b f039                      		BREQ deletingDone
-00014c 9612                      		ADIW XL,2
-00014d 918c                      		LD xpos,X
-00014e 95aa                      		DEC XL
-00014f 95aa                      		DEC XL
-000150 938d                      		ST X+,xpos
-000151 952a                      		DEC tempregister
-000152 cff8                      		RJMP stillDeleting
+00014e f039                      		BREQ deletingDone
+00014f 9612                      		ADIW XL,2
+000150 918c                      		LD xpos,X
+000151 95aa                      		DEC XL
+000152 95aa                      		DEC XL
+000153 938d                      		ST X+,xpos
+000154 952a                      		DEC tempregister
+000155 cff8                      		RJMP stillDeleting
                                  
                                  
                                  	deletingDone:
-000153 91af                      	pop XL
-000154 91bf                      	pop XH
-000155 904f                      	pop nmbrOfCacti
-000156 912f                      	pop tempregister
-000157 918f                      	pop xpos
+000156 91af                      	pop XL
+000157 91bf                      	pop XH
+000158 904f                      	pop nmbrOfCacti
+000159 912f                      	pop tempregister
+00015a 918f                      	pop xpos
                                  	
-000158 9508                      	ret
+00015b 9508                      	ret
                                  
                                  newCactusOrNot:
-000159 932f                      	PUSH tempregister
-00015a 923f                      	PUSH maxNmbrOfCacti
+00015c 932f                      	PUSH tempregister
+00015d 923f                      	PUSH maxNmbrOfCacti
                                  
-00015b 9433                      	INC maxNmbrOfCacti
-00015c 1434                      	CP maxNmbrOfCacti,nmbrOfCacti
-00015d f021                      	BREQ noNewCactus // No new cactus if max nmbr of cacti for this level is met
+00015e 9433                      	INC maxNmbrOfCacti
+00015f 1434                      	CP maxNmbrOfCacti,nmbrOfCacti
+000160 f021                      	BREQ noNewCactus // No new cactus if max nmbr of cacti for this level is met
                                  
                                  	//RCALL random
                                  	
-00015e 2d25                      	MOV tempregister,randomNumber
+000161 2d25                      	MOV tempregister,randomNumber
                                  
-00015f 312c                      	CPI tempregister,28
-000160 f408                      	BRSH noNewCactus // A 1/9 (approximation) chance of new cactus
+000162 312c                      	CPI tempregister,28
+000163 f408                      	BRSH noNewCactus // A 1/9 (approximation) chance of new cactus
                                  
-000161 df52                      	RCALL addCactus
+000164 df52                      	RCALL addCactus
                                  
                                  	noNewCactus:
-000162 903f                      	POP maxNmbrOfCacti
-000163 912f                      	POP tempregister
+000165 903f                      	POP maxNmbrOfCacti
+000166 912f                      	POP tempregister
                                  .include "macros.inc"
-000164 9508                      
+000167 9508                      
                                   * macros.inc
                                   *
                                   *  Created: 14/05/2018 13:52:54
@@ -1690,8 +1693,8 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
                                  initOnlyOnce:
                                  
                                  	; Begin in idle state
-000165 ef7f                      	SER gameState
-000166 d0eb                      	RCALL clearScreen
+000168 ef7f                      	SER gameState
+000169 d0eb                      	RCALL clearScreen
                                  
                                  	
                                  	///////////////////////////////////////////
@@ -1699,59 +1702,59 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
                                  	///////////////////////////////////////////
                                  
                                  	; Select normal counter mode
-000167 e020                      	LDI tempRegister, 0x0
-000168 bd24                      	OUT TCCR0A, tempRegister
+00016a e020                      	LDI tempRegister, 0x0
+00016b bd24                      	OUT TCCR0A, tempRegister
                                  	;set timer0 prescaler to 1024
-000169 e025                      	LDI tempRegister, 0x05
-00016a bd25                      	OUT TCCR0B,tempRegister
+00016c e025                      	LDI tempRegister, 0x05
+00016d bd25                      	OUT TCCR0B,tempRegister
                                  	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
                                  	;LDI tempRegister, 4
                                  	;OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
                                  
-00016b e32c                      	LDI tempRegister, 60
-00016c 2ef2                      	MOV timer0ResetVal, tempRegister
-00016d bcf6                      	OUT TCNT0,timer0ResetVal		; TCNT0 = Timer/counter
+00016e e32c                      	LDI tempRegister, 60
+00016f 2ef2                      	MOV timer0ResetVal, tempRegister
+000170 bcf6                      	OUT TCNT0,timer0ResetVal		; TCNT0 = Timer/counter
                                  	
                                  
                                  init:
                                  	
                                  	; Configure output pin PB3 (Data input screen)
-00016e 9a23                      	SBI DDRB,3					; Pin PB3 is an output
-00016f 982b                      	CBI PORTB,3					; Output low => initial condition low!
+000171 9a23                      	SBI DDRB,3					; Pin PB3 is an output
+000172 982b                      	CBI PORTB,3					; Output low => initial condition low!
                                  
                                  	; Configure output pin PB4 (Screen latching and enable'ing)
-000170 9a24                      	SBI DDRB,4					; Pin PB4 is an output
-000171 982c                      	CBI PORTB,4					; Output low => initial condition low!
+000173 9a24                      	SBI DDRB,4					; Pin PB4 is an output
+000174 982c                      	CBI PORTB,4					; Output low => initial condition low!
                                  
                                  	; Configure output pin PB5 (Clock Screen)
-000172 9a25                      	SBI DDRB,5					; Pin PB5 is an output
-000173 982d                      	CBI PORTB,5					; Output low => initial condition low!
+000175 9a25                      	SBI DDRB,5					; Pin PB5 is an output
+000176 982d                      	CBI PORTB,5					; Output low => initial condition low!
                                  
                                  	; Configure a LED as output (to test things)
-000174 9a3a                      	SBI DDRC,2					; Pin PC2 is an output 
-000175 9a42                      	SBI PORTC,2					; Output Vcc => upper LED turned off!
+000177 9a3a                      	SBI DDRC,2					; Pin PC2 is an output 
+000178 9a42                      	SBI PORTC,2					; Output Vcc => upper LED turned off!
                                  
                                  	; No cacti drawn
-000176 2444                      	CLR nmbrOfCacti
+000179 2444                      	CLR nmbrOfCacti
                                  
                                  	; First level only one cactus
-000177 2433                      	CLR maxNmbrOfCacti
-000178 9433                      	INC maxNmbrOfCacti
-000179 9433                      	INC maxNmbrOfCacti
-00017a 9433                      	INC maxNmbrOfCacti
+00017a 2433                      	CLR maxNmbrOfCacti
+00017b 9433                      	INC maxNmbrOfCacti
+00017c 9433                      	INC maxNmbrOfCacti
+00017d 9433                      	INC maxNmbrOfCacti
                                  
-00017b 24bb                      	CLR normalOrExtreme
+00017e 24bb                      	CLR normalOrExtreme
                                  
                                  	; Initialize dinosaur and draw first cactus
-00017c dfb6                      	rcall initDino
-00017d df36                      	rcall addCactus
+00017f dfb6                      	rcall initDino
+000180 df36                      	rcall addCactus
                                  
                                  	; Make sure dinoJumping is zero
-00017e 2755                      	CLR dinoJumping
+000181 2755                      	CLR dinoJumping
                                  
                                  	; Clear timer0 variables
-00017f 24ee                      	CLR timer0ResetCounter
-000180 24ff                      	CLR timer0ResetVal
+000182 24ee                      	CLR timer0ResetCounter
+000183 24ff                      	CLR timer0ResetVal
                                  
                                  
                                  	////////////////////////////////////////////
@@ -1759,341 +1762,341 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
                                  	////////////////////////////////////////////
                                  
                                  	; Select normal counter mode
-000181 e020                      	LDI tempRegister, 0x0
-000182 9320 0080                 	STS TCCR1A, tempRegister
+000184 e020                      	LDI tempRegister, 0x0
+000185 9320 0080                 	STS TCCR1A, tempRegister
                                  	;set timer1 prescaler to 64 == 011, 1024 == 101 (Important: this is different for 8 bit timer)
-000184 e023                      	LDI tempRegister, 0x03
-000185 9320 0081                 	STS TCCR1B,tempRegister
+000187 e023                      	LDI tempRegister, 0x03
+000188 9320 0081                 	STS TCCR1B,tempRegister
                                  
                                  	/* Initial timer value will be 5 Hz. As the game progresses, the frequency at which the cacti move should be increased. We will do this by adding an immediate to the Y registers and storing this in TCNT1.  */
                                  	; Prescaler 64: 65536 - 16 000 000/64/5 = 65536 - 50000 = 15536 => 00111100 10110000
-000187 e3dc                      	LDI YH, 0b00111100
-000188 ebc0                      	LDI YL, 0b10110000
+00018a e3dc                      	LDI YH, 0b00111100
+00018b ebc0                      	LDI YL, 0b10110000
                                  
-000189 93d0 0085                 	STS TCNT1H, YH
-00018b 93c0 0084                 	STS TCNT1L, YL
+00018c 93d0 0085                 	STS TCNT1H, YH
+00018e 93c0 0084                 	STS TCNT1L, YL
                                  
                                  	///////////////////////////////////////////
                                  	//- Timer2 (8 bit timer) initialisation -//
                                  	///////////////////////////////////////////
                                  
                                  	; Select normal counter mode
-00018d e020                      	LDI tempRegister, 0x0
-00018e 9320 00b0                 	STS TCCR2A, tempRegister
+000190 e020                      	LDI tempRegister, 0x0
+000191 9320 00b0                 	STS TCCR2A, tempRegister
                                  	;set timer2 prescaler to 1024 == 111, 
-000190 e027                      	LDI tempRegister, 0x07
-000191 9320 00b1                 	STS TCCR2B,tempRegister
+000193 e027                      	LDI tempRegister, 0x07
+000194 9320 00b1                 	STS TCCR2B,tempRegister
                                  	;set correct ‘reload values’ 256 - 16 000 000/1024/61 = 0 (after rounding)
-000193 e020                      	LDI tempRegister, 0
-000194 9320 00b2                 	STS TCNT2,tempRegister
+000196 e020                      	LDI tempRegister, 0
+000197 9320 00b2                 	STS TCNT2,tempRegister
                                  
                                  	//////////////////////////
                                  	//- Enable interrupts -//
                                  	/////////////////////////
                                  
-000196 9478                      	SEI									; (SEI: global interrupt enable)
-000197 e021                      	LDI tempRegister, 1
-000198 9320 006f                 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
-00019a 9320 006e                 	STS TIMSK0, tempRegister
-00019c 9320 0070                 	STS TIMSK2, tempRegister
-00019e c069                      	RJMP main
+000199 9478                      	SEI									; (SEI: global interrupt enable)
+00019a e021                      	LDI tempRegister, 1
+00019b 9320 006f                 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
+00019d 9320 006e                 	STS TIMSK0, tempRegister
+00019f 9320 0070                 	STS TIMSK2, tempRegister
+0001a1 c069                      	RJMP main
                                  
                                  
                                  Timer1OverflowInterrupt:
-00019f 932f                      	push tempRegister
-0001a0 b72f                      	IN tempRegister, SREG
-0001a1 932f                      	push tempRegister
-0001a2 930f                      	push counter //counter is here used as a temporary variable
+0001a2 932f                      	push tempRegister
+0001a3 b72f                      	IN tempRegister, SREG
+0001a4 932f                      	push tempRegister
+0001a5 930f                      	push counter //counter is here used as a temporary variable
                                  	/* Reset timer values */
-0001a3 93d0 0085                 	STS TCNT1H, YH
-0001a5 93c0 0084                 	STS TCNT1L, YL
+0001a6 93d0 0085                 	STS TCNT1H, YH
+0001a8 93c0 0084                 	STS TCNT1L, YL
                                  
                                  	/* Move the cactus */
-0001a7 df44                      	rcall moveCactus
+0001aa df44                      	rcall moveCactus
                                  	//RCALL newCactusOrNot
                                  
-0001a8 2d2b                      	mov tempregister,normalOrExtreme
-0001a9 e001                      	LDI counter,1
-0001aa 22b0                      	AND normalOrExtreme,counter
+0001ab 2d2b                      	mov tempregister,normalOrExtreme
+0001ac e001                      	LDI counter,1
+0001ad 22b0                      	AND normalOrExtreme,counter
                                  
-0001ab 9526                      	LSR tempregister
-0001ac 3624                      	CPI tempregister,100 ; After 100 movements the screen switches to extreme mode
-0001ad f021                      	BREQ  modeSwitching
-0001ae 9523                      		INC tempregister
-0001af 0f22                      		LSL tempregister
-0001b0 2ab2                      		OR normalOrExtreme,tempregister
-0001b1 c003                      		RJMP timer1Ret
+0001ae 9526                      	LSR tempregister
+0001af 3624                      	CPI tempregister,100 ; After 100 movements the screen switches to extreme mode
+0001b0 f021                      	BREQ  modeSwitching
+0001b1 9523                      		INC tempregister
+0001b2 0f22                      		LSL tempregister
+0001b3 2ab2                      		OR normalOrExtreme,tempregister
+0001b4 c003                      		RJMP timer1Ret
                                  
                                  	modeSwitching:
-0001b2 2722                      		CLR tempregister
-0001b3 9523                      		INC tempregister
-0001b4 26b2                      		EOR normalOrExtreme,tempregister
+0001b5 2722                      		CLR tempregister
+0001b6 9523                      		INC tempregister
+0001b7 26b2                      		EOR normalOrExtreme,tempregister
                                  
                                  	timer1Ret:
-0001b5 910f                      		pop counter
-0001b6 912f                      		pop tempRegister
-0001b7 bf2f                      		OUT SREG, tempRegister
-0001b8 912f                      		pop tempRegister
-0001b9 9518                      		RETI
+0001b8 910f                      		pop counter
+0001b9 912f                      		pop tempRegister
+0001ba bf2f                      		OUT SREG, tempRegister
+0001bb 912f                      		pop tempRegister
+0001bc 9518                      		RETI
                                  
                                  Timer0OverflowInterrupt:
-0001ba 93bf                      	push XH
-0001bb 93af                      	push XL
-0001bc 932f                      	push tempRegister
-0001bd b72f                      	IN tempRegister, SREG
-0001be 932f                      	push tempRegister
+0001bd 93bf                      	push XH
+0001be 93af                      	push XL
+0001bf 932f                      	push tempRegister
+0001c0 b72f                      	IN tempRegister, SREG
+0001c1 932f                      	push tempRegister
                                  
                                  	/* Reset timer values */
                                  	;LDI tempRegister, 4
                                  	;OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
-0001bf bcf6                      	OUT TCNT0,timer0ResetVal
+0001c2 bcf6                      	OUT TCNT0,timer0ResetVal
                                  
                                  	/*  Check if jump key was pressed. If it has been pressed, the dinosaur will move up, float, and move down. 
                                  		Most of this could be written in a function call, but that would probably waste more time. Unfortunately 
                                  		I don't see a less redundant way for all of the compare statements. */
-0001c0 3051                      	CPI dinoJumping,1
-0001c1 f158                      	BRLO timer0Ret					; Branch if Lower
+0001c3 3051                      	CPI dinoJumping,1
+0001c4 f158                      	BRLO timer0Ret					; Branch if Lower
                                  
                                  	; Move dino 1 pixel up
-0001c2 9553                      	INC dinoJumping
+0001c5 9553                      	INC dinoJumping
                                  
-0001c3 315f                      	CPI dinoJumping, 31
-0001c4 f450                      	BRSH checkFloat					; if dinoJumping is higher than 30, it will have to stay up (if keyboard is pressed) or come back down
+0001c6 315f                      	CPI dinoJumping, 31
+0001c7 f450                      	BRSH checkFloat					; if dinoJumping is higher than 30, it will have to stay up (if keyboard is pressed) or come back down
                                  
-0001c5 e025                      	LDI tempRegister,5
-0001c6 935f
-0001c7 1b52
-0001c8 f7f0
-0001c9 0f52
-0001ca 2f25
-0001cb 915f                      	MOD dinoJumping,tempRegister	; Result will be in tempRegister such that we don't overwrite dinoJumping
-0001cc 3020                      	CPI tempRegister,0
-0001cd f089                      	BREQ dinoJump
-0001ce c01e                      	RJMP timer0Ret					; If you don't have to go up, just return (already checked for float and drop earlier)
+0001c8 e025                      	LDI tempRegister,5
+0001c9 935f
+0001ca 1b52
+0001cb f7f0
+0001cc 0f52
+0001cd 2f25
+0001ce 915f                      	MOD dinoJumping,tempRegister	; Result will be in tempRegister such that we don't overwrite dinoJumping
+0001cf 3020                      	CPI tempRegister,0
+0001d0 f089                      	BREQ dinoJump
+0001d1 c01e                      	RJMP timer0Ret					; If you don't have to go up, just return (already checked for float and drop earlier)
                                  
                                  	; Check if we're holding down the keyboard (to jump for a longer duration)
                                  	checkFloat:
-0001cf e021                      		LDI tempregister,1
-0001d0 16d2                      		CP keyboardPressed,tempRegister
-0001d1 f009                      		BREQ dinoFloat
-0001d2 c002                      		RJMP checkDropping
+0001d2 e021                      		LDI tempregister,1
+0001d3 16d2                      		CP keyboardPressed,tempRegister
+0001d4 f009                      		BREQ dinoFloat
+0001d5 c002                      		RJMP checkDropping
                                  	
                                  	dinoFloat:
-0001d3 3956                      		CPI dinoJumping,150
-0001d4 f0c0                      		BRLO timer0Ret
+0001d6 3956                      		CPI dinoJumping,150
+0001d7 f0c0                      		BRLO timer0Ret
                                  
                                  
                                  	; Move dino 1 pixel down
                                  	checkDropping:
-0001d5 e025                      		LDI tempRegister,5
-0001d6 935f
-0001d7 1b52
-0001d8 f7f0
-0001d9 0f52
-0001da 2f25
-0001db 915f                      		MOD dinoJumping,tempRegister	; Result will be in tempRegister such that we don't overwrite dinoJumping
-0001dc 3020                      		CPI tempRegister,0
-0001dd f039                      		BREQ dinoDrop
-0001de c00e                      		RJMP timer0Ret						; Skip everything in other cases
+0001d8 e025                      		LDI tempRegister,5
+0001d9 935f
+0001da 1b52
+0001db f7f0
+0001dc 0f52
+0001dd 2f25
+0001de 915f                      		MOD dinoJumping,tempRegister	; Result will be in tempRegister such that we don't overwrite dinoJumping
+0001df 3020                      		CPI tempRegister,0
+0001e0 f039                      		BREQ dinoDrop
+0001e1 c00e                      		RJMP timer0Ret						; Skip everything in other cases
                                  
                                  	dinoJump:
-0001df e0b3                      		LDI XH, HIGH(dinoMemory)
-0001e0 e5a1                      		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-0001e1 912c                      		LD tempRegister, X				; Load old ypos
-0001e2 952a                      		DEC tempRegister				; Decrease ypos (go up)
-0001e3 932c                      		ST X,tempRegister				; Store ypos
-0001e4 c008                      		RJMP timer0Ret
+0001e2 e0b3                      		LDI XH, HIGH(dinoMemory)
+0001e3 e5a1                      		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
+0001e4 912c                      		LD tempRegister, X				; Load old ypos
+0001e5 952a                      		DEC tempRegister				; Decrease ypos (go up)
+0001e6 932c                      		ST X,tempRegister				; Store ypos
+0001e7 c008                      		RJMP timer0Ret
                                  
                                  	dinoDrop:
-0001e5 e0b3                      		LDI XH, HIGH(dinoMemory)
-0001e6 e5a1                      		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-0001e7 912c                      		LD tempRegister, X				; Load old ypos
-0001e8 9523                      		INC tempRegister				; Increase ypos (go down)
-0001e9 932c                      		ST X,tempRegister				; Store ypos
+0001e8 e0b3                      		LDI XH, HIGH(dinoMemory)
+0001e9 e5a1                      		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
+0001ea 912c                      		LD tempRegister, X				; Load old ypos
+0001eb 9523                      		INC tempRegister				; Increase ypos (go down)
+0001ec 932c                      		ST X,tempRegister				; Store ypos
                                  
                                  		; Clear dinoJumping if dino has landed (if its y position is equal to 9
-0001ea 3028                      		CPI tempRegister, 8			
-0001eb f409                      		BRNE timer0Ret
-0001ec 2755                      		CLR dinoJumping
+0001ed 3028                      		CPI tempRegister, 8			
+0001ee f409                      		BRNE timer0Ret
+0001ef 2755                      		CLR dinoJumping
                                  
                                  	timer0Ret:
-0001ed 912f                      		pop tempRegister
-0001ee bf2f                      		OUT SREG, tempRegister
-0001ef 912f                      		pop tempRegister
-0001f0 91af                      		pop XL
-0001f1 91bf                      		pop XH
-0001f2 9518                      		RETI
+0001f0 912f                      		pop tempRegister
+0001f1 bf2f                      		OUT SREG, tempRegister
+0001f2 912f                      		pop tempRegister
+0001f3 91af                      		pop XL
+0001f4 91bf                      		pop XH
+0001f5 9518                      		RETI
                                  
                                  	/* Timer2 is used to increase the speed of the cacti at a constant rate */
                                  	Timer2OverflowInterrupt:
-0001f3 932f                      		PUSH tempRegister
-0001f4 b72f                      		IN tempRegister, SREG
-0001f5 932f                      		PUSH tempRegister
+0001f6 932f                      		PUSH tempRegister
+0001f7 b72f                      		IN tempRegister, SREG
+0001f8 932f                      		PUSH tempRegister
                                  
-0001f6 e020                      		LDI tempRegister, 0
-0001f7 9320 00b2                 		STS TCNT2,tempRegister
+0001f9 e020                      		LDI tempRegister, 0
+0001fa 9320 00b2                 		STS TCNT2,tempRegister
                                  
-0001f9 e82c                      		LDI tempRegister, 140
-0001fa 16f2                      		CP timer0ResetVal, tempRegister			; Check if maximum jump speed was reached
-0001fb f440                      		BRSH timer2Return
+0001fc e82c                      		LDI tempRegister, 140
+0001fd 16f2                      		CP timer0ResetVal, tempRegister			; Check if maximum jump speed was reached
+0001fe f440                      		BRSH timer2Return
                                  
-0001fc 94e3                      		INC timer0ResetCounter
-0001fd 962a                      		ADIW YL, 10
+0001ff 94e3                      		INC timer0ResetCounter
+000200 962a                      		ADIW YL, 10
                                  
-0001fe 94e3                      		INC timer0ResetCounter
-0001ff e12e                      		LDI tempRegister, 30						; Should be 25.6 to update cactus movement with the same speed as dino jump movement
-000200 16e2                      		CP timer0ResetCounter, tempRegister
-000201 f010                      		BRLO timer2Return
-000202 94f3                      		INC timer0ResetVal
-000203 24ee                      		CLR timer0ResetCounter
+000201 94e3                      		INC timer0ResetCounter
+000202 e12e                      		LDI tempRegister, 30						; Should be 25.6 to update cactus movement with the same speed as dino jump movement
+000203 16e2                      		CP timer0ResetCounter, tempRegister
+000204 f010                      		BRLO timer2Return
+000205 94f3                      		INC timer0ResetVal
+000206 24ee                      		CLR timer0ResetCounter
                                  
                                  		timer2Return:
-000204 912f                      		POP tempRegister
-000205 bf2f                      		OUT SREG, tempRegister
-000206 912f                      		POP tempRegister
-000207 9518                      		RETI
+000207 912f                      		POP tempRegister
+000208 bf2f                      		OUT SREG, tempRegister
+000209 912f                      		POP tempRegister
+00020a 9518                      		RETI
                                  
                                  ////////////////////////////////////////////////////////////
                                  //-------------------------MAIN---------------------------//
                                  ////////////////////////////////////////////////////////////
                                  
                                  main:
-000208 d008                      	RCALL flushMemory
-000209 d048                      	RCALL clearScreen
-00020a defd                      	rcall drawDino
-00020b de15                      	rcall checkKeyboard
+00020b d008                      	RCALL flushMemory
+00020c d048                      	RCALL clearScreen
+00020d defd                      	rcall drawDino
+00020e de12                      	rcall checkKeyboard
                                  
-00020c 3070                      	CPI gameState,0
-00020d f009                      	BREQ playing
-00020e cf5f                      		RJMP init
+00020f 3070                      	CPI gameState,0
+000210 f009                      	BREQ playing
+000211 cf5f                      		RJMP init
                                  	playing:
-00020f deb9                      		rcall drawCactus
-000210 cff7                      RJMP main
+000212 deb9                      		rcall drawCactus
+000213 cff7                      RJMP main
                                  
                                  
                                  flushMemory:
                                  
-000211 93bf                      	PUSH XH
-000212 93af                      	PUSH XL
+000214 93bf                      	PUSH XH
+000215 93af                      	PUSH XL
                                  
-000213 2711                      	CLR illuminatedRow
-000214 e0b1                      	LDI XH, HIGH(bufferStartAddress)
-000215 e0a0                      	LDI XL, LOW(bufferStartAddress)
-000216 971a                      	SBIW XL,10
+000216 2711                      	CLR illuminatedRow
+000217 e0b1                      	LDI XH, HIGH(bufferStartAddress)
+000218 e0a0                      	LDI XL, LOW(bufferStartAddress)
+000219 971a                      	SBIW XL,10
                                  
                                  	nextRow:
-000217 9654                      		ADIW XL,20
-000218 9513                      		INC illuminatedRow
-000219 3018                      		CPI illuminatedRow,8
-00021a f419                      		BRNE notmax
+00021a 9654                      		ADIW XL,20
+00021b 9513                      		INC illuminatedRow
+00021c 3018                      		CPI illuminatedRow,8
+00021d f419                      		BRNE notmax
                                  
-00021b 91af                      			POP XL
-00021c 91bf                      			POP XH
-00021d 9508                      			RET
+00021e 91af                      			POP XL
+00021f 91bf                      			POP XH
+000220 9508                      			RET
                                  		notmax:
                                  		;RCALL waitingLoop
                                  
-00021e e500                      		LDI counter,80
+000221 e500                      		LDI counter,80
                                  		columnbits:
-00021f 902e                      			LD memoryByteRegister,-X ; -X = predec while X+ = postdec
-000220 e068                      			LDI registerBitCounter,8
+000222 902e                      			LD memoryByteRegister,-X ; -X = predec while X+ = postdec
+000223 e068                      			LDI registerBitCounter,8
                                  
                                  			bitsOfRegister:
-000221 feb0                      					SBRS normalOrExtreme,0
-000222 c003                      					RJMP normalMode
+000224 feb0                      					SBRS normalOrExtreme,0
+000225 c003                      					RJMP normalMode
                                  				extremeMode:
-000223 fe27                      					SBRS memoryByteRegister,7
-000224 c005                      					RJMP pixelOn
-000225 c002                      					RJMP pixelOff
+000226 fe27                      					SBRS memoryByteRegister,7
+000227 c005                      					RJMP pixelOn
+000228 c002                      					RJMP pixelOff
                                  
                                  				normalMode:
-000226 fc27                      					SBRC memoryByteRegister,7
-000227 c002                      					RJMP pixelOn
+000229 fc27                      					SBRC memoryByteRegister,7
+00022a c002                      					RJMP pixelOn
                                  
                                  				; Pixel off
                                  				pixelOff:
-000228 982b                      					CBI PORTB,3
-000229 c001                      					RJMP administration
+00022b 982b                      					CBI PORTB,3
+00022c c001                      					RJMP administration
                                  					
                                  				; Pixel on
                                  				pixelOn:
-00022a 9a2b                      					SBI PORTB,3
+00022d 9a2b                      					SBI PORTB,3
                                  				
                                  				administration:	
-00022b 9a2d                      					SBI PORTB,5
-00022c 982d                      					CBI PORTB,5
-00022d 950a                      					DEC counter
-00022e f021                      					BREQ rows
-00022f 956a                      					DEC registerBitCounter
-000230 f371                      					BREQ columnbits
-000231 0c22                      					LSL memoryByteRegister
-000232 cfee                      					RJMP bitsOfRegister	
+00022e 9a2d                      					SBI PORTB,5
+00022f 982d                      					CBI PORTB,5
+000230 950a                      					DEC counter
+000231 f021                      					BREQ rows
+000232 956a                      					DEC registerBitCounter
+000233 f371                      					BREQ columnbits
+000234 0c22                      					LSL memoryByteRegister
+000235 cfee                      					RJMP bitsOfRegister	
                                  
                                  			rows:
-000233 e008                      				LDI counter,8
+000236 e008                      				LDI counter,8
                                  			rowbits:
                                  
-000234 1701                      				CP counter, illuminatedRow
-000235 f011                      				BREQ rowSet
-000236 982b                      					CBI PORTB,3
-000237 c001                      					RJMP nextStep
+000237 1701                      				CP counter, illuminatedRow
+000238 f011                      				BREQ rowSet
+000239 982b                      					CBI PORTB,3
+00023a c001                      					RJMP nextStep
                                  	
                                  				rowSet:
-000238 9a2b                      					SBI PORTB,3
+00023b 9a2b                      					SBI PORTB,3
                                  
                                  				nextStep:
-000239 9a2d                      					SBI PORTB,5
-00023a 982d                      					CBI PORTB,5
-00023b 950a                      					DEC counter
-00023c f009                      					BREQ latching
-00023d cff6                      					RJMP rowbits
+00023c 9a2d                      					SBI PORTB,5
+00023d 982d                      					CBI PORTB,5
+00023e 950a                      					DEC counter
+00023f f009                      					BREQ latching
+000240 cff6                      					RJMP rowbits
                                  
                                  		latching:
-00023e 9a2c                      			SBI PORTB,4
-00023f d004                      			RCALL waitingLoop
-000240 982c                      			CBI PORTB,4
-000241 d002                      			RCALL waitingLoop
-000242 cfd4                      			RJMP nextRow
+000241 9a2c                      			SBI PORTB,4
+000242 d004                      			RCALL waitingLoop
+000243 982c                      			CBI PORTB,4
+000244 d002                      			RCALL waitingLoop
+000245 cfd4                      			RJMP nextRow
                                  
-000243 9508                      RET
+000246 9508                      RET
                                  
                                  waitingLoop:
-000244 932f                      	push tempRegister
-000245 930f                      	push counter
-000246 2722                      	CLR tempRegister
-000247 2700                      	CLR counter
+000247 932f                      	push tempRegister
+000248 930f                      	push counter
+000249 2722                      	CLR tempRegister
+00024a 2700                      	CLR counter
                                  	outerLoop:
-000248 9523                      		INC tempRegister
-000249 3f2f                      		CPI tempRegister,maxValueCounter0
-00024a f7e9                      		BRNE outerLoop
+00024b 9523                      		INC tempRegister
+00024c 3f2f                      		CPI tempRegister,maxValueCounter0
+00024d f7e9                      		BRNE outerLoop
                                  
                                  		middleLoop:
-00024b 2722                      			CLR tempRegister
-00024c 9503                      			INC counter
-00024d 3003                      			CPI counter,maxValueCounter1
-00024e f7c9                      			BRNE outerLoop	
+00024e 2722                      			CLR tempRegister
+00024f 9503                      			INC counter
+000250 3003                      			CPI counter,maxValueCounter1
+000251 f7c9                      			BRNE outerLoop	
                                  	finishLoop:
-00024f 910f                      	pop counter
-000250 912f                      	pop tempRegister
-000251 9508                      RET
+000252 910f                      	pop counter
+000253 912f                      	pop tempRegister
+000254 9508                      RET
                                  
                                  
                                  clearScreen:
-000252 93bf                      	push XH
-000253 93af                      	push XL
+000255 93bf                      	push XH
+000256 93af                      	push XL
                                  
-000254 e0b1                      	LDI XH,0x01
-000255 27aa                      	CLR XL
+000257 e0b1                      	LDI XH,0x01
+000258 27aa                      	CLR XL
                                  
-000256 e406                      	LDI counter,70
-000257 2722                      	CLR tempRegister
+000259 e406                      	LDI counter,70
+00025a 2722                      	CLR tempRegister
                                  	clearingLoop:
-000258 932d                      		ST X+,tempRegister
-000259 950a                      		DEC counter
-00025a f7e9                      		BRNE clearingLoop
+00025b 932d                      		ST X+,tempRegister
+00025c 950a                      		DEC counter
+00025d f7e9                      		BRNE clearingLoop
                                  
-00025b 91af                      	POP XL
-00025c 91bf                      	POP XH
+00025e 91af                      	POP XL
+00025f 91bf                      	POP XH
 
 
 RESOURCE USE INFORMATION
@@ -2113,23 +2116,23 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :  20 y  :   0 z  :   0 r0 :   1 r1 :   0 r2 :   4 r3 :   8 r4 :  12 
 r5 :   2 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   6 r12:   0 
-r13:   4 r14:   5 r15:   6 r16:  38 r17:  11 r18: 130 r19:   0 r20:   0 
-r21:  21 r22:   2 r23:   4 r24:  41 r25:  33 r26:  43 r27:  31 r28:   4 
+r13:   8 r14:   5 r15:   6 r16:  38 r17:  11 r18: 134 r19:   0 r20:   0 
+r21:  18 r22:   2 r23:   4 r24:  41 r25:  33 r26:  43 r27:  31 r28:   4 
 r29:   3 r30:   0 r31:   0 
 Registers used: 22 out of 35 (62.9%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   6 adiw  :   4 and   :   2 
 andi  :   1 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :  20 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :  22 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   4 brlt  :   0 brmi  :   0 
-brne  :   9 brpl  :   0 brsh  :   5 brtc  :   0 brts  :   0 brvc  :   0 
+brne  :   7 brpl  :   0 brsh  :   5 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :  24 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :  17 cls   :   0 
-clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :  10 cpc   :   0 
-cpi   :  19 cpse  :   0 dec   :  22 eor   :   1 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :  36 jmp   :   0 
-ld    :  10 ldd   :   0 ldi   :  58 lds   :   0 lpm   :   0 lsl   :  11 
+clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :  12 cpc   :   0 
+cpi   :  17 cpse  :   0 dec   :  22 eor   :   1 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :  37 jmp   :   0 
+ld    :  10 ldd   :   0 ldi   :  60 lds   :   0 lpm   :   0 lsl   :  11 
 lsr   :   5 mov   :  11 movw  :   0 mul   :   1 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   2 ori   :   0 out   :   7 pop   :  58 
 push  :  58 rcall :  35 ret   :  14 reti  :   3 rjmp  :  41 rol   :   0 
@@ -2143,7 +2146,7 @@ Instructions used: 41 out of 113 (36.3%)
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0004bc   1154      0   1154   32768   3.5%
+[.cseg] 0x000000 0x0004c2   1160      0   1160   32768   3.5%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
