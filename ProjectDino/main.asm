@@ -28,6 +28,8 @@
 
 .def normalOrExtreme = R11
 
+.def keyboardPressed = R13
+
 .def timer0ResetCounter = R14	; Count to 100 before increasing speed of dinosaur jumps
 .def timer0ResetVal = R15		; Value to increase TCNT0 over time (faster interrupts)
 
@@ -35,7 +37,7 @@
 .def illuminatedRow = R17		; Indicates the row that will be illuminated
 .def tempRegister = R18			; Temporary register for short-time savings
 
-.def keyboardPressed = R21
+.def dinoJumping = R21
 .def registerBitCounter = R22
 
 .def gameState = R23 ; = 0x00 -> Playing
@@ -50,7 +52,7 @@
 .equ dinoMemory = 0x0350
 
 .equ maxValueCounter0 = 255;255
-.equ maxValueCounter1 = 2;255
+.equ maxValueCounter1 = 3;255
 .equ maxValueCounter2 = 0;40
 
 .ORG 0x0000
@@ -68,6 +70,7 @@ RJMP Timer0OverflowInterrupt
 
 .include "keyboard.inc"
 .include "drawings.inc"
+.include "macros.inc"
 
 ////////////////////////////////////////////////////////////
 //-------------------------INIT---------------------------//
@@ -132,8 +135,8 @@ init:
 	rcall initDino
 	rcall addCactus
 
-	; Make sure keyboardPressed is zero
-	CLR keyboardPressed
+	; Make sure dinoJumping is zero
+	CLR dinoJumping
 
 	; Clear timer0 variables
 	CLR timer0ResetCounter
@@ -203,7 +206,7 @@ Timer1OverflowInterrupt:
 	AND normalOrExtreme,counter
 
 	LSR tempregister
-	CPI tempregister,100 ; After 100 mouvements the screen switches to extreme mode
+	CPI tempregister,100 ; After 100 movements the screen switches to extreme mode
 	BREQ  modeSwitching
 		INC tempregister
 		LSL tempregister
@@ -237,40 +240,41 @@ Timer0OverflowInterrupt:
 	/*  Check if jump key was pressed. If it has been pressed, the dinosaur will move up, float, and move down. 
 		Most of this could be written in a function call, but that would probably waste more time. Unfortunately 
 		I don't see a less redundant way for all of the compare statements. */
-	CPI keyboardPressed,1
+	CPI dinoJumping,1
 	BRLO timer0Ret					; Branch if Lower
 
 	; Move dino 1 pixel up
-	INC keyboardPressed
-	CPI keyboardPressed, 2
+	INC dinoJumping
+
+	CPI dinoJumping, 31
+	BRSH checkFloat					; if dinoJumping is higher than 30, it will have to stay up (if keyboard is pressed) or come back down
+
+	LDI tempRegister,5
+	MOD dinoJumping,tempRegister	; Result will be in tempRegister such that we don't overwrite dinoJumping
+	CPI tempRegister,0
 	BREQ dinoJump
-	CPI keyboardPressed, 7
-	BREQ dinoJump
-	CPI keyboardPressed, 12
-	BREQ dinoJump
-	CPI keyboardPressed, 17
-	BREQ dinoJump
-	CPI keyboardPressed, 22
-	BREQ dinoJump
-	CPI keyboardPressed, 27
-	BREQ dinoJump
+	RJMP timer0Ret					; If you don't have to go up, just return (already checked for float and drop earlier)
+
+	; Check if we're holding down the keyboard (to jump for a longer duration)
+	checkFloat:
+		LDI tempregister,1
+		CP keyboardPressed,tempRegister
+		BREQ dinoFloat
+		RJMP checkDropping
+	
+	dinoFloat:
+		CPI dinoJumping,200
+		BRLO timer0Ret
+
+
 	; Move dino 1 pixel down
-	CPI keyboardPressed, 102
-	BREQ dinoDrop
-	CPI keyboardPressed, 107
-	BREQ dinoDrop
-	CPI keyboardPressed, 112
-	BREQ dinoDrop
-	CPI keyboardPressed, 117
-	BREQ dinoDrop
-	CPI keyboardPressed, 122
-	BREQ dinoDrop
-	CPI keyboardPressed, 127
-	BREQ dinoDrop
-	; reset keyboard pressed register
-	CPI keyboardPressed, 128			
-	BREQ preventOverflow
-	RJMP timer0Ret						; Skip everything in other cases
+	checkDropping:
+		LDI tempRegister,5
+		MOD dinoJumping,tempRegister	; Result will be in tempRegister such that we don't overwrite dinoJumping
+		CPI tempRegister,0
+		BREQ dinoDrop
+		RJMP timer0Ret						; Skip everything in other cases
+
 	dinoJump:
 		LDI XH, HIGH(dinoMemory)
 		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
@@ -285,10 +289,11 @@ Timer0OverflowInterrupt:
 		LD tempRegister, X				; Load old ypos
 		INC tempRegister				; Increase ypos (go down)
 		ST X,tempRegister				; Store ypos
-		RJMP timer0Ret
 
-	preventOverflow:
-		DEC keyboardPressed				; Make sure this is the same value in nothingPressed in keyboard.inc
+		; Clear dinoJumping if dino has landed (if its y position is equal to 9
+		CPI tempRegister, 8			
+		BRNE timer0Ret
+		CLR dinoJumping
 
 	timer0Ret:
 		pop tempRegister
@@ -373,16 +378,16 @@ flushMemory:
 			LDI registerBitCounter,8
 
 			bitsOfRegister:
-				SBRS normalOrExtreme,0
-				RJMP normalMode
+					SBRS normalOrExtreme,0
+					RJMP normalMode
 				extremeMode:
-				SBRS memoryByteRegister,7
-				RJMP pixelOn
-				RJMP pixelOff
+					SBRS memoryByteRegister,7
+					RJMP pixelOn
+					RJMP pixelOff
 
 				normalMode:
-				SBRC memoryByteRegister,7
-				RJMP pixelOn
+					SBRC memoryByteRegister,7
+					RJMP pixelOn
 
 				; Pixel off
 				pixelOff:
@@ -394,17 +399,17 @@ flushMemory:
 					SBI PORTB,3
 				
 				administration:	
-				SBI PORTB,5
-				CBI PORTB,5
-				DEC counter
-				BREQ rows
-				DEC registerBitCounter
-				BREQ columnbits
-				LSL memoryByteRegister
-				RJMP bitsOfRegister	
+					SBI PORTB,5
+					CBI PORTB,5
+					DEC counter
+					BREQ rows
+					DEC registerBitCounter
+					BREQ columnbits
+					LSL memoryByteRegister
+					RJMP bitsOfRegister	
 
 			rows:
-			LDI counter,8
+				LDI counter,8
 			rowbits:
 
 				CP counter, illuminatedRow
@@ -416,18 +421,18 @@ flushMemory:
 					SBI PORTB,3
 
 				nextStep:
-				SBI PORTB,5
-				CBI PORTB,5
-				DEC counter
-				BREQ latching
-				RJMP rowbits
+					SBI PORTB,5
+					CBI PORTB,5
+					DEC counter
+					BREQ latching
+					RJMP rowbits
 
 		latching:
-		SBI PORTB,4; Without waiting it also works (IF PROBLEM? LOOK AT THIS)
-		RCALL waitingLoop
-		CBI PORTB,4
-		RCALL waitingLoop
-		RJMP nextRow
+			SBI PORTB,4
+			RCALL waitingLoop
+			CBI PORTB,4
+			RCALL waitingLoop
+			RJMP nextRow
 
 RET
 

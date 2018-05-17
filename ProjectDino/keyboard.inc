@@ -107,14 +107,15 @@
 	RJMP checkKeyboardRet
 
 	button7:
-		CPI keyboardPressed,0
+		CPI dinoJumping,0
 		BRNE checkKeyboardRet
 		INC keyboardPressed
+		LDI dinoJumping,4
 		;rcall dinoJump
 		RJMP checkKeyboardRet
 
 	buttonA:
-		CPI keyboardPressed,0
+		CPI dinoJumping,0
 		BRNE checkKeyboardRet
 		//LDS randomNumber,TCNT0 // THERE IS SOMETHING WRONG WITH THE SEED
 		//LDI randomNumber, 26
@@ -122,45 +123,17 @@
 		RJMP checkKeyboardRet
 
 	button1:
-		CPI keyboardPressed,0
+		CPI dinoJumping,0
 		BRNE checkKeyboardRet
-		INC keyboardPressed
+		INC dinoJumping
 		RCALL addCactus
 		RJMP checkKeyboardRet
 
-
-	/*
-	LDI R18, 0x84				; Evaluate button 4: 1000 0100
-	CP R16, R18
-	BREQ button4
-
-	LDI R18, 0x88				; Evaluate button 7: 1000 1000
-	CP R16, R18
-	BREQ button7
-
-
-
-	
-	turnOffLeds:
-		SBI PORTC,2									; Output Vcc => upper LED turned off!
-		SBI PORTC,3									; Output Vcc => lower LED is turned off!
-		ret
-
-	button4: 
-	CBI PORTC,3
-	RJMP checkKeyboard
-	button8:
-	CBI PORTC,2
-	RJMP checkKeyboard
-	button7:
-	CBI PORTC,2
-	CBI PORTC,3
-	RJMP checkKeyboard*/
-
 	nothingPressed:
-		CPI keyboardPressed, 127			; Check if dino has landed
-		BRLO checkKeyboardRet
-		CLR keyboardPressed				; Only reset this register if the key has been released
+		CLR keyboardPressed
+		;CPI dinoJumping, 127			; Check if dino has landed
+		;BRLO checkKeyboardRet
+		;CLR dinoJumping				; Only reset this register if the key has been released
 
 	checkKeyboardRet:
 		pop R18
