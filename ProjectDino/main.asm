@@ -1,60 +1,74 @@
 ;
-; The dinosaur game
+; The dinosaur game ('The dino says Graaah!')
 ;
-; Created: 28/04/2018 17:37:02
+; Sensors and microsystem electronics
+; Year: 2017-2018
 ; Authors : Remco Royen & Johan Jacobs
 ;
+; main.asm
 
-// Y wordt niet gebruikt als pointer, toch? Mssch het ergens duidelijk bijschrijven want ik was ook effe in de war
-
-.INCLUDE "m328pdef.inc"			; Load addresses of (I/O) registers
+.INCLUDE "m328pdef.INC"			; Load addresses of (I/O) registers
 
 .def mulLSB = R0
 .def mulMSB = R1
 
 .def memoryByteRegister = R2
 
-.def maxNmbrOfCacti = R3
-.def nmbrOfCacti = R4
+.def maxNmbrOfCacti = R3		; Maximum number of Cacti that are allowed to move on the screen in this level
+.def nmbrOfCacti = R4			; Actual number of cacti moving on the screen
 
-.def randomNumber = R5 // First iteration this is the seed, afterwards it is a pseudo-random number by use of LFSR
+.def randomNumber = R5 ;		; A pseudo-random number by use of LFSR, is computed by calling Random
 
-// Is there a more efficient way to do this?
+; Shift registers for the PRNG
 .def randomSR1 = R6
 .def randomSR2 = R7
 .def randomSR3 = R8
 .def randomSR4 = R9
 .def randomSR5 = R10
 
-.def normalOrExtreme = R11
+.def modeCounter = R11			; Keeps track of when is needed to change mode or to increase maxNmbrOfCacti
+.def buzzerCounter = R12		; Keeps track of how long the buzzer is already buzzing
+
+.def passToFunctionRegister = R13 ; Is used in random to pass a value to a function
+
+.def timer0ResetCounter = R14	; Count to X before increasing speed of dinosaur jumps
+.def timer0ResetVal = R15		; Value to increase TCNT0 over time (faster interrupts)
 
 .def counter = R16				; Register that serves for all kind of counter actions
 .def illuminatedRow = R17		; Indicates the row that will be illuminated
 .def tempRegister = R18			; Temporary register for short-time savings
 
-.def waitingcounter0 = R19
-.def waitingcounter1 = R20
-.def keyboardPressed = R21
+.def flags = R19				; bit 0 = Collision (set = collision) | bit 1 = normalOrExtreme mode (set = extreme)
+								; bit 2 = Buzzersound (set = buzzer on) | bit 3 = keyBoardPressed (set = button pressed)
+								; bit 4 = Insane mode (set = insane)
+
+.def dinoJumping = R21
 .def registerBitCounter = R22
 
-.def gameState = R23 ; = 0x00 -> Playing
-					 ; = 0xFF -> Wait for button to play
+.def gameState = R23			; = 0x00 -> Playing 
+								; = 0x01 -> Game Over
+								; = 0xFF -> 'Menu': Wait for button to play
 
-.def xpos = R24
+.def xpos = R24		
 .def ypos = R25
 
+; R26/R27 X pointer is used to point to addresses in memory
+; R28/R29 Y pointer is used to speed up the cacti
+; R30/R31 Z pointer is used to keep score: The word is divided in 4 4-bit long chunks: for example 5809 : part 1 = 5, part 2 = 8, part 3 = 0, part 4 = 9
 
 .equ bufferStartAddress = 0x0100
 .equ cactusMemory = 0x0300
 .equ dinoMemory = 0x0350
-.equ speedMemory = 0x360
 
-.equ maxValueCounter0 = 255;255
-.equ maxValueCounter1 = 2;255
-.equ maxValueCounter2 = 0;40
+.equ initialTimeValueBuzzer = 185
+.equ buzzerDuration = 255
+
+.equ maxValueCounter0 = 255
+.equ maxValueCounter1 = 3
+.equ maxValueCounter2 = 0
 
 .ORG 0x0000
-RJMP initOnlyOnce				; First instruction that is executed by the microcontroller
+RJMP startUp
 
 .ORG 0x0012
 RJMP Timer2OverflowInterrupt
@@ -65,36 +79,79 @@ RJMP Timer1OverflowInterrupt
 .ORG 0x0020
 RJMP Timer0OverflowInterrupt
 
+.include "coreFunctions.INC"
+.include "keyboard.INC"
+.include "drawingFunctions.INC"
+.include "drawPatterns.INC"
+.include "macros.INC"
+.include "random.INC"
+.include "interrupts.INC"
 
-.include "keyboard.inc"
-.include "drawings.inc"
+startUp:
+	RCALL initGame
 
-////////////////////////////////////////////////////////////
-//-------------------------INIT---------------------------//
-////////////////////////////////////////////////////////////
+main:
 
-initOnlyOnce:
+	; STATE MACHINE
+	CPI gameState,0
+	BRNE notPlaying
+		; STATE 0: PLAYING
+		RCALL clearBuffer
+		RCALL drawCactus
+		RCALL drawDino
+		RCALL drawScore
+		RJMP restOfMain
 
-	; Begin in idle state
-	SER gameState
-	RCALL clearScreen
+	notPlaying:
+	CPI gameState,0xFF
+	BRNE gameOver
+		; STATE FF: MENU
+		RCALL clearBuffer
+		RCALL drawDino
+		RJMP restOfMain
 
+	gameOver:
+		; STATE 1: GAME OVER
+		MOV tempregister, buzzerCounter
+		CPI tempregister,buzzerDuration
+		BRLO restOfMain
+		CBR flags,0b00000100	; Clear buzzer flag
+		CBI PORTB,1				; Make sure buzzer is 'off' after use
+
+	restOfMain:
+	RCALL checkKeyboard
+	RCALL flushMemory
+	RCALL collisionHandler ; Check if collision has happened and react
+	RJMP main
+
+initGame:
+// Initiates all the game parameters: variables, in- and output pins, timers, interrupts and prepares the screen
+// Registers changed: gameState, nmbrOfCacti, maxNmbrOfCacti, flags, dinoJumping, timer0ResetCounter, timer0ResetVal, tempregister, Y-pointer, Z-pointer
+// Functions called: clearBuffer, initDino, addCactus
+
+	; To avoid flickering
+	RCALL clearBuffer
+
+	; Set variables
+	SER gameState ; Begin in idle state
+
+	CLR nmbrOfCacti ; No cacti drawn
+	CLR maxNmbrOfCacti
+	INC maxNmbrOfCacti ; First level only one cactus
+
+	CLR dinoJumping ; Dino starts not jumping
+	CLR modeCounter
+	CLR ZH ; Score set to zero
+	CLR ZL ; Score set to zero
+
+	CLR flags
+
+	CLR timer0ResetCounter
+	CLR timer0ResetVal
 	
-	///////////////////////////////////////////
-	//- Timer0 (8 bit timer) initialisation -//
-	///////////////////////////////////////////
-
-	; Select normal counter mode
-	LDI tempRegister, 0x0
-	OUT TCCR0A, tempRegister
-	;set timer0 prescaler to 1024
-	LDI tempRegister, 0x05
-	OUT TCCR0B,tempRegister
-	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
-	LDI tempRegister, 4
-	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
-
-init:
+	; Configure output pin PB1 (Buzzer)
+	SBI DDRB,1					; Pin PB1 is an output
+	CBI PORTB,1					; Output low => initial condition low!
 
 	; Configure output pin PB3 (Data input screen)
 	SBI DDRB,3					; Pin PB3 is an output
@@ -112,33 +169,21 @@ init:
 	SBI DDRC,2					; Pin PC2 is an output 
 	SBI PORTC,2					; Output Vcc => upper LED turned off!
 
-	; No cacti drawn
-	CLR nmbrOfCacti
+	// Timer0 (8 bit timer) initialisation
+	LDI tempRegister, 0x0	; Select normal counter mode
+	OUT TCCR0A, tempRegister
+	
+	LDI tempRegister, 0x05	; Set timer0 prescaler to 1024
+	OUT TCCR0B,tempRegister	
 
-	; First level only one cactus
-	CLR maxNmbrOfCacti
-	INC maxNmbrOfCacti
-	INC maxNmbrOfCacti
-	INC maxNmbrOfCacti
+	LDI tempRegister, 60	; Set initial reset value
+	MOV timer0ResetVal, tempRegister
+	OUT TCNT0,timer0ResetVal		; TCNT0 = Timer/counter
 
-	CLR normalOrExtreme
-
-	; Initialize dinosaur and draw first cactus
-	rcall initDino
-	rcall addCactus
-
-	; Make sure keyboardPressed is zero
-	CLR keyboardPressed
-
-	////////////////////////////////////////////
-	//- Timer1 (16 bit timer) initialisation -//
-	////////////////////////////////////////////
-
-	; Select normal counter mode
-	LDI tempRegister, 0x0
+	// Timer1 (16 bit timer) initialisation
+	LDI tempRegister, 0x0	; Select normal counter mode
 	STS TCCR1A, tempRegister
-	;set timer1 prescaler to 64 == 011, 1024 == 101 (Important: this is different for 8 bit timer)
-	LDI tempRegister, 0x03
+	LDI tempRegister, 0x03	; Set timer1 prescaler to 64 == 011, 1024 == 101 (Important: this is different for 8 bit timer)
 	STS TCCR1B,tempRegister
 
 	/* Initial timer value will be 5 Hz. As the game progresses, the frequency at which the cacti move should be increased. We will do this by adding an immediate to the Y registers and storing this in TCNT1.  */
@@ -149,294 +194,23 @@ init:
 	STS TCNT1H, YH
 	STS TCNT1L, YL
 
-	///////////////////////////////////////////
-	//- Timer2 (8 bit timer) initialisation -//
-	///////////////////////////////////////////
-
-	; Select normal counter mode
-	LDI tempRegister, 0x0
+	// Timer2 (8 bit timer) initialisation
+	LDI tempRegister, 0x0	; Select normal counter mode
 	STS TCCR2A, tempRegister
-	;set timer2 prescaler to 1024 == 111, 
-	LDI tempRegister, 0x07
+	LDI tempRegister, 0x07	; Set timer2 prescaler to 1024 == 111, 
 	STS TCCR2B,tempRegister
-	;set correct ‘reload values’ 256 - 16 000 000/1024/61 = 0 (after rounding)
-	LDI tempRegister, 0
+	LDI tempRegister, 0		; Set correct ‘reload values’ 256 - 16 000 000/1024/61 = 0 (after rounding)
 	STS TCNT2,tempRegister
 
-	//////////////////////////
-	//- Enable interrupts -//
-	/////////////////////////
-
+	// Enable interrupts
 	SEI									; (SEI: global interrupt enable)
 	LDI tempRegister, 1
 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
 	STS TIMSK0, tempRegister
 	STS TIMSK2, tempRegister
-	RJMP main
 
+	// Prepare Screen
 
-Timer1OverflowInterrupt:
-	push tempRegister
-	IN tempRegister, SREG
-	push tempRegister
-	push counter //counter is here used as a temporary variable
-	/* Reset timer values */
-	STS TCNT1H, YH
-	STS TCNT1L, YL
-
-	/* Move the cactus */
-	rcall moveCactus
-	//RCALL newCactusOrNot
-
-	mov tempregister,normalOrExtreme
-	LDI counter,1
-	AND normalOrExtreme,counter
-
-	LSR tempregister
-	CPI tempregister,100 ; After 100 mouvements the screen switches to extreme mode
-	BREQ  modeSwitching
-		INC tempregister
-		LSL tempregister
-		OR normalOrExtreme,tempregister
-		RJMP timer1Ret
-
-	modeSwitching:
-		CLR tempregister
-		INC tempregister
-		EOR normalOrExtreme,tempregister
-
-	timer1Ret:
-		pop counter
-		pop tempRegister
-		OUT SREG, tempRegister
-		pop tempRegister
-		RETI
-
-Timer0OverflowInterrupt:
-	push XH
-	push XL
-	push tempRegister
-	IN tempRegister, SREG
-	push tempRegister
-
-	/* Reset timer values */
-	LDI tempRegister, 4
-	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
-
-	/*  Check if jump key was pressed. If it has been pressed, the dinosaur will move up, float, and move down. 
-		Most of this could be written in a function call, but that would probably waste more time. Unfortunately 
-		I don't see a less redundant way for all of the compare statements. */
-	CPI keyboardPressed,1
-	BRLO timer0Ret					; Branch if Lower
-
-	; Move dino 1 pixel up
-	INC keyboardPressed
-	CPI keyboardPressed, 2
-	BREQ dinoJump
-	CPI keyboardPressed, 7
-	BREQ dinoJump
-	CPI keyboardPressed, 12
-	BREQ dinoJump
-	CPI keyboardPressed, 17
-	BREQ dinoJump
-	CPI keyboardPressed, 22
-	BREQ dinoJump
-	CPI keyboardPressed, 27
-	BREQ dinoJump
-	; Move dino 1 pixel down
-	CPI keyboardPressed, 92
-	BREQ dinoDrop
-	CPI keyboardPressed, 97
-	BREQ dinoDrop
-	CPI keyboardPressed, 102
-	BREQ dinoDrop
-	CPI keyboardPressed, 107
-	BREQ dinoDrop
-	CPI keyboardPressed, 112
-	BREQ dinoDrop
-	CPI keyboardPressed, 117
-	BREQ dinoDrop
-	; reset keyboard pressed register
-	CPI keyboardPressed, 118			
-	BREQ preventOverflow
-	RJMP timer0Ret						; Skip everything in other cases
-	dinoJump:
-		LDI XH, HIGH(dinoMemory)
-		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-		LD tempRegister, X				; Load old ypos
-		DEC tempRegister				; Decrease ypos (go up)
-		ST X,tempRegister				; Store ypos
-		RJMP timer0Ret
-
-	dinoDrop:
-		LDI XH, HIGH(dinoMemory)
-		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-		LD tempRegister, X				; Load old ypos
-		INC tempRegister				; Increase ypos (go down)
-		ST X,tempRegister				; Store ypos
-		RJMP timer0Ret
-
-	preventOverflow:
-		DEC keyboardPressed				; Make sure this is the same value in nothingPressed in keyboard.inc
-
-	timer0Ret:
-		pop tempRegister
-		OUT SREG, tempRegister
-		pop tempRegister
-		pop XL
-		pop XH
-		RETI
-
-	/* Timer2 is used to increase the speed of the cacti at a constant rate */
-	Timer2OverflowInterrupt:
-		PUSH tempRegister
-		IN tempRegister, SREG
-		PUSH tempRegister
-
-		LDI tempRegister, 0
-		STS TCNT2,tempRegister
-		ADIW YL, 10
-
-		POP tempRegister
-		OUT SREG, tempRegister
-		POP tempRegister
-		RETI
-
-////////////////////////////////////////////////////////////
-//-------------------------MAIN---------------------------//
-////////////////////////////////////////////////////////////
-
-main:
-	RCALL flushMemory
-	RCALL clearScreen
-	rcall drawDino
-	rcall checkKeyboard
-
-	CPI gameState,0
-	BREQ playing
-		RJMP init
-	playing:
-		rcall drawCactus
-RJMP main
-
-
-flushMemory:
-
-	PUSH XH
-	PUSH XL
-
-	CLR illuminatedRow
-	LDI XH, HIGH(bufferStartAddress)
-	LDI XL, LOW(bufferStartAddress)
-	SBIW XL,10
-
-	nextRow:
-		ADIW XL,20
-		INC illuminatedRow
-		CPI illuminatedRow,8
-		BRNE notmax
-
-			POP XL
-			POP XH
-			RET
-		notmax:
-		;RCALL waitingLoop
-
-		LDI counter,80
-		columnbits:
-			LD memoryByteRegister,-X ; -X = predec while X+ = postdec
-			LDI registerBitCounter,8
-
-			bitsOfRegister:
-				SBRS normalOrExtreme,0
-				RJMP normalMode
-				extremeMode:
-				SBRS memoryByteRegister,7
-				RJMP pixelOn
-				RJMP pixelOff
-
-				normalMode:
-				SBRC memoryByteRegister,7
-				RJMP pixelOn
-
-				; Pixel off
-				pixelOff:
-					CBI PORTB,3
-					RJMP administration
-					
-				; Pixel on
-				pixelOn:
-					SBI PORTB,3
-				
-				administration:	
-				SBI PORTB,5
-				CBI PORTB,5
-				DEC counter
-				BREQ rows
-				DEC registerBitCounter
-				BREQ columnbits
-				LSL memoryByteRegister
-				RJMP bitsOfRegister	
-
-			rows:
-			LDI counter,8
-			rowbits:
-
-				CP counter, illuminatedRow
-				BREQ rowSet
-					CBI PORTB,3
-					RJMP nextStep
-	
-				rowSet:
-					SBI PORTB,3
-
-				nextStep:
-				SBI PORTB,5
-				CBI PORTB,5
-				DEC counter
-				BREQ latching
-				RJMP rowbits
-
-		latching:
-		SBI PORTB,4; Without waiting it also works (IF PROBLEM? LOOK AT THIS)
-		RCALL waitingLoop
-		CBI PORTB,4
-		RJMP nextRow
-
-RET
-
-waitingLoop:
-	
-	CLR waitingcounter0
-	CLR waitingcounter1
-	outerLoop:
-		INC waitingcounter0
-		CPI waitingcounter0,maxValueCounter0
-		BRNE outerLoop
-
-		middleLoop:
-			CLR waitingcounter0
-			INC waitingcounter1
-			CPI waitingcounter1,maxValueCounter1
-			BRNE outerLoop	
-	finishLoop:
-RET
-
-
-clearScreen:
-	push XH
-	push XL
-
-	LDI XH,0x01
-	CLR XL
-
-	LDI counter,70
-	CLR tempRegister
-	clearingLoop:
-		ST X+,tempRegister
-		DEC counter
-		BRNE clearingLoop
-
-	POP XL
-	POP XH
-RET
+	RCALL initDino ; Initialize dinosaur
+	RCALL addCactus ; Prepare first cactus
+	RET

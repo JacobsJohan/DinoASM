@@ -1,14 +1,24 @@
 
-AVRASM ver. 2.2.7  D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm Thu May 10 11:39:25 2018
+AVRASM ver. 2.2.7  D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm Sun May 20 23:21:52 2018
 
 [builtin](2): Including file 'D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc'
-D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(8): Including file 'D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc'
-D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(56): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc'
-D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(57): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(10): Including file 'D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(82): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\coreFunctions.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(83): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(84): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawingFunctions.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(85): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawPatterns.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(86): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\macros.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(87): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\random.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(88): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\interrupts.INC'
 [builtin](2): Including file 'D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc'
-D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(8): Including file 'D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc'
-D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(56): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.inc'
-D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(57): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawings.inc'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(10): Including file 'D:/Program Files D\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(82): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\coreFunctions.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(83): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\keyboard.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(84): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawingFunctions.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(85): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\drawPatterns.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(86): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\macros.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(87): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\random.INC'
+D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\main.asm(88): Including file 'D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Electronics\Microcontroller\Atmel\ProjectDino\ProjectDino\interrupts.INC'
                                  
                                  ;
                                  
@@ -991,13 +1001,15 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 ; The dinosaur game
+                                 ; The dinosaur game ('The dino says Graaah!')
                                  ;
-                                 ; Created: 28/04/2018 17:37:02
+                                 ; Sensors and microsystem electronics
+                                 ; Year: 2017-2018
                                  ; Authors : Remco Royen & Johan Jacobs
                                  ;
+                                 ; main.asm
                                  
-                                 .INCLUDE "m328pdef.inc"			; Load addresses of (I/O) registers
+                                 .INCLUDE "m328pdef.INC"			; Load addresses of (I/O) registers
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega328P.xml **********
                                  ;*************************************************************************
@@ -1047,880 +1059,2180 @@ D:\Documenten\OneDrive\Universiteit\MA1EE\Semester 2\Sensors and Microsystem Ele
                                  
                                  .def memoryByteRegister = R2
                                  
-                                 .def maxNmbrOfCacti = R3
-                                 .def nmbrOfCacti = R4
+                                 .def maxNmbrOfCacti = R3		; Maximum number of Cacti that are allowed to move on the screen in this level
+                                 .def nmbrOfCacti = R4			; Actual number of cacti moving on the screen
+                                 
+                                 .def randomNumber = R5 ;		; A pseudo-random number by use of LFSR, is computed by calling Random
+                                 
+                                 ; Shift registers for the PRNG
+                                 .def randomSR1 = R6
+                                 .def randomSR2 = R7
+                                 .def randomSR3 = R8
+                                 .def randomSR4 = R9
+                                 .def randomSR5 = R10
+                                 
+                                 .def modeCounter = R11			; Keeps track of when is needed to change mode or to increase maxNmbrOfCacti
+                                 .def buzzerCounter = R12		; Keeps track of how long the buzzer is already buzzing
+                                 
+                                 .def passToFunctionRegister = R13 ; Is used in random to pass a value to a function
+                                 
+                                 .def timer0ResetCounter = R14	; Count to 100 before increasing speed of dinosaur jumps
+                                 .def timer0ResetVal = R15		; Value to increase TCNT0 over time (faster interrupts)
                                  
                                  .def counter = R16				; Register that serves for all kind of counter actions
                                  .def illuminatedRow = R17		; Indicates the row that will be illuminated
                                  .def tempRegister = R18			; Temporary register for short-time savings
                                  
-                                 .def waitingcounter0 = R19
-                                 .def waitingcounter1 = R20
-                                 .def keyboardPressed = R21
+                                 .def flags = R19				; bit 0 = Collision (set = collision) | bit 1 = normalOrExtreme mode (set = extreme)
+                                 								; bit 2 = Buzzersound (set = buzzer on) | bit 3 = keyBoardPressed (set = button pressed)
+                                 								; bit 4 = Insane mode (set = insane)
+                                 
+                                 .def dinoJumping = R21
                                  .def registerBitCounter = R22
                                  
-                                 .def gameState = R23 ; = 0x00 -> Playing
-                                 					 ; = 0xFF -> Wait for button to play
+                                 .def gameState = R23			; = 0x00 -> Playing 
+                                 								; = 0x01 -> Game Over
+                                 								; = 0xFF -> 'Menu': Wait for button to play
                                  
-                                 .def xpos = R24
+                                 .def xpos = R24		
                                  .def ypos = R25
                                  
+                                 ; R26/R27 X pointer is used to point to addresses in memory
+                                 ; R28/R29 Y pointer is used to speed up the cacti
+                                 ; R30/R31 Z pointer is used to keep score: The word is divided in 4 4-bit long chunks: for example 5809 : part 1 = 5, part 2 = 8, part 3 = 0, part 4 = 9
                                  
                                  .equ bufferStartAddress = 0x0100
                                  .equ cactusMemory = 0x0300
                                  .equ dinoMemory = 0x0350
-                                 .equ speedMemory = 0x360
                                  
-                                 .equ maxValueCounter0 = 255;255
-                                 .equ maxValueCounter1 = 2;255
-                                 .equ maxValueCounter2 = 0;40
+                                 .equ initialTimeValueBuzzer = 185
+                                 .equ buzzerDuration = 255
+                                 
+                                 .equ maxValueCounter0 = 255
+                                 .equ maxValueCounter1 = 3
+                                 .equ maxValueCounter2 = 0
                                  
                                  .ORG 0x0000
-000000 c142                      RJMP initGameState					; First instruction that is executed by the microcontroller
+000000 c5a3                      RJMP startUp
                                  
                                  .ORG 0x0012
-000012 c1a7                      RJMP Timer2OverflowInterrupt
+000012 c575                      RJMP Timer2OverflowInterrupt
                                  
                                  .ORG 0x001A
-00001a c15b                      RJMP Timer1OverflowInterrupt
+00001a c53d                      RJMP Timer1OverflowInterrupt
                                  
                                  .ORG 0x0020
-000020 c161                      RJMP Timer0OverflowInterrupt
+000020 c500                      RJMP Timer0OverflowInterrupt
+                                 
+                                 .include "coreFunctions.INC"
+                                 
+                                 ; The dinosaur game ('The dino says Graaah!')
+                                 ;
+                                 ; Sensors and microsystem electronics
+                                 ; Year: 2017-2018
+                                 ; Authors : Remco Royen & Johan Jacobs
+                                 ;
+                                 ; coreFunctions.inc
+                                 
+                                 waitingLoop:
+                                 // A loop that can be used to wait for a certain time (e.g. Latching time)
+                                 // Changed registers: /
+000021 932f                      	PUSH tempRegister
+000022 930f                      	PUSH counter
+                                 
+000023 2722                      	CLR tempRegister
+000024 2700                      	CLR counter
+                                 	outerLoop:
+000025 9523                      		INC tempRegister
+000026 3f2f                      		CPI tempRegister,maxValueCounter0
+000027 f7e9                      		BRNE outerLoop
+                                 
+                                 		middleLoop:
+000028 2722                      			CLR tempRegister
+000029 9503                      			INC counter
+00002a 3003                      			CPI counter,maxValueCounter1
+00002b f7c9                      			BRNE outerLoop	
+                                 	finishLoop:
+                                 
+00002c 910f                      	POP counter
+00002d 912f                      	POP tempRegister
+00002e 9508                      RET
+                                 
+                                 collisionHandler:
+                                 // Checks if collision has occured and handles the reaction on the collision
+                                 // Changed registers: flags, gameState, buzzerCounter
+                                 // Called functions: clearBuffer, drawGameOver, drawScore
+00002f 932f                      	PUSH tempregister
+                                 	
+000030 ff30                      	SBRS flags,0
+000031 c012                      	RJMP collisionRet
+                                 
+000032 7f3e                      	CBR flags,1 ; Clear the collision flag
+000033 7f3d                      	CBR flags,0b00000010 ; Go back to normal mode from Extreme for game over screen
+000034 7e3f                      	CBR flags,0b00010000 ; Go back to normal mode from Insane for game over screen
+000035 d14b                      	RCALL clearBuffer	; Clear the screen such that not a new collision would happen (goal is to remove cacti)
+000036 d242                      	RCALL drawGameOver
+000037 e071                      	LDI gameState,1 ; Go to Game Over state
+000038 d183                      	RCALL drawScore
+000039 6034                      	SBR flags,0b00000100 ; Set the buzzersound flag
+00003a 24cc                      	CLR buzzerCounter
+                                 
+                                 	; Re-use Timer 2
+                                 
+00003b e020                      	LDI tempRegister, 0x0	; Select normal counter mode
+00003c 9320 00b0                 	STS TCCR2A, tempRegister
+00003e e026                      	LDI tempRegister, 0x06	; Set timer2 prescaler to 256 
+00003f 9320 00b1                 	STS TCCR2B,tempRegister
+000041 eb29                      	LDI tempRegister, initialTimeValueBuzzer
+000042 9320 00b2                 	STS TCNT2,tempRegister
+                                 
+                                 	collisionRet:
+000044 912f                      	POP tempregister
+000045 9508                      	RET
+                                 
+                                 addCactus:
+                                 // Adds a new cactus to cactusMemory
+                                 // Changed registers: nmbrOfCacti
+000046 938f                      	PUSH xpos
+000047 939f                      	PUSH ypos
+000048 932f                      	PUSH tempregister
+000049 93bf                      	PUSH XH
+00004a 93af                      	PUSH XL
+                                 
+00004b e0b3                      	LDI XH, HIGH(cactusMemory)			// Point to start of cactusMemory
+00004c e0a0                      	LDI XL, LOW(cactusMemory)
+                                 
+00004d 2d24                      	MOV tempregister, nmbrOfCacti
+00004e 0f22                      	LSL tempregister
+                                 
+00004f 0fa2                      	ADD XL , tempregister
+                                 
+000050 e286                      	LDI xpos, 38							// xpos of cactus
+000051 938d                      	ST X+, xpos
+000052 e09a                      	LDI ypos, 10							// ypos of cactus
+000053 939c                      	ST X, ypos
+                                 
+000054 9443                      	INC nmbrOfCacti
+                                 
+000055 91af                      	POP XL
+000056 91bf                      	POP XH
+000057 912f                      	POP tempregister
+000058 919f                      	POP ypos
+000059 918f                      	POP xpos
+00005a 9508                      	RET
+                                 
+                                 moveCactus:
+                                 // Changes the coordinates in Cactus memory. The coordinates are always moved as in normal mode, the difference between insane and normal mode is made in drawCacti
+                                 // If the cactus is at the end, it deletes the cactus and puts a new one at starting position
+                                 // Changed registers: nmbrOfCacti
+                                 // Called functions: deleteFirstCactus
+                                 
+00005b 938f                      	PUSH xpos
+00005c 932f                      	PUSH tempRegister
+00005d 93bf                      	PUSH XH
+00005e 93af                      	PUSH XL
+                                 
+00005f 2d24                      	mov tempregister, nmbrOfCacti
+                                 
+000060 e0b3                      	LDI XH, HIGH(cactusMemory) 
+000061 e0a0                      	LDI XL, LOW(cactusMemory)
+                                 
+                                 	moveNextCactus:
+000062 3020                      		CPI tempregister,0
+000063 f059                      		BREQ noCactiLeft
+000064 952a                      		DEC tempregister
+                                 
+000065 918c                      		LD xpos, X
+000066 958a                      		DEC xpos			// Move cactus 1 xpos to the left
+000067 f419                      		BRNE store
+                                 			//Cactus is at the end left, must be deleted
+000068 944a                      			DEC nmbrOfCacti
+000069 d00a                      			RCALL deleteFirstCactus
+00006a cff7                      			RJMP moveNextCactus
+                                 
+                                 		store:
+00006b 938c                      			ST X, xpos
+                                 
+00006c 95a3                      			INC XL
+00006d 95a3                      			INC XL
+00006e cff3                      			RJMP moveNextCactus
+                                 
+                                 	noCactiLeft:
+00006f 91af                      		POP XL
+000070 91bf                      		POP XH
+000071 912f                      		POP tempregister
+000072 918f                      		POP xpos
+000073 9508                      		RET
+                                 
+                                 deleteFirstCactus:
+                                 // Deletes the first cactus of cactusMemory and shifts the remaining cacti
+                                 // Changed registers: /
+                                 // Called Functions: /
+                                 
+000074 938f                      	PUSH xpos
+000075 932f                      	PUSH tempregister
+000076 924f                      	PUSH nmbrOfCacti
+000077 93bf                      	PUSH XH
+000078 93af                      	PUSH XL
+                                 
+000079 2d24                      	mov tempregister, nmbrOfCacti
+                                 
+00007a e0b3                      	LDI XH, HIGH(cactusMemory) 
+00007b e0a0                      	LDI XL, LOW(cactusMemory)
+                                 
+00007c 0f22                      	LSL tempregister
+                                 
+                                 	stillDeleting:
+00007d f039                      		BREQ deletingDone
+00007e 9612                      		ADIW XL,2
+00007f 918c                      		LD xpos,X
+000080 95aa                      		DEC XL
+000081 95aa                      		DEC XL
+000082 938d                      		ST X+,xpos
+000083 952a                      		DEC tempregister
+000084 cff8                      		RJMP stillDeleting
                                  
                                  
-                                 .include "keyboard.inc"
+                                 	deletingDone:
+000085 91af                      	POP XL
+000086 91bf                      	POP XH
+000087 904f                      	POP nmbrOfCacti
+000088 912f                      	POP tempregister
+000089 918f                      	POP xpos
+                                 	
+00008a 9508                      	RET
                                  
-                                  * keyboard.inc
-                                  *
-                                  *  Created: 2/05/2018 17:07:28
-                                  *   Author: Johan Jacobs & Remco Royen
-                                  */ 
+                                 newCactusOrNot:
+                                 // Will decide if a new cactus will be added or not, for this purpose it uses a PRNG
+                                 // Changed registers: nmbrOfCacti
+                                 // Called functions: addCactus, random
+00008b 932f                      	PUSH tempregister
+00008c 923f                      	PUSH maxNmbrOfCacti
+00008d 93bf                      	PUSH XH
+00008e 93af                      	PUSH XL
+00008f 938f                      	PUSH xpos
                                  
-                                  /* Registers R16, R17 and R18 are used in this function together with xpos (=R24) and ypos (=R25)*/
+000090 e0b3                      	LDI XH, HIGH(cactusMemory)
+000091 e0a0                      	LDI XL, LOW(cactusMemory)
+                                 
+000092 1434                      	CP maxNmbrOfCacti,nmbrOfCacti
+000093 f081                      	BREQ noNewCactus				; No new cactus if max nmbr of cacti for this level is met
+                                 
+000094 2d24                      	MOV tempregister, nmbrOfCacti
+000095 3020                      	CPI tempregister,0
+000096 f041                      	BREQ noCheckNeeded				; If no Cactus on the screen, of course a new one is allowed.
+000097 952a                      	DEC tempregister
+000098 0f22                      	LSL tempregister
+000099 0fa2                      	ADD XL , tempregister
+00009a 918c                      	LD xpos, X
+00009b 3280                      	CPI xpos,32						
+00009c f438                      	BRSH noNewCactus				; To make sure that there is enough place between 2 cacti
+                                 
+00009d 3087                      	CPI xpos,7						; To make sure that at the moment of insane/normal mode transition there is enough place between 2 cacti
+00009e f028                      	BRLO noNewCactus
+                                 
+                                 	noCheckNeeded:
+00009f d442                      	RCALL random					; A random number is generated in randomNumber
+                                 	
+0000a0 2d25                      	MOV tempregister,randomNumber
+                                 
+0000a1 3023                      	CPI tempregister,3
+0000a2 f408                      	BRSH noNewCactus // A 3/32 chance of new cactus
+                                 
+0000a3 dfa2                      	RCALL addCactus
+                                 
+                                 	noNewCactus:
+0000a4 918f                      	POP xpos
+0000a5 91af                      	POP XL
+0000a6 91bf                      	POP XH
+0000a7 903f                      	POP maxNmbrOfCacti
+0000a8 912f                      	POP tempregister
+0000a9 9508                      	RET
+                                 
+                                 initDino:
+                                 // Initiates a new dino in dinoMemory
+                                 // Changed registers: /
+0000aa 938f                      	PUSH xpos
+0000ab 939f                      	PUSH ypos
+0000ac 93bf                      	PUSH XH
+0000ad 93af                      	PUSH XL
+                                 
+0000ae e0b3                      	LDI XH, HIGH(dinoMemory)			// Point to start of dinoMemory
+0000af e5a0                      	LDI XL, LOW(dinoMemory)
+                                 
+0000b0 e084                      		LDI xpos, 4							// xpos of dino
+0000b1 938d                      		ST X+, xpos
+0000b2 e098                      		LDI ypos, 8
+0000b3 939d                      		ST X+, ypos
+0000b4 c000                      		RJMP initDinoRet
+                                 
+                                 	initDinoRet:
+0000b5 91af                      	POP XL
+0000b6 91bf                      	POP XH
+0000b7 919f                      	POP ypos
+0000b8 918f                      	POP xpos
+0000b9 9508                      	RET
+                                 
+                                 inverseDinoPos:
+                                 // Initiates the dino coordinates at the inverse position as it is actually. Will overwrite the current coordinates
+                                 // Changed registers: /
+                                 // Functions called: /
+0000ba 93bf                      	PUSH XH
+0000bb 93af                      	PUSH XL
+0000bc 932f                      	PUSH tempregister
+0000bd 938f                      	PUSH xpos
+                                 	
+0000be e0b3                      	LDI XH, HIGH(dinoMemory)			// Point to start of dinoMemory
+0000bf e5a0                      	LDI XL, LOW(dinoMemory)
+0000c0 918c                      	LD xpos,X
+0000c1 e227                      	LDI tempregister,39
+0000c2 1b28                      	SUB tempregister,xpos
+0000c3 2f82                      	MOV xpos,tempregister
+0000c4 938c                      	ST X, xpos
+                                 
+0000c5 918f                      	POP xpos
+0000c6 912f                      	POP tempregister
+0000c7 91af                      	POP XL
+0000c8 91bf                      	POP XH
+0000c9 9508                      	RET
+                                 
+                                 updateScore:
+                                 // When called this function will increment the score by one.
+                                 // Changed registers: Z-pointer
+                                 // Functions called: /
+0000ca 932f                      	PUSH tempregister
+                                 
+0000cb e02f                      	LDI tempregister,0b00001111
+0000cc 232e                      	AND tempregister,ZL
+0000cd 3029                      	CPI tempregister,9
+0000ce f410                      	BRSH overflowZLL
+0000cf 95e3                      		INC ZL
+0000d0 c019                      		RJMP updateScoreRet
+                                 	overflowZLL:
+0000d1 ef20                      		LDI tempregister,0b11110000
+0000d2 232e                      		AND tempregister,ZL
+0000d3 3920                      		CPI tempregister,0b10010000 ;0b1001 0000 = 0x90
+0000d4 f420                      		BRSH overflowZL
+0000d5 2fe2                      			MOV ZL,tempregister
+0000d6 e120                      			LDI tempregister,0b00010000
+0000d7 0fe2                      			ADD ZL,tempregister
+0000d8 c011                      			RJMP updateScoreRet
+                                 		overflowZL:
+0000d9 27ee                      			CLR ZL
+0000da e02f                      			LDI tempregister,0b00001111
+0000db 232f                      			AND tempregister,ZH
+0000dc 3029                      			CPI tempregister,9
+0000dd f410                      			BRSH overflowZHL
+0000de 95f3                      				INC ZH
+0000df c00a                      				RJMP updateScoreRet
+                                 			overflowZHL:
+0000e0 ef20                      				LDI tempregister,0b11110000
+0000e1 232f                      				AND tempregister,ZH
+0000e2 3920                      				CPI tempregister,0b10010000 ; 0b1001 0000 = 0x90
+0000e3 f420                      				BRSH overflowZH
+0000e4 2ff2                      					MOV ZH,tempregister
+0000e5 e120                      					LDI tempregister,0b00010000
+0000e6 0ff2                      					ADD ZH,tempregister
+0000e7 c002                      					RJMP updateScoreRet
+                                 				overflowZH:
+0000e8 e9f9                      					LDI ZH,0b10011001
+0000e9 e9e9                      					LDI ZL,0b10011001
+                                 	updateScoreRet:
+0000ea 912f                      	POP tempregister
+                                 .include "keyboard.INC"
+0000eb 9508                      
+                                 ; The dinosaur game ('The dino says Graaah!')
+                                 ;
+                                 ; Sensors and microsystem electronics
+                                 ; Year: 2017-2018
+                                 ; Authors : Remco Royen & Johan Jacobs
+                                 ;
+                                 ; keyboard.inc
+                                 
                                   checkKeyboard:
-000021 930f                      	push R16
-000022 931f                      	push R17
-000023 932f                      	push R18
+                                  // Checks if button of keyboard is pressed and reacts
+                                  // Changed registers: flags, dinoJumping, gameState
+                                  // Functions called: initGame, seedMaker
+0000ec 930f                      	PUSH R16
+0000ed 931f                      	PUSH R17
+0000ee 932f                      	PUSH R18
                                  	; Configure rows as inputs
-000024 9854                      	CBI DDRD,4
-000025 9a5c                      	SBI PORTD,4
-000026 9855                      	CBI DDRD,5
-000027 9a5d                      	SBI PORTD,5
-000028 9856                      	CBI DDRD,6
-000029 9a5e                      	SBI PORTD,6
-00002a 9857                      	CBI DDRD,7
-00002b 9a5f                      	SBI PORTD,7
+0000ef 9854                      	CBI DDRD,4
+0000f0 9a5c                      	SBI PORTD,4
+0000f1 9855                      	CBI DDRD,5
+0000f2 9a5d                      	SBI PORTD,5
+0000f3 9856                      	CBI DDRD,6
+0000f4 9a5e                      	SBI PORTD,6
+0000f5 9857                      	CBI DDRD,7
+0000f6 9a5f                      	SBI PORTD,7
                                  	; Configure columns as outputs: outputs cannot have a pull-up resistor
-00002c 9a50                      	SBI DDRD,0
-00002d 9a51                      	SBI DDRD,1
-00002e 9a52                      	SBI DDRD,2
-00002f 9a53                      	SBI DDRD,3
-                                 
+0000f7 9a50                      	SBI DDRD,0
+0000f8 9a51                      	SBI DDRD,1
+0000f9 9a52                      	SBI DDRD,2
+0000fa 9a53                      	SBI DDRD,3
                                  
                                  	; Two step method
                                  	; Set columns low (outputs): write zeros to outputs and check if we read something from input
                                  	; CBI PORTD,4 --> this would turn off the pull up resistor at the input, which doesn't make sense
-000030 9858                      	CBI PORTD,0
-000031 9859                      	CBI PORTD,1
-000032 985a                      	CBI PORTD,2
-000033 985b                      	CBI PORTD,3
+0000fb 9858                      	CBI PORTD,0
+0000fc 9859                      	CBI PORTD,1
+0000fd 985a                      	CBI PORTD,2
+0000fe 985b                      	CBI PORTD,3
                                  	; Read from rows (inputs)
-000034 e001                      	LDI R16,1			; Row counter
+0000ff e001                      	LDI R16,1			; Row counter
                                  
-000035 9b4c                      	SBIS PIND, 4
-000036 c00a                      	RJMP readColumns
-000037 0f00                      	LSL R16
-000038 9b4d                      	SBIS PIND, 5
-000039 c007                      	RJMP readColumns
-00003a 0f00                      	LSL R16
-00003b 9b4e                      	SBIS PIND, 6
-00003c c004                      	RJMP readColumns
-00003d 0f00                      	LSL R16
-00003e 9b4f                      	SBIS PIND, 7
-00003f c001                      	RJMP readColumns
-000040 c02d                      	RJMP nothingPressed					; If nothing is pressed, return to rest of program
+000100 9b4c                      	SBIS PIND, 4
+000101 c00a                      	RJMP readColumns
+000102 0f00                      	LSL R16
+000103 9b4d                      	SBIS PIND, 5
+000104 c007                      	RJMP readColumns
+000105 0f00                      	LSL R16
+000106 9b4e                      	SBIS PIND, 6
+000107 c004                      	RJMP readColumns
+000108 0f00                      	LSL R16
+000109 9b4f                      	SBIS PIND, 7
+00010a c001                      	RJMP readColumns
+00010b c033                      	RJMP nothingPressed					; If nothing is pressed, return to rest of program
                                  
                                  
                                  
                                  	readColumns:
                                  	; Configure columns as inputs
-000041 9850                      	CBI DDRD,0
-000042 9a58                      	SBI PORTD,0
-000043 9851                      	CBI DDRD,1
-000044 9a59                      	SBI PORTD,1
-000045 9852                      	CBI DDRD,2
-000046 9a5a                      	SBI PORTD,2
-000047 9853                      	CBI DDRD,3
-000048 9a5b                      	SBI PORTD,3
+00010c 9850                      	CBI DDRD,0
+00010d 9a58                      	SBI PORTD,0
+00010e 9851                      	CBI DDRD,1
+00010f 9a59                      	SBI PORTD,1
+000110 9852                      	CBI DDRD,2
+000111 9a5a                      	SBI PORTD,2
+000112 9853                      	CBI DDRD,3
+000113 9a5b                      	SBI PORTD,3
                                  	; Configure rows as outputs
-000049 9a54                      	SBI DDRD,4
-00004a 9a55                      	SBI DDRD,5
-00004b 9a56                      	SBI DDRD,6
-00004c 9a57                      	SBI DDRD,7
+000114 9a54                      	SBI DDRD,4
+000115 9a55                      	SBI DDRD,5
+000116 9a56                      	SBI DDRD,6
+000117 9a57                      	SBI DDRD,7
                                  
                                  
                                  	; Set rows low (outputs): write zeros to outputs and check if we read something from input
-00004d 985c                      	CBI PORTD,4
-00004e 985d                      	CBI PORTD,5
-00004f 985e                      	CBI PORTD,6
-000050 985f                      	CBI PORTD,7
+000118 985c                      	CBI PORTD,4
+000119 985d                      	CBI PORTD,5
+00011a 985e                      	CBI PORTD,6
+00011b 985f                      	CBI PORTD,7
                                  
                                  	; Read from columns (inputs)
-000051 e110                      	LDI R17,16			; Column counter
+00011c e110                      	LDI R17,16			; Column counter
                                  
-000052 9b48                      	SBIS PIND, 0
-000053 c00a                      	RJMP evaluate
-000054 0f11                      	LSL R17
-000055 9b49                      	SBIS PIND, 1
-000056 c007                      	RJMP evaluate
-000057 0f11                      	LSL R17
-000058 9b4a                      	SBIS PIND, 2
-000059 c004                      	RJMP evaluate
-00005a 0f11                      	LSL R17
-00005b 9b4b                      	SBIS PIND, 3
-00005c c001                      	RJMP evaluate
-00005d c010                      	RJMP nothingPressed			; All columns are high so no button was pressed
+00011d 9b48                      	SBIS PIND, 0
+00011e c00a                      	RJMP evaluate
+00011f 0f11                      	LSL R17
+000120 9b49                      	SBIS PIND, 1
+000121 c007                      	RJMP evaluate
+000122 0f11                      	LSL R17
+000123 9b4a                      	SBIS PIND, 2
+000124 c004                      	RJMP evaluate
+000125 0f11                      	LSL R17
+000126 9b4b                      	SBIS PIND, 3
+000127 c001                      	RJMP evaluate
+000128 c016                      	RJMP nothingPressed			; All columns are high so no button was pressed
                                  
                                  	evaluate:
-00005e 0f01                      	ADD R16, R17
+000129 0f01                      	ADD R16, R17
                                  
-00005f e428                      	LDI R18, 0b01001000				; Evaluate button 8: 0100 1000
-000060 1702                      	CP R16, R18
-000061 f021                      	BREQ button8
+00012a e828                      	LDI R18, 0b10001000				; Evaluate button 7: 1000 1000
+00012b 1702                      	CP R16, R18
+00012c f021                      	BREQ button7
                                  
-000062 e421                      	LDI R18, 0b01000001				; Evaluate button 0: 0100 0001
-000063 1702                      	CP R16, R18
-000064 f029                      	BREQ button0
-000065 c00b                      	RJMP checkKeyboardRet
+00012d e821                      	LDI R18, 0b10000001				; Evaluate button A: 1000 0001
+00012e 1702                      	CP R16, R18
+00012f f041                      	BREQ buttonA
                                  
-                                 	button8:
-000066 3050                      		CPI keyboardPressed,0
-000067 f449                      		BRNE checkKeyboardRet
-000068 9553                      		INC keyboardPressed
-                                 		//rcall dinoJump
-000069 c007                      		RJMP checkKeyboardRet
+000130 c00f                      	RJMP checkKeyboardRet			; No useful key was pressed
                                  
-                                 	button0:
-00006a 3050                      		CPI keyboardPressed,0
-00006b f429                      		BRNE checkKeyboardRet
-00006c 2777                      		CLR gameState
-00006d c003                      		RJMP checkKeyboardRet
-                                 
-                                 
-                                 	/*
-                                 	LDI R18, 0x84				; Evaluate button 4: 1000 0100
-                                 	CP R16, R18
-                                 	BREQ button4
-                                 
-                                 	LDI R18, 0x88				; Evaluate button 7: 1000 1000
-                                 	CP R16, R18
-                                 	BREQ button7
-                                 
-                                 
-                                 
-                                 	
-                                 	turnOffLeds:
-                                 		SBI PORTC,2									; Output Vcc => upper LED turned off!
-                                 		SBI PORTC,3									; Output Vcc => lower LED is turned off!
-                                 		ret
-                                 
-                                 	button4: 
-                                 	CBI PORTC,3
-                                 	RJMP checkKeyboard
-                                 	button8:
-                                 	CBI PORTC,2
-                                 	RJMP checkKeyboard
                                  	button7:
-                                 	CBI PORTC,2
-                                 	CBI PORTC,3
-                                 	RJMP checkKeyboard*/
+000131 fd33                      		SBRC flags,3
+000132 c00d                      		RJMP checkKeyboardRet
+000133 3050                      		CPI dinoJumping,0
+000134 f459                      		BRNE checkKeyboardRet
+000135 6038                      		SBR flags,0b00001000
+000136 e054                      		LDI dinoJumping,4
+000137 c008                      		RJMP checkKeyboardRet
+                                 
+                                 	buttonA:
+000138 fd33                      		SBRC flags,3
+000139 c006                      		RJMP checkKeyboardRet
+00013a 6038                      		SBR flags,0b00001000
+00013b d3c6                      		RCALL seedMaker
+00013c d47d                      		RCALL initGame
+00013d 2777                      		CLR gameState
+00013e c001                      		RJMP checkKeyboardRet
                                  
                                  	nothingPressed:
-00006e 3755                      		CPI keyboardPressed, 117			; Check if dino has landed
-00006f f008                      		BRLO checkKeyboardRet
-000070 2755                      		CLR keyboardPressed				; Only reset this register if the key has been released
+00013f 7f37                      		CBR flags,0b00001000
                                  
                                  	checkKeyboardRet:
-000071 912f                      		pop R18
-000072 911f                      		pop R17
-000073 910f                      		pop R16
-000074 9508                      		ret
-                                 
-                                 /*dinoJumpold:
-                                 	push ypos
-                                 	push tempRegister
-                                 	push XH
-                                 	push XL
-                                 
-                                 	dinoJump:
-                                 		LDI XH, HIGH(dinoMemory)
-                                 		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-                                 		LD tempRegister, X				; Load old ypos
-                                 		DEC tempRegister				; Decrease ypos (go up)
-                                 		ST X,tempRegister				; Store ypos
-                                 		RJMP timer0Ret
-                                 
-                                 	dinoDrop:
-                                 		LDI XH, HIGH(dinoMemory)
-                                 		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-                                 		LD tempRegister, X				; Load old ypos
-                                 		INC tempRegister				; Increase ypos (go down)
-                                 		ST X,tempRegister				; Store ypos
-                                 		RJMP timer0Ret
-                                 
-                                 
-                                 	dinoJumpRet:
-                                 		pop XL
-                                 		pop XH
-                                 		pop tempRegister
-                                 		pop ypos
-                                 		ret*/
-                                 
-                                 
-                                 /* Keyboard layout for evaluation */
-                                 
-                                 /* Button 7: 1000 1000 | Button 8: 0100 1000 | Button 9: 0010 1000 | Button F: 0001 1000 */
-                                 /* Button 4: 1000 0100 | Button 5: 0100 0100 | Button 6: 0010 0100 | Button E: 0001 0100 */
-                                 /* Button 1: 1000 0010 | Button 2: 0100 0010 | Button 3: 0010 0010 | Button D: 0001 0010 */
-                                 .include "drawings.inc"
-                                 
-                                  * drawings.inc
-                                  *
-                                  *  Created: 2/05/2018 19:50:45
-                                  *   Authors: Johan Jacobs & Remco Royen
-                                  */ 
-                                  drawPixel:
-                                 
-000075 938f                      	PUSH xpos
-000076 939f                      	PUSH ypos
-                                 
-000077 930f                      	PUSH counter
-000078 932f                      	PUSH tempregister
-                                 
-000079 93bf                      	PUSH XH
-00007a 93af                      	PUSH XL
-                                 
-00007b e0b1                      	LDI XH, HIGH(bufferStartAddress)
-00007c e0a0                      	LDI XL, LOW(bufferStartAddress)
-                                 
-00007d 3097                      	CPI ypos,7
-00007e f010                      	BRLO UpperPartScreen
-                                 
-00007f 5097                      		SUBI ypos,7
-000080 9688                      		ADIW xpos, 40
-                                 
-                                 	UpperPartScreen:
-                                 
-000081 e02a                      		LDI tempRegister,10
-000082 9f92                      		MUL ypos,tempRegister
-000083 0da0                      		ADD XL,mulLSB
-                                 
-000084 2f28                      		MOV tempRegister,xpos
-000085 9526                      		LSR tempregister
-000086 9526                      		LSR tempregister
-000087 9526                      		LSR tempregister
-000088 0fa2                      		ADD XL,tempregister
-                                 		
-000089 7087                      		ANDI xpos, 0b00000111
-00008a e000                      		LDI counter,0
-00008b e021                      		LDI tempregister,1
-                                 		bitContent:
-00008c 1780                      			CP xpos,counter
-00008d f019                      			BREQ bitFound
-00008e 0f22                      			LSL tempregister
-00008f 9503                      			INC counter
-000090 cffb                      			RJMP bitContent
-                                 		
-                                 		bitfound:
-                                 		
-000091 918c                      		LD xpos, X ; The old byte content is stored in xpos
-                                 
-                                 		; Collision detect
-000092 2f08                      		MOV counter,xpos ; Counter is used as a temp register
-000093 2302                      		AND counter,tempregister
-000094 3000                      		CPI counter,0
-000095 f009                      		BREQ noCollision
-000096 ef7f                      			SER gameState		// Comment this to turn off collision
-                                 
-                                 		noCollision:
-                                 		; Draw updated field
-000097 2b28                      		OR tempregister,xpos
-000098 932d                      		ST X+,tempregister	
-                                 	
-000099 91af                      	POP XL
-00009a 91bf                      	POP XH
-                                 
-00009b 912f                      	POP tempregister
-00009c 910f                      	POP counter
-                                 
-00009d 919f                      	POP ypos
-00009e 918f                      	POP xpos
-                                 
-00009f 9508                      RET
-                                 
-                                 
-                                 addCactus:
-0000a0 938f                      	push xpos
-0000a1 939f                      	push ypos
-                                 
-0000a2 932f                      	PUSH tempregister
-                                 
-0000a3 93bf                      	push XH
-0000a4 93af                      	push XL
-                                 
-0000a5 e0b3                      	LDI XH, HIGH(cactusMemory)			// Point to start of cactusMemory
-0000a6 e0a0                      	LDI XL, LOW(cactusMemory)
-                                 
-0000a7 2d24                      	MOV tempregister, nmbrOfCacti
-0000a8 0f22                      	LSL tempregister
-                                 
-0000a9 0fa2                      	ADD XL , tempregister
-                                 
-0000aa e286                      	LDI xpos, 38							// xpos of cactus
-0000ab 938d                      	ST X+, xpos
-0000ac e09a                      	LDI ypos, 10							// ypos of cactus
-0000ad 939d                      	ST X+, ypos
-                                 
-0000ae 9443                      	INC nmbrOfCacti
-                                 
-0000af 91af                      	pop XL
-0000b0 91bf                      	pop XH
-                                 
-0000b1 912f                      	pop tempregister
-0000b2 919f                      	pop ypos
-0000b3 918f                      	pop xpos
-0000b4 9508                      	ret
-                                 
-                                 drawCactus:
-0000b5 938f                      	push xpos
-0000b6 939f                      	push ypos
-0000b7 924f                      	push nmbrOfCacti
-                                 
-0000b8 932f                      	push tempregister
-0000b9 93bf                      	push XH
-0000ba 93af                      	push XL
-                                 
-0000bb 2d24                      	MOV tempregister,nmbrOfCacti
-                                 
-                                 	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
-0000bc e0b3                      	LDI XH, HIGH(cactusMemory) 
-0000bd e0a0                      	LDI XL, LOW(cactusMemory)
-                                 
-                                 	drawNextCactus:
-0000be 3020                      		CPI tempregister,0
-0000bf f081                      		BREQ noCactusLeft 
-0000c0 952a                      		DEC tempregister
-                                 
-                                 	testing:
-0000c1 918d                      		LD xpos, X+
-0000c2 919d                      		LD ypos, X+	
-                                 
-0000c3 dfb1                      		rcall drawPixel
-0000c4 9593                      		inc ypos
-0000c5 dfaf                      		rcall drawPixel
-0000c6 9583                      		inc xpos
-0000c7 dfad                      		rcall drawPixel
-0000c8 958a                      		dec xpos
-0000c9 958a                      		dec xpos
-0000ca dfaa                      		rcall drawPixel
-0000cb 9583                      		inc xpos
-0000cc 9593                      		inc ypos
-0000cd dfa7                      		rcall drawPixel
-0000ce 9593                      		inc ypos
-0000cf dfa5                      		rcall drawPixel
-                                 
-                                 
-                                 	noCactusLeft:	
-0000d0 91af                      		pop XL
-0000d1 91bf                      		pop XH
-0000d2 912f                      		pop tempregister
-0000d3 904f                      		pop nmbrOfCacti
-                                 
-0000d4 919f                      		pop ypos
-0000d5 918f                      		pop xpos
-0000d6 9508                      		ret
-                                 
-                                 moveCactus:
-0000d7 938f                      	push xpos
-0000d8 932f                      	push tempRegister
-0000d9 93bf                      	push XH
-0000da 93af                      	push XL
-                                 
-0000db 2d24                      	mov tempregister, nmbrOfCacti
-                                 
-0000dc e0b3                      	LDI XH, HIGH(cactusMemory) 
-0000dd e0a0                      	LDI XL, LOW(cactusMemory)
-                                 
-                                 	moveNextCactus:
-0000de 3020                      		CPI tempregister,0
-0000df f069                      		BREQ noCactiLeft
-0000e0 952a                      		DEC tempregister
-                                 
-0000e1 918c                      		LD xpos, X
-0000e2 958a                      		DEC xpos			// Move cactus 1 xpos to the left
-0000e3 f429                      		BRNE store
-                                 
-0000e4 944a                      		DEC nmbrOfCacti
-                                 		//RCALL deleteFirstCactus
-0000e5 dfba                      		rcall addCactus
-0000e6 95a3                      		INC XL
-0000e7 95a3                      		INC XL
-0000e8 cff5                      		RJMP moveNextCactus
-                                 
-                                 	store:
-0000e9 938c                      		ST X, xpos
-                                 
-0000ea 95a3                      		INC XL
-0000eb 95a3                      		INC XL
-0000ec cff1                      		RJMP moveNextCactus
-                                 
-                                 	noCactiLeft:
-0000ed 91af                      		pop XL
-0000ee 91bf                      		pop XH
-0000ef 912f                      		pop tempregister
-0000f0 918f                      		pop xpos
-0000f1 9508                      		ret
-                                 
-                                 drawDino:
-0000f2 938f                      	push xpos
-0000f3 939f                      	push ypos
-                                 
-0000f4 93bf                      	push XH
-0000f5 93af                      	push XL
-                                 
-                                 	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
-0000f6 e0b3                      	LDI XH, HIGH(dinoMemory) 
-0000f7 e5a0                      	LDI XL, LOW(dinoMemory)
-0000f8 918d                      	LD xpos, X+
-0000f9 919c                      	LD ypos, X
-                                 
-0000fa df7a                      	rcall drawPixel
-0000fb 958a                      	dec xpos
-0000fc df78                      	rcall drawPixel
-0000fd 9593                      	inc ypos
-0000fe df76                      	rcall drawPixel
-0000ff 9593                      	inc ypos
-000100 df74                      	rcall drawPixel
-000101 9583                      	inc xpos
-000102 df72                      	rcall drawPixel
-000103 958a                      	dec xpos
-000104 9593                      	inc ypos
-000105 df6f                      	rcall drawPixel
-000106 9593                      	inc ypos
-000107 df6d                      	rcall drawPixel
-000108 9593                      	inc ypos
-000109 df6b                      	rcall drawPixel
-00010a 959a                      	dec ypos
-00010b 959a                      	dec ypos
-00010c 958a                      	dec xpos
-00010d df67                      	rcall drawPixel
-00010e 959a                      	dec ypos
-00010f df65                      	rcall drawPixel
-000110 958a                      	dec xpos
-000111 df63                      	rcall drawPixel
-000112 9593                      	inc ypos
-000113 df61                      	rcall drawPixel
-000114 9593                      	inc ypos
-000115 df5f                      	rcall drawPixel
-000116 9593                      	inc ypos
-000117 df5d                      	rcall drawPixel
-                                 	
-000118 91af                      	pop XL
-000119 91bf                      	pop XH
-00011a 919f                      	pop ypos
-00011b 918f                      	pop xpos
-00011c 9508                      	ret
-                                 
-                                 initDino:
-00011d 938f                      	push xpos
-00011e 939f                      	push ypos
-00011f 93bf                      	push XH
-000120 93af                      	push XL
-                                 
-000121 e0b3                      	LDI XH, HIGH(dinoMemory)			// Point to start of dinoMemory
-000122 e5a0                      	LDI XL, LOW(dinoMemory)
-                                 
-000123 e084                      	LDI xpos, 4							// xpos of dino
-000124 938d                      	ST X+, xpos
-000125 e098                      	LDI ypos, 8
-000126 939d                      	ST X+, ypos
-                                 
-000127 91af                      	pop XL
-000128 91bf                      	pop XH
-000129 919f                      	pop ypos
-00012a 918f                      	pop xpos
-00012b 9508                      	ret
-                                 
-                                 deleteFirstCactus:
-                                 
-00012c 938f                      	push xpos
-00012d 932f                      	push tempregister
-00012e 924f                      	PUSH nmbrOfCacti
-00012f 93bf                      	push XH
-000130 93af                      	push XL
-                                 
-000131 2d24                      	mov tempregister, nmbrOfCacti
-                                 
-000132 e0b3                      	LDI XH, HIGH(cactusMemory) 
-000133 e0a0                      	LDI XL, LOW(cactusMemory)
-                                 
-000134 0f22                      	LSL tempregister
-                                 
-                                 	stillDeleting:
-000135 f039                      		BREQ deletingDone
-000136 9612                      		ADIW XL,2
-000137 912c                      		LD tempregister,X
-000138 95aa                      		DEC XL
-000139 95aa                      		DEC XL
-00013a 932d                      		ST X+,tempregister
-00013b 952a                      		DEC tempregister
-00013c cff8                      		RJMP stillDeleting
-                                 
-                                 
-                                 	deletingDone:
-00013d 91af                      	pop XL
-00013e 91bf                      	pop XH
-00013f 904f                      	pop nmbrOfCacti
-000140 912f                      	pop tempregister
-000141 918f                      	pop xpos
-                                 	
-000142 9508                      
-                                 ////////////////////////////////////////////////////////////
-                                 //-------------------------INIT---------------------------//
-                                 ////////////////////////////////////////////////////////////
-                                 
-                                 initGameState:
-                                 
-                                 	; Begin in idle state
-000143 ef7f                      	SER gameState
-                                 
-                                 init:
-                                 
-                                 	; Configure output pin PB3 (Data input screen)
-000144 9a23                      	SBI DDRB,3					; Pin PB3 is an output
-000145 982b                      	CBI PORTB,3					; Output low => initial condition low!
-                                 
-                                 	; Configure output pin PB4 (Screen latching and enable'ing)
-000146 9a24                      	SBI DDRB,4					; Pin PB4 is an output
-000147 982c                      	CBI PORTB,4					; Output low => initial condition low!
-                                 
-                                 	; Configure output pin PB5 (Clock Screen)
-000148 9a25                      	SBI DDRB,5					; Pin PB5 is an output
-000149 982d                      	CBI PORTB,5					; Output low => initial condition low!
-                                 
-                                 	; Configure a LED as output (to test things)
-00014a 9a3a                      	SBI DDRC,2					; Pin PC2 is an output 
-00014b 9a42                      	SBI PORTC,2					; Output Vcc => upper LED turned off!
-                                 
-                                 	; No cacti drawn
-00014c 2444                      	CLR nmbrOfCacti
-                                 
-                                 	; First level only one cactus
-00014d 2433                      	CLR maxNmbrOfCacti
-00014e 9433                      	INC maxNmbrOfCacti
-                                 
-                                 	; Initialize dinosaur and draw first cactus
-00014f dfcd                      	rcall initDino
-000150 df4f                      	rcall addCactus
-                                 
-                                 	; Make sure keyboardPressed is zero
-000151 2755                      	CLR keyboardPressed
-                                 
-                                 	////////////////////////////////////////////
-                                 	//- Timer1 (16 bit timer) initialisation -//
-                                 	////////////////////////////////////////////
-                                 
-                                 	; Select normal counter mode
-000152 e020                      	LDI tempRegister, 0x0
-000153 9320 0080                 	STS TCCR1A, tempRegister
-                                 	;set timer1 prescaler to 64 == 011, 1024 == 101 (Important: this is different for 8 bit timer)
-000155 e023                      	LDI tempRegister, 0x03
-000156 9320 0081                 	STS TCCR1B,tempRegister
-                                 
-                                 	/* Initial timer value will be 5 Hz. As the game progresses, the frequency at which the cacti move should be increased. We will do this by adding an immediate to the Y registers and storing this in TCNT1.  */
-                                 	; Prescaler 64: 65536 - 16 000 000/64/5 = 65536 - 50000 = 15536 => 00111100 10110000
-000158 e3dc                      	LDI YH, 0b00111100
-000159 ebc0                      	LDI YL, 0b10110000
-                                 
-00015a 93d0 0085                 	STS TCNT1H, YH
-00015c 93c0 0084                 	STS TCNT1L, YL
-                                 
-                                 	///////////////////////////////////////////
-                                 	//- Timer0 (8 bit timer) initialisation -//
-                                 	///////////////////////////////////////////
-                                 
-                                 	; Select normal counter mode
-00015e e020                      	LDI tempRegister, 0x0
-00015f bd24                      	OUT TCCR0A, tempRegister
-                                 	;set timer0 prescaler to 1024
-000160 e025                      	LDI tempRegister, 0x05
-000161 bd25                      	OUT TCCR0B,tempRegister
-                                 	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
-000162 e024                      	LDI tempRegister, 4
-000163 bd26                      	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
-                                 
-                                 	///////////////////////////////////////////
-                                 	//- Timer2 (8 bit timer) initialisation -//
-                                 	///////////////////////////////////////////
-                                 
-                                 	; Select normal counter mode
-000164 e020                      	LDI tempRegister, 0x0
-000165 9320 00b0                 	STS TCCR2A, tempRegister
-                                 	;set timer2 prescaler to 1024 == 111, 
-000167 e027                      	LDI tempRegister, 0x07
-000168 9320 00b1                 	STS TCCR2B,tempRegister
-                                 	;set correct ‘reload values’ 256 - 16 000 000/1024/61 = 0 (after rounding)
-00016a e020                      	LDI tempRegister, 0
-00016b 9320 00b2                 	STS TCNT2,tempRegister
-                                 
-                                 	//////////////////////////
-                                 	//- Enable interrupts -//
-                                 	/////////////////////////
-                                 
-00016d 9478                      	SEI									; (SEI: global interrupt enable)
-00016e e021                      	LDI tempRegister, 1
-00016f 9320 006f                 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
-000171 9320 006e                 	STS TIMSK0, tempRegister
-000173 9320 0070                 	STS TIMSK2, tempRegister
-000175 c04f                      	RJMP main
-                                 
-                                 
-                                 Timer1OverflowInterrupt:
-000176 932f                      	push tempRegister
-000177 b72f                      	IN tempRegister, SREG
-000178 932f                      	push tempRegister
-                                 	/* Reset timer values */
-000179 93d0 0085                 	STS TCNT1H, YH
-00017b 93c0 0084                 	STS TCNT1L, YL
-                                 
-                                 	/* Move the cactus */
-00017d df59                      	rcall moveCactus
-                                 
-                                 	timer1Ret:
-00017e 912f                      		pop tempRegister
-00017f bf2f                      		OUT SREG, tempRegister
-000180 912f                      		pop tempRegister
-000181 9518                      		RETI
-                                 
-                                 Timer0OverflowInterrupt:
-000182 93bf                      	push XH
-000183 93af                      	push XL
-000184 932f                      	push tempRegister
-000185 b72f                      	IN tempRegister, SREG
-000186 932f                      	push tempRegister
-                                 
-                                 	/* Reset timer values */
-000187 e024                      	LDI tempRegister, 4
-000188 bd26                      	OUT TCNT0,tempRegister		; TCNT0 = Timer/counter
-                                 
-                                 	/*  Check if jump key was pressed. If it has been pressed, the dinosaur will move up, float, and move down. 
-                                 		Most of this could be written in a function call, but that would probably waste more time. Unfortunately 
-                                 		I don't see a less redundant way for all of the compare statements. */
-000189 3051                      	CPI keyboardPressed,1
-00018a f148                      	BRLO timer0Ret					; Branch if Lower
-                                 
-                                 	; Move dino 1 pixel up
-00018b 9553                      	INC keyboardPressed
-00018c 3052                      	CPI keyboardPressed, 2
-00018d f0c9                      	BREQ dinoJump
-00018e 3057                      	CPI keyboardPressed, 7
-00018f f0b9                      	BREQ dinoJump
-000190 305c                      	CPI keyboardPressed, 12
-000191 f0a9                      	BREQ dinoJump
-000192 3151                      	CPI keyboardPressed, 17
-000193 f099                      	BREQ dinoJump
-000194 3156                      	CPI keyboardPressed, 22
-000195 f089                      	BREQ dinoJump
-000196 315b                      	CPI keyboardPressed, 27
-000197 f079                      	BREQ dinoJump
-                                 	; Move dino 1 pixel down
-000198 355c                      	CPI keyboardPressed, 92
-000199 f099                      	BREQ dinoDrop
-00019a 3651                      	CPI keyboardPressed, 97
-00019b f089                      	BREQ dinoDrop
-00019c 3656                      	CPI keyboardPressed, 102
-00019d f079                      	BREQ dinoDrop
-00019e 365b                      	CPI keyboardPressed, 107
-00019f f069                      	BREQ dinoDrop
-0001a0 3750                      	CPI keyboardPressed, 112
-0001a1 f059                      	BREQ dinoDrop
-0001a2 3755                      	CPI keyboardPressed, 117
-0001a3 f049                      	BREQ dinoDrop
-                                 	; reset keyboard pressed register
-0001a4 3756                      	CPI keyboardPressed, 118			
-0001a5 f069                      	BREQ preventOverflow
-0001a6 c00d                      	RJMP timer0Ret						; Skip everything in other cases
-                                 	dinoJump:
-0001a7 e0b3                      		LDI XH, HIGH(dinoMemory)
-0001a8 e5a1                      		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-0001a9 912c                      		LD tempRegister, X				; Load old ypos
-0001aa 952a                      		DEC tempRegister				; Decrease ypos (go up)
-0001ab 932c                      		ST X,tempRegister				; Store ypos
-0001ac c007                      		RJMP timer0Ret
-                                 
-                                 	dinoDrop:
-0001ad e0b3                      		LDI XH, HIGH(dinoMemory)
-0001ae e5a1                      		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-0001af 912c                      		LD tempRegister, X				; Load old ypos
-0001b0 9523                      		INC tempRegister				; Increase ypos (go down)
-0001b1 932c                      		ST X,tempRegister				; Store ypos
-0001b2 c001                      		RJMP timer0Ret
-                                 
-                                 	preventOverflow:
-0001b3 955a                      		DEC keyboardPressed				; Make sure this is the same value in nothingPressed in keyboard.inc
-                                 
-                                 	timer0Ret:
-0001b4 912f                      		pop tempRegister
-0001b5 bf2f                      		OUT SREG, tempRegister
-0001b6 912f                      		pop tempRegister
-0001b7 91af                      		pop XL
-0001b8 91bf                      		pop XH
-0001b9 9518                      		RETI
-                                 
-                                 	/* Timer2 is used to increase the speed of the cacti at a constant rate */
-                                 	Timer2OverflowInterrupt:
-0001ba 932f                      		PUSH tempRegister
-0001bb b72f                      		IN tempRegister, SREG
-0001bc 932f                      		PUSH tempRegister
-                                 
-0001bd e020                      		LDI tempRegister, 0
-0001be 9320 00b2                 		STS TCNT2,tempRegister
-0001c0 962a                      		ADIW YL, 10
-                                 
-0001c1 912f                      		POP tempRegister
-0001c2 bf2f                      		OUT SREG, tempRegister
-0001c3 912f                      		POP tempRegister
-0001c4 9518                      		RETI
-                                 
-                                 ////////////////////////////////////////////////////////////
-                                 //-------------------------MAIN---------------------------//
-                                 ////////////////////////////////////////////////////////////
-                                 
-                                 main:
-0001c5 d008                      	RCALL flushMemory
-0001c6 d03e                      	RCALL clearScreen
-0001c7 df2a                      	rcall drawDino
-0001c8 de58                      	rcall checkKeyboard
-                                 
-0001c9 3070                      	CPI gameState,0
-0001ca f009                      	BREQ playing
-0001cb cf78                      		RJMP init
-                                 	playing:
-0001cc dee8                      		rcall drawCactus
-0001cd cff7                      RJMP main
-                                 
-                                 
-                                 flushMemory:
-                                 
-0001ce 93bf                      	PUSH XH
-0001cf 93af                      	PUSH XL
-                                 
-0001d0 2711                      	CLR illuminatedRow
-0001d1 e0b1                      	LDI XH, HIGH(bufferStartAddress)
-0001d2 e0a0                      	LDI XL, LOW(bufferStartAddress)
-0001d3 971a                      	SBIW XL,10
+000140 912f                      		POP R18
+000141 911f                      		POP R17
+000142 910f                      		POP R16
+                                 .include "drawingFunctions.INC"
+000143 9508                      
+                                 ; The dinosaur game ('The dino says Graaah!')
+                                 ;
+                                 ; Sensors and microsystem electronics
+                                 ; Year: 2017-2018
+                                 ; Authors : Remco Royen & Johan Jacobs
+                                 ;
+                                 ; drawingFunctions.inc
+                                 
+                                   flushMemory:
+                                 // Flushes the buffer to the screen
+                                 // Changed parameters: illuminatedRow, registerBitCounter, memoryByteAddress
+                                 // Called functions: waitingLoop
+                                 
+000144 93bf                      	PUSH XH
+000145 93af                      	PUSH XL
+                                 
+000146 2711                      	CLR illuminatedRow
+000147 e0b1                      	LDI XH, HIGH(bufferStartAddress)
+000148 e0a0                      	LDI XL, LOW(bufferStartAddress)
+000149 971a                      	SBIW XL,10
                                  
                                  	nextRow:
-0001d4 9654                      		ADIW XL,20
-0001d5 9513                      		INC illuminatedRow
-0001d6 3018                      		CPI illuminatedRow,8
-0001d7 f419                      		BRNE notmax
+00014a 9654                      		ADIW XL,20
+00014b 9513                      		INC illuminatedRow
+00014c 3018                      		CPI illuminatedRow,8
+00014d f469                      		BRNE notmax
                                  
-0001d8 91af                      			POP XL
-0001d9 91bf                      			POP XH
-0001da 9508                      			RET
+                                 	
+                                 	turnOnLastRow:
+00014e e508                      		LDI counter,88
+                                 		loopLastRow:
+00014f 982b                      			CBI PORTB,3
+000150 9a2d                      			SBI PORTB,5
+000151 982d                      			CBI PORTB,5
+000152 950a                      			DEC counter
+000153 f7d9                      			BRNE loopLastRow
+                                 
+000154 9a2c                      		SBI PORTB,4
+000155 decb                      		RCALL waitingLoop
+000156 982c                      		CBI PORTB,4
+000157 dec9                      		RCALL waitingLoop
+                                 
+000158 91af                      		POP XL
+000159 91bf                      		POP XH
+00015a 9508                      		RET
+                                 
                                  		notmax:
-                                 		;RCALL waitingLoop
                                  
-0001db e500                      		LDI counter,80
+00015b e500                      		LDI counter,80
                                  		columnbits:
-0001dc 902e                      			LD memoryByteRegister,-X ; -X = predec while X+ = postdec
-0001dd e068                      			LDI registerBitCounter,8
+00015c 902e                      			LD memoryByteRegister,-X ; -X = predec while X+ = postdec
+00015d e068                      			LDI registerBitCounter,8
                                  
                                  			bitsOfRegister:
-0001de fc27                      				SBRC memoryByteRegister,7
-0001df c002                      				RJMP pixelOn
+00015e ff31                      					SBRS flags,1
+00015f c003                      					RJMP normalMode
+                                 				extremeMode:
+000160 fe27                      					SBRS memoryByteRegister,7
+000161 c005                      					RJMP pixelOn
+000162 c002                      					RJMP pixelOff
+                                 
+                                 				normalMode:
+000163 fc27                      					SBRC memoryByteRegister,7
+000164 c002                      					RJMP pixelOn
                                  
                                  				; Pixel off
-0001e0 982b                      				CBI PORTB,3
-0001e1 c001                      				RJMP administration
+                                 				pixelOff:
+000165 982b                      					CBI PORTB,3
+000166 c001                      					RJMP administration
                                  					
                                  				; Pixel on
                                  				pixelOn:
-0001e2 9a2b                      					SBI PORTB,3
+000167 9a2b                      					SBI PORTB,3
                                  				
                                  				administration:	
-0001e3 9a2d                      				SBI PORTB,5
-0001e4 982d                      				CBI PORTB,5
-0001e5 950a                      				DEC counter
-0001e6 f021                      				BREQ rows
-0001e7 956a                      				DEC registerBitCounter
-0001e8 f399                      				BREQ columnbits
-0001e9 0c22                      				LSL memoryByteRegister
-0001ea cff3                      				RJMP bitsOfRegister	
+000168 9a2d                      					SBI PORTB,5
+000169 982d                      					CBI PORTB,5
+00016a 950a                      					DEC counter
+00016b f021                      					BREQ rows
+00016c 956a                      					DEC registerBitCounter
+00016d f371                      					BREQ columnbits
+00016e 0c22                      					LSL memoryByteRegister
+00016f cfee                      					RJMP bitsOfRegister	
                                  
                                  			rows:
-0001eb e008                      			LDI counter,8
+000170 e008                      				LDI counter,8
                                  			rowbits:
                                  
-0001ec 1701                      				CP counter, illuminatedRow
-0001ed f011                      				BREQ rowSet
-0001ee 982b                      					CBI PORTB,3
-0001ef c001                      					RJMP nextStep
+000171 1701                      				CP counter, illuminatedRow
+000172 f011                      				BREQ rowSet
+000173 982b                      					CBI PORTB,3
+000174 c001                      					RJMP nextStep
                                  	
                                  				rowSet:
-0001f0 9a2b                      					SBI PORTB,3
+000175 9a2b                      					SBI PORTB,3
                                  
                                  				nextStep:
-0001f1 9a2d                      				SBI PORTB,5
-0001f2 982d                      				CBI PORTB,5
-0001f3 950a                      				DEC counter
-0001f4 f009                      				BREQ latching
-0001f5 cff6                      				RJMP rowbits
+000176 9a2d                      					SBI PORTB,5
+000177 982d                      					CBI PORTB,5
+000178 950a                      					DEC counter
+000179 f009                      					BREQ latching
+00017a cff6                      					RJMP rowbits
                                  
                                  		latching:
-0001f6 9a2c                      		SBI PORTB,4; Without waiting it also works (IF PROBLEM? LOOK AT THIS)
-0001f7 d003                      		RCALL waitingLoop
-0001f8 982c                      		CBI PORTB,4
-0001f9 cfda                      		RJMP nextRow
+00017b 9a2c                      			SBI PORTB,4
+00017c dea4                      			RCALL waitingLoop
+00017d 982c                      			CBI PORTB,4
+00017e dea2                      			RCALL waitingLoop
+00017f cfca                      			RJMP nextRow
                                  
-0001fa 9508                      RET
+000180 9508                      RET
                                  
-                                 waitingLoop:
-                                 	
-0001fb 2733                      	CLR waitingcounter0
-0001fc 2744                      	CLR waitingcounter1
-                                 	outerLoop:
-0001fd 9533                      		INC waitingcounter0
-0001fe 3f3f                      		CPI waitingcounter0,maxValueCounter0
-0001ff f7e9                      		BRNE outerLoop
+                                  clearBuffer:
+                                 // Clears the buffer in the memory which will be later on flushed to screen by 'flushMemory'
+                                 // Changed registers: /
+                                 // Called functions: /
                                  
-                                 		middleLoop:
-000200 2733                      			CLR waitingcounter0
-000201 9543                      			INC waitingcounter1
-000202 3042                      			CPI waitingcounter1,maxValueCounter1
-000203 f7c9                      			BRNE outerLoop	
-                                 	finishLoop:
-000204 9508                      RET
+000181 93bf                      	PUSH XH
+000182 93af                      	PUSH XL
+000183 932f                      	PUSH tempRegister
+000184 930f                      	PUSH counter
                                  
+000185 e0b1                      	LDI XH,0x01
+000186 27aa                      	CLR XL
                                  
-                                 clearScreen:
-000205 93bf                      	push XH
-000206 93af                      	push XL
-                                 
-000207 e0b1                      	LDI XH,0x01
-000208 27aa                      	CLR XL
-                                 
-000209 e406                      	LDI counter,70
-00020a 2722                      	CLR tempRegister
+000187 e406                      	LDI counter,70
+000188 2722                      	CLR tempRegister
                                  	clearingLoop:
-00020b 932d                      		ST X+,tempRegister
-00020c 950a                      		DEC counter
-00020d f7e9                      		BRNE clearingLoop
+000189 932d                      		ST X+,tempRegister
+00018a 950a                      		DEC counter
+00018b f7e9                      		BRNE clearingLoop
                                  
-00020e 91af                      	POP XL
-00020f 91bf                      	POP XH
-000210 9508                      RET
+00018c 910f                      	POP counter
+00018d 912f                      	POP tempRegister
+00018e 91af                      	POP XL
+00018f 91bf                      	POP XH
+000190 9508                      RET
+                                 
+                                 drawPixel:
+                                 // Draws the pixel indicated by the values of registers xpos and ypos. The first row is row 0 and the first column is column 0
+                                 // Changed parameters: flags, xpos -> xpos+1, ypos -> ypos+1
+                                 // Called functions: /
+                                 
+000191 938f                      	PUSH xpos
+000192 939f                      	PUSH ypos
+                                 
+000193 930f                      	PUSH counter
+000194 932f                      	PUSH tempregister
+                                 
+000195 93bf                      	PUSH XH
+000196 93af                      	PUSH XL
+                                 
+000197 e0b1                      	LDI XH, HIGH(bufferStartAddress)
+000198 e0a0                      	LDI XL, LOW(bufferStartAddress)
+                                 
+000199 3097                      	CPI ypos,7
+00019a f010                      	BRLO UpperPartScreen
+                                 
+00019b 5097                      		SUBI ypos,7
+00019c 9688                      		ADIW xpos, 40
+                                 
+                                 	UpperPartScreen:
+                                 
+00019d e02a                      		LDI tempRegister,10
+00019e 9f92                      		MUL ypos,tempRegister
+00019f 0da0                      		ADD XL,mulLSB
+                                 
+0001a0 2f28                      		MOV tempRegister,xpos
+0001a1 9526                      		LSR tempregister
+0001a2 9526                      		LSR tempregister
+0001a3 9526                      		LSR tempregister
+0001a4 0fa2                      		ADD XL,tempregister
+                                 		
+0001a5 7087                      		ANDI xpos, 0b00000111
+0001a6 e000                      		LDI counter,0
+0001a7 e021                      		LDI tempregister,1
+                                 		bitContent:
+0001a8 1780                      			CP xpos,counter
+0001a9 f019                      			BREQ bitFound
+0001aa 0f22                      			LSL tempregister
+0001ab 9503                      			INC counter
+0001ac cffb                      			RJMP bitContent
+                                 		
+                                 		bitfound:
+                                 		
+0001ad 918c                      		LD xpos, X ; The old byte content is stored in xpos
+                                 
+                                 		; Collision detect
+0001ae 2f08                      		MOV counter,xpos ; Counter is used as a temp register
+0001af 2302                      		AND counter,tempregister
+0001b0 3000                      		CPI counter,0
+0001b1 f009                      		BREQ noCollision
+0001b2 6031                      			SBR flags,1
+                                 
+                                 		noCollision:
+                                 		; Draw updated field
+0001b3 2b28                      		OR tempregister,xpos
+0001b4 932d                      		ST X+,tempregister	
+                                 	
+0001b5 91af                      	POP XL
+0001b6 91bf                      	POP XH
+                                 
+0001b7 912f                      	POP tempregister
+0001b8 910f                      	POP counter
+                                 
+0001b9 919f                      	POP ypos
+0001ba 918f                      	POP xpos
+                                 
+0001bb 9508                      RET
+                                 
+                                 drawScore:
+                                 // Receives the top right coordinates by xpos and ypos and draws the appropriate score
+                                 // Changed registers: /
+                                 // Called functions: draw0,1,2,3,4,5,6,7,8,9
+0001bc 93ef                      	PUSH ZL
+0001bd 93ff                      	PUSH ZH
+0001be 932f                      	PUSH tempregister
+0001bf 930f                      	PUSH counter
+0001c0 938f                      	PUSH xpos
+0001c1 939f                      	PUSH ypos
+                                 
+0001c2 3070                      	CPI gameState,0
+0001c3 f429                      	BRNE gameOverModus
+0001c4 e091                      		LDI ypos,1
+0001c5 e286                      		LDI xpos,38
+                                 
+0001c6 fd34                      		SBRC flags,4
+0001c7 e08f                      		LDI xpos,15
+0001c8 c002                      		RJMP drawScoreStart
+                                 	gameOverModus:
+0001c9 e18b                      		LDI xpos, 27
+0001ca e099                      		LDI ypos, 9
+                                 
+                                 	drawScoreStart:
+0001cb e005                      	LDI counter,5
+                                 
+                                 	nextNumber:
+0001cc 950a                      	DEC counter
+0001cd f179                      	BREQ drawScoreRet
+                                 
+0001ce e02f                      	LDI tempregister,0b00001111
+0001cf 232e                      	AND tempregister,ZL
+                                 		
+0001d0 3020                      	CPI tempregister,0
+0001d1 f411                      	BRNE maybe1
+0001d2 d20a                      		RCALL drawZero
+0001d3 c021                      		RJMP numberReady
+                                 	
+                                 	maybe1:
+0001d4 3021                      	CPI tempregister,1
+0001d5 f411                      	BRNE maybe2
+0001d6 d21f                      		RCALL drawOne
+0001d7 c01d                      		RJMP numberReady
+                                 	maybe2:
+                                 
+0001d8 3022                      	CPI tempregister,2
+0001d9 f411                      	BRNE maybe3
+0001da d230                      		RCALL drawTwo
+0001db c019                      		RJMP numberReady
+                                 
+                                 	maybe3:
+0001dc 3023                      	CPI tempregister,3
+0001dd f411                      	BRNE maybe4
+0001de d246                      		RCALL drawThree
+0001df c015                      		RJMP numberReady
+                                 
+                                 	maybe4:
+0001e0 3024                      	CPI tempregister,4
+0001e1 f411                      	BRNE maybe5
+0001e2 d25e                      		RCALL drawFour
+0001e3 c011                      		RJMP numberReady
+                                 
+                                 	maybe5:
+                                 
+0001e4 3025                      	CPI tempregister,5
+0001e5 f411                      	BRNE maybe6
+0001e6 d273                      		RCALL drawFive
+0001e7 c00d                      		RJMP numberReady
+                                 
+                                 	maybe6:
+                                 
+0001e8 3026                      	CPI tempregister,6
+0001e9 f411                      	BRNE maybe7
+0001ea d289                      		RCALL drawSix
+0001eb c009                      		RJMP numberReady
+                                 
+                                 	maybe7:
+                                 
+0001ec 3027                      	CPI tempregister,7
+0001ed f411                      	BRNE maybe8
+0001ee d2a0                      		RCALL drawSeven
+0001ef c005                      		RJMP numberReady
+                                 
+                                 	maybe8:
+                                 
+0001f0 3028                      	CPI tempregister,8
+0001f1 f411                      	BRNE maybe9
+0001f2 d2b4                      		RCALL drawEight		
+0001f3 c001                      		RJMP numberReady
+                                 
+                                 	maybe9:
+0001f4 d2d0                      		RCALL drawNine
+                                 		
+                                 	numberReady:
+                                 
+0001f5 958a                      	DEC xpos
+0001f6 958a                      	DEC xpos
+                                 
+0001f7 e025                      	LDI tempregister,5
+                                 	shiftingToNext:
+0001f8 952a                      	DEC tempregister
+0001f9 f291                      	BREQ nextNumber
+0001fa 95f6                      		LSR ZH
+0001fb 95e7                      		ROR ZL
+0001fc cffb                      		RJMP shiftingToNext
+                                 
+                                 	drawScoreRet:
+0001fd 919f                      	POP ypos
+0001fe 918f                      	POP xpos
+0001ff 910f                      	POP counter
+000200 912f                      	POP tempregister
+000201 91ff                      	POP ZH
+000202 91ef                      	POP ZL
+000203 9508                      	RET
+                                 
+                                 drawCactus:
+                                 // Draws the cacti in the buffer, ready to flush
+                                 // Changed parameters: /
+                                 // Called functions: drawPixel
+000204 938f                      	PUSH xpos
+000205 939f                      	PUSH ypos
+000206 924f                      	PUSH nmbrOfCacti
+000207 930f                      	PUSH counter ; will be used as normal variable
+000208 932f                      	PUSH tempregister
+000209 93bf                      	PUSH XH
+00020a 93af                      	PUSH XL
+                                 
+00020b 2d24                      	MOV tempregister,nmbrOfCacti
+                                 
+                                 	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
+00020c e0b3                      	LDI XH, HIGH(cactusMemory) 
+00020d e0a0                      	LDI XL, LOW(cactusMemory)
+                                 
+                                 	drawNextCactus:
+00020e 3020                      		CPI tempregister,0
+00020f f0b1                      		BREQ noCactusLeft 
+000210 952a                      		DEC tempregister
+                                 
+000211 918d                      		LD xpos, X+
+000212 919d                      		LD ypos, X+	
+                                 
+000213 ff34                      		SBRS flags,4
+000214 c003                      		RJMP actualDrawing
+000215 e207                      		LDI counter,39
+000216 1b08                      		SUB counter,xpos
+000217 2f80                      		MOV xpos, counter
+                                 
+                                 		actualDrawing:
+000218 df78                      		RCALL drawPixel
+000219 9593                      		INC ypos
+00021a df76                      		RCALL drawPixel
+00021b 9583                      		INC xpos
+00021c df74                      		RCALL drawPixel
+00021d 958a                      		DEC xpos
+00021e 958a                      		DEC xpos
+00021f df71                      		RCALL drawPixel
+000220 9583                      		INC xpos
+000221 9593                      		INC ypos
+000222 df6e                      		RCALL drawPixel
+000223 9593                      		INC ypos
+000224 df6c                      		RCALL drawPixel
+                                 
+000225 cfe8                      		RJMP drawNextCactus
+                                 
+                                 
+                                 	noCactusLeft:	
+000226 91af                      		POP XL
+000227 91bf                      		POP XH
+000228 912f                      		POP tempregister
+000229 910f                      		POP counter
+00022a 904f                      		POP nmbrOfCacti
+00022b 919f                      		POP ypos
+00022c 918f                      		POP xpos
+00022d 9508                      		RET
+                                 
+                                 drawDino:
+                                 // Draws the dino in the buffer, ready to flush
+                                 // Changed registers: /
+                                 // Called fucntions: drawPixel
+00022e 938f                      	PUSH xpos
+00022f 939f                      	PUSH ypos
+                                 
+000230 93bf                      	PUSH XH
+000231 93af                      	PUSH XL
+                                 
+000232 e0b3                      	LDI XH, HIGH(dinoMemory)	// Assume that x and y postions of the first cactus to draw are saved in respectively the first byte at cactusMemory and the 2nd byte
+000233 e5a0                      	LDI XL, LOW(dinoMemory)
+000234 918d                      	LD xpos, X+
+000235 919c                      	LD ypos, X
+                                 
+000236 fd34                      	SBRC flags,4
+000237 c01f                      	RJMP insaneDrawDino
+                                 
+000238 df58                      		RCALL drawPixel
+000239 958a                      		DEC xpos
+00023a df56                      		RCALL drawPixel
+00023b 9593                      		INC ypos
+00023c df54                      		RCALL drawPixel
+00023d 9593                      		INC ypos
+00023e df52                      		RCALL drawPixel
+00023f 9583                      		INC xpos
+000240 df50                      		RCALL drawPixel
+000241 958a                      		DEC xpos
+000242 9593                      		INC ypos
+000243 df4d                      		RCALL drawPixel
+000244 9593                      		INC ypos
+000245 df4b                      		RCALL drawPixel
+000246 9593                      		INC ypos
+000247 df49                      		RCALL drawPixel
+000248 959a                      		DEC ypos
+000249 959a                      		DEC ypos
+00024a 958a                      		DEC xpos
+00024b df45                      		RCALL drawPixel
+00024c 959a                      		DEC ypos
+00024d df43                      		RCALL drawPixel
+00024e 958a                      		DEC xpos
+00024f df41                      		RCALL drawPixel
+000250 9593                      		INC ypos
+000251 df3f                      		RCALL drawPixel
+000252 9593                      		INC ypos
+000253 df3d                      		RCALL drawPixel
+000254 9593                      		INC ypos
+000255 df3b                      		RCALL drawPixel
+000256 c01d                      		RJMP drawDinoRet
+                                 
+                                 	insaneDrawDino:
+                                 
+000257 df39                      		RCALL drawPixel
+000258 9583                      		INC xpos
+000259 df37                      		RCALL drawPixel
+00025a 9593                      		INC ypos
+00025b df35                      		RCALL drawPixel
+00025c 9593                      		INC ypos
+00025d df33                      		RCALL drawPixel
+00025e 958a                      		DEC xpos
+00025f df31                      		RCALL drawPixel
+000260 9583                      		INC xpos
+000261 9583                      		INC xpos
+000262 df2e                      		RCALL drawPixel
+000263 9583                      		INC xpos
+000264 df2c                      		RCALL drawPixel
+000265 9593                      		INC ypos
+000266 df2a                      		RCALL drawPixel
+000267 958a                      		DEC xpos
+000268 df28                      		RCALL drawPixel
+000269 958a                      		DEC xpos
+00026a df26                      		RCALL drawPixel
+00026b 9593                      		INC ypos
+00026c df24                      		RCALL drawPixel
+00026d 9593                      		INC ypos
+00026e df22                      		RCALL drawPixel
+00026f 9583                      		INC xpos
+000270 9583                      		INC xpos
+000271 df1f                      		RCALL drawPixel
+000272 959a                      		DEC ypos
+000273 df1d                      		RCALL drawPixel
+                                 	
+                                 	drawDinoRet:
+000274 91af                      	POP XL
+000275 91bf                      	POP XH
+000276 919f                      	POP ypos
+000277 918f                      	POP xpos
+                                 .include "drawPatterns.INC"
+000278 9508                      
+                                 ; The dinosaur game ('The dino says Graaah!')
+                                 ;
+                                 ; Sensors and microsystem electronics
+                                 ; Year: 2017-2018
+                                 ; Authors : Remco Royen & Johan Jacobs
+                                 ;
+                                 ; drawPatterns.inc
+                                 
+                                 drawGameOver:
+                                 // Draws Game Over on the screen
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+000279 938f                      	PUSH xpos
+00027a 939f                      	PUSH ypos
+                                 	; Row 1
+00027b e084                      	LDI xpos,4
+00027c e091                      	LDI ypos,1
+00027d df13                      	RCALL drawPixel
+00027e 9583                      	INC xpos
+00027f df11                      	RCALL drawPixel
+000280 9583                      	INC xpos
+000281 df0f                      	RCALL drawPixel
+000282 9583                      	INC xpos
+000283 df0d                      	RCALL drawPixel
+000284 9583                      	INC xpos
+000285 9583                      	INC xpos
+000286 df0a                      	RCALL drawPixel
+000287 9583                      	INC xpos
+000288 df08                      	RCALL drawPixel
+000289 9583                      	INC xpos
+00028a df06                      	RCALL drawPixel
+00028b 9583                      	INC xpos
+00028c 9583                      	INC xpos
+00028d df03                      	RCALL drawPixel
+00028e 9583                      	INC xpos
+00028f df01                      	RCALL drawPixel
+000290 9583                      	INC xpos
+000291 deff                      	RCALL drawPixel
+000292 9583                      	INC xpos
+000293 9583                      	INC xpos
+000294 defc                      	RCALL drawPixel
+000295 9583                      	INC xpos
+000296 defa                      	RCALL drawPixel
+000297 9583                      	INC xpos
+000298 9583                      	INC xpos
+000299 9583                      	INC xpos
+00029a 9583                      	INC xpos
+00029b 9583                      	INC xpos
+00029c def4                      	RCALL drawPixel
+00029d 9583                      	INC xpos
+00029e def2                      	RCALL drawPixel
+00029f 9583                      	INC xpos
+0002a0 def0                      	RCALL drawPixel
+0002a1 9583                      	INC xpos
+0002a2 9583                      	INC xpos
+0002a3 deed                      	RCALL drawPixel
+0002a4 9583                      	INC xpos
+0002a5 9583                      	INC xpos
+0002a6 deea                      	RCALL drawPixel
+0002a7 9583                      	INC xpos
+0002a8 9583                      	INC xpos
+0002a9 dee7                      	RCALL drawPixel
+0002aa 9583                      	INC xpos
+0002ab dee5                      	RCALL drawPixel
+0002ac 9583                      	INC xpos
+0002ad 9583                      	INC xpos
+0002ae dee2                      	RCALL drawPixel
+0002af 9583                      	INC xpos
+0002b0 dee0                      	RCALL drawPixel
+0002b1 9583                      	INC xpos
+0002b2 dede                      	RCALL drawPixel
+                                 
+                                 	; Row 2
+0002b3 e084                      	LDI xpos,4
+0002b4 9593                      	INC ypos
+                                 		; Letter G
+0002b5 dedb                      	RCALL drawPixel
+0002b6 9583                      	INC xpos
+0002b7 9583                      	INC xpos
+0002b8 9583                      	INC xpos
+0002b9 9583                      	INC xpos
+                                 		; Letter A
+0002ba 9583                      	INC xpos
+0002bb ded5                      	RCALL drawPixel
+0002bc 9583                      	INC xpos
+0002bd 9583                      	INC xpos
+0002be ded2                      	RCALL drawPixel
+0002bf 9583                      	INC xpos
+                                 	; Letter M
+0002c0 9583                      	INC xpos
+0002c1 decf                      	RCALL drawPixel
+0002c2 9583                      	INC xpos
+0002c3 decd                      	RCALL drawPixel
+0002c4 9583                      	INC xpos
+0002c5 decb                      	RCALL drawPixel
+0002c6 9583                      	INC xpos
+                                 	; Letter E
+0002c7 9583                      	INC xpos
+0002c8 dec8                      	RCALL drawPixel
+0002c9 9583                      	INC xpos
+0002ca 9583                      	INC xpos
+0002cb 9583                      	INC xpos
+0002cc 9583                      	INC xpos
+0002cd 9583                      	INC xpos
+                                 	; Letter O
+0002ce 9583                      	INC xpos
+0002cf dec1                      	RCALL drawPixel
+0002d0 9583                      	INC xpos
+0002d1 9583                      	INC xpos
+0002d2 debe                      	RCALL drawPixel
+0002d3 9583                      	INC xpos
+                                 	; Letter V
+0002d4 9583                      	INC xpos
+0002d5 debb                      	RCALL drawPixel
+0002d6 9583                      	INC xpos
+0002d7 9583                      	INC xpos
+0002d8 deb8                      	RCALL drawPixel
+0002d9 9583                      	INC xpos
+                                 	; Letter E
+0002da 9583                      	INC xpos
+0002db deb5                      	RCALL drawPixel
+0002dc 9583                      	INC xpos
+0002dd 9583                      	INC xpos
+                                 	; Letter R
+0002de 9583                      	INC xpos
+0002df deb1                      	RCALL drawPixel
+0002e0 9583                      	INC xpos
+0002e1 9583                      	INC xpos
+0002e2 deae                      	RCALL drawPixel
+                                 
+                                 	; Row 3
+0002e3 e084                      	LDI xpos,4
+0002e4 9593                      	INC ypos
+                                 		; Letter G
+0002e5 deab                      	RCALL drawPixel
+0002e6 9583                      	INC xpos
+0002e7 9583                      	INC xpos
+0002e8 9583                      	INC xpos
+0002e9 9583                      	INC xpos
+                                 		; Letter A
+0002ea 9583                      	INC xpos
+0002eb dea5                      	RCALL drawPixel
+0002ec 9583                      	INC xpos
+0002ed 9583                      	INC xpos
+0002ee dea2                      	RCALL drawPixel
+0002ef 9583                      	INC xpos
+                                 	; Letter M
+0002f0 9583                      	INC xpos
+0002f1 de9f                      	RCALL drawPixel
+0002f2 9583                      	INC xpos
+0002f3 de9d                      	RCALL drawPixel
+0002f4 9583                      	INC xpos
+0002f5 de9b                      	RCALL drawPixel
+0002f6 9583                      	INC xpos
+                                 	; Letter E
+0002f7 9583                      	INC xpos
+0002f8 de98                      	RCALL drawPixel
+0002f9 9583                      	INC xpos
+0002fa 9583                      	INC xpos
+0002fb 9583                      	INC xpos
+0002fc 9583                      	INC xpos
+0002fd 9583                      	INC xpos
+                                 	; Letter O
+0002fe 9583                      	INC xpos
+0002ff de91                      	RCALL drawPixel
+000300 9583                      	INC xpos
+000301 9583                      	INC xpos
+000302 de8e                      	RCALL drawPixel
+000303 9583                      	INC xpos
+                                 	; Letter V
+000304 9583                      	INC xpos
+000305 de8b                      	RCALL drawPixel
+000306 9583                      	INC xpos
+000307 9583                      	INC xpos
+000308 de88                      	RCALL drawPixel
+000309 9583                      	INC xpos
+                                 	; Letter E
+00030a 9583                      	INC xpos
+00030b de85                      	RCALL drawPixel
+00030c 9583                      	INC xpos
+00030d 9583                      	INC xpos
+                                 	; Letter R
+00030e 9583                      	INC xpos
+00030f de81                      	RCALL drawPixel
+000310 9583                      	INC xpos
+000311 9583                      	INC xpos
+000312 de7e                      	RCALL drawPixel
+                                 
+                                 	; Row 4
+000313 e084                      	LDI xpos,4
+000314 9593                      	INC ypos
+                                 		; Letter G
+000315 de7b                      	RCALL drawPixel
+000316 9583                      	INC xpos
+000317 9583                      	INC xpos
+000318 de78                      	RCALL drawPixel
+000319 9583                      	INC xpos
+00031a de76                      	RCALL drawPixel
+00031b 9583                      	INC xpos
+                                 		; Letter A
+00031c 9583                      	INC xpos
+00031d de73                      	RCALL drawPixel
+00031e 9583                      	INC xpos
+00031f 9583                      	INC xpos
+000320 de70                      	RCALL drawPixel
+000321 9583                      	INC xpos
+                                 	; Letter M
+000322 9583                      	INC xpos
+000323 de6d                      	RCALL drawPixel
+000324 9583                      	INC xpos
+000325 9583                      	INC xpos
+000326 de6a                      	RCALL drawPixel
+000327 9583                      	INC xpos
+                                 	; Letter E
+000328 9583                      	INC xpos
+000329 de67                      	RCALL drawPixel
+00032a 9583                      	INC xpos
+00032b de65                      	RCALL drawPixel
+00032c 9583                      	INC xpos
+00032d 9583                      	INC xpos
+00032e 9583                      	INC xpos
+00032f 9583                      	INC xpos
+                                 	; Letter O
+000330 9583                      	INC xpos
+000331 de5f                      	RCALL drawPixel
+000332 9583                      	INC xpos
+000333 9583                      	INC xpos
+000334 de5c                      	RCALL drawPixel
+000335 9583                      	INC xpos
+                                 	; Letter V
+000336 9583                      	INC xpos
+000337 de59                      	RCALL drawPixel
+000338 9583                      	INC xpos
+000339 9583                      	INC xpos
+00033a de56                      	RCALL drawPixel
+00033b 9583                      	INC xpos
+                                 	; Letter E
+00033c 9583                      	INC xpos
+00033d de53                      	RCALL drawPixel
+00033e 9583                      	INC xpos
+00033f de51                      	RCALL drawPixel
+000340 9583                      	INC xpos
+                                 	; Letter R
+000341 9583                      	INC xpos
+000342 de4e                      	RCALL drawPixel
+000343 9583                      	INC xpos
+000344 de4c                      	RCALL drawPixel
+000345 9583                      	INC xpos
+                                 
+                                 	; Row 4
+000346 e084                      	LDI xpos,4
+000347 9593                      	INC ypos
+                                 		; Letter G
+000348 de48                      	RCALL drawPixel
+000349 9583                      	INC xpos
+00034a 9583                      	INC xpos
+00034b 9583                      	INC xpos
+00034c de44                      	RCALL drawPixel
+00034d 9583                      	INC xpos
+                                 		; Letter A
+00034e 9583                      	INC xpos
+00034f de41                      	RCALL drawPixel
+000350 9583                      	INC xpos
+000351 de3f                      	RCALL drawPixel
+000352 9583                      	INC xpos
+000353 de3d                      	RCALL drawPixel
+000354 9583                      	INC xpos
+                                 	; Letter M
+000355 9583                      	INC xpos
+000356 de3a                      	RCALL drawPixel
+000357 9583                      	INC xpos
+000358 9583                      	INC xpos
+000359 de37                      	RCALL drawPixel
+00035a 9583                      	INC xpos
+                                 	; Letter E
+00035b 9583                      	INC xpos
+00035c de34                      	RCALL drawPixel
+00035d 9583                      	INC xpos
+00035e 9583                      	INC xpos
+00035f 9583                      	INC xpos
+000360 9583                      	INC xpos
+000361 9583                      	INC xpos
+                                 	; Letter O
+000362 9583                      	INC xpos
+000363 de2d                      	RCALL drawPixel
+000364 9583                      	INC xpos
+000365 9583                      	INC xpos
+000366 de2a                      	RCALL drawPixel
+000367 9583                      	INC xpos
+                                 	; Letter V
+000368 9583                      	INC xpos
+000369 de27                      	RCALL drawPixel
+00036a 9583                      	INC xpos
+00036b 9583                      	INC xpos
+00036c de24                      	RCALL drawPixel
+00036d 9583                      	INC xpos
+                                 	; Letter E
+00036e 9583                      	INC xpos
+00036f de21                      	RCALL drawPixel
+000370 9583                      	INC xpos
+000371 9583                      	INC xpos
+                                 	; Letter R
+000372 9583                      	INC xpos
+000373 de1d                      	RCALL drawPixel
+000374 9583                      	INC xpos
+000375 de1b                      	RCALL drawPixel
+000376 9583                      	INC xpos
+                                 
+                                 	; Row 5
+000377 e084                      	LDI xpos,4
+000378 9593                      	INC ypos
+                                 		; Letter G
+000379 de17                      	RCALL drawPixel
+00037a 9583                      	INC xpos
+00037b 9583                      	INC xpos
+00037c 9583                      	INC xpos
+00037d de13                      	RCALL drawPixel
+00037e 9583                      	INC xpos
+                                 		; Letter A
+00037f 9583                      	INC xpos
+000380 de10                      	RCALL drawPixel
+000381 9583                      	INC xpos
+000382 9583                      	INC xpos
+000383 de0d                      	RCALL drawPixel
+000384 9583                      	INC xpos
+                                 	; Letter M
+000385 9583                      	INC xpos
+000386 de0a                      	RCALL drawPixel
+000387 9583                      	INC xpos
+000388 9583                      	INC xpos
+000389 de07                      	RCALL drawPixel
+00038a 9583                      	INC xpos
+                                 	; Letter E
+00038b 9583                      	INC xpos
+00038c de04                      	RCALL drawPixel
+00038d 9583                      	INC xpos
+00038e 9583                      	INC xpos
+00038f 9583                      	INC xpos
+000390 9583                      	INC xpos
+000391 9583                      	INC xpos
+                                 	; Letter O
+000392 9583                      	INC xpos
+000393 ddfd                      	RCALL drawPixel
+000394 9583                      	INC xpos
+000395 9583                      	INC xpos
+000396 ddfa                      	RCALL drawPixel
+000397 9583                      	INC xpos
+                                 	; Letter V
+000398 9583                      	INC xpos
+000399 9583                      	INC xpos
+00039a ddf6                      	RCALL drawPixel
+00039b 9583                      	INC xpos
+00039c 9583                      	INC xpos
+                                 	; Letter E
+00039d 9583                      	INC xpos
+00039e ddf2                      	RCALL drawPixel
+00039f 9583                      	INC xpos
+0003a0 9583                      	INC xpos
+                                 	; Letter R
+0003a1 9583                      	INC xpos
+0003a2 ddee                      	RCALL drawPixel
+0003a3 9583                      	INC xpos
+0003a4 9583                      	INC xpos
+0003a5 ddeb                      	RCALL drawPixel
+                                 
+                                 	; Row 6
+0003a6 e084                      	LDI xpos,4
+0003a7 9593                      	INC ypos
+                                 		; Letter G
+0003a8 dde8                      	RCALL drawPixel
+0003a9 9583                      	INC xpos
+0003aa dde6                      	RCALL drawPixel
+0003ab 9583                      	INC xpos
+0003ac dde4                      	RCALL drawPixel
+0003ad 9583                      	INC xpos
+0003ae dde2                      	RCALL drawPixel
+0003af 9583                      	INC xpos
+                                 		; Letter A
+0003b0 9583                      	INC xpos
+0003b1 dddf                      	RCALL drawPixel
+0003b2 9583                      	INC xpos
+0003b3 9583                      	INC xpos
+0003b4 dddc                      	RCALL drawPixel
+0003b5 9583                      	INC xpos
+                                 	; Letter M
+0003b6 9583                      	INC xpos
+0003b7 ddd9                      	RCALL drawPixel
+0003b8 9583                      	INC xpos
+0003b9 9583                      	INC xpos
+0003ba ddd6                      	RCALL drawPixel
+0003bb 9583                      	INC xpos
+                                 	; Letter E
+0003bc 9583                      	INC xpos
+0003bd ddd3                      	RCALL drawPixel
+0003be 9583                      	INC xpos
+0003bf ddd1                      	RCALL drawPixel
+0003c0 9583                      	INC xpos
+0003c1 9583                      	INC xpos
+0003c2 9583                      	INC xpos
+0003c3 9583                      	INC xpos
+                                 	; Letter O
+0003c4 9583                      	INC xpos
+0003c5 ddcb                      	RCALL drawPixel
+0003c6 9583                      	INC xpos
+0003c7 ddc9                      	RCALL drawPixel
+0003c8 9583                      	INC xpos
+0003c9 ddc7                      	RCALL drawPixel
+0003ca 9583                      	INC xpos
+                                 	; Letter V
+0003cb 9583                      	INC xpos
+0003cc 9583                      	INC xpos
+0003cd ddc3                      	RCALL drawPixel
+0003ce 9583                      	INC xpos
+0003cf 9583                      	INC xpos
+                                 	; Letter E
+0003d0 9583                      	INC xpos
+0003d1 ddbf                      	RCALL drawPixel
+0003d2 9583                      	INC xpos
+0003d3 ddbd                      	RCALL drawPixel
+0003d4 9583                      	INC xpos
+                                 	; Letter R
+0003d5 9583                      	INC xpos
+0003d6 ddba                      	RCALL drawPixel
+0003d7 9583                      	INC xpos
+0003d8 9583                      	INC xpos
+0003d9 ddb7                      	RCALL drawPixel
+                                 
+0003da 919f                      	POP ypos
+0003db 918f                      	POP xpos
+0003dc 9508                      	RET
+                                 
+                                 drawZero:
+                                 // Draws a 0 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+0003dd ddb3                      	RCALL drawPixel
+0003de 9593                      	INC ypos
+0003df ddb1                      	RCALL drawPixel
+0003e0 9593                      	INC ypos
+0003e1 ddaf                      	RCALL drawPixel
+0003e2 9593                      	INC ypos
+0003e3 ddad                      	RCALL drawPixel
+0003e4 9593                      	INC ypos
+0003e5 ddab                      	RCALL drawPixel
+0003e6 958a                      	DEC xpos
+0003e7 dda9                      	RCALL drawPixel
+0003e8 958a                      	DEC xpos
+0003e9 dda7                      	RCALL drawPixel
+0003ea 959a                      	DEC ypos
+0003eb dda5                      	RCALL drawPixel
+0003ec 959a                      	DEC ypos
+0003ed dda3                      	RCALL drawPixel
+0003ee 959a                      	DEC ypos
+0003ef dda1                      	RCALL drawPixel
+0003f0 959a                      	DEC ypos
+0003f1 dd9f                      	RCALL drawPixel
+0003f2 9583                      	INC xpos
+0003f3 dd9d                      	RCALL drawPixel
+0003f4 958a                      	DEC xpos
+0003f5 9508                      	RET
+                                 
+                                 drawOne:
+                                 // Draws a 1 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+0003f6 dd9a                      	RCALL drawPixel
+0003f7 9593                      	INC ypos
+0003f8 dd98                      	RCALL drawPixel
+0003f9 958a                      	DEC xpos
+0003fa dd96                      	RCALL drawPixel
+0003fb 958a                      	DEC xpos
+0003fc 9593                      	INC ypos
+0003fd dd93                      	RCALL drawPixel
+0003fe 9583                      	INC xpos
+0003ff 9583                      	INC xpos
+000400 dd90                      	RCALL drawPixel
+000401 9593                      	INC ypos
+000402 dd8e                      	RCALL drawPixel
+000403 9593                      	INC ypos
+000404 dd8c                      	RCALL drawPixel
+000405 9702                      	SBIW xpos,2
+000406 959a                      	DEC ypos
+000407 959a                      	DEC ypos
+000408 959a                      	DEC ypos
+000409 959a                      	DEC ypos
+00040a 9508                      	RET
+                                 
+                                 drawTwo:
+                                 // Draws a 2 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+00040b dd85                      	RCALL drawPixel
+00040c 9593                      	INC ypos
+00040d dd83                      	RCALL drawPixel
+00040e 9593                      	INC ypos
+00040f dd81                      	RCALL drawPixel
+000410 958a                      	DEC xpos
+000411 dd7f                      	RCALL drawPixel
+000412 958a                      	DEC xpos
+000413 dd7d                      	RCALL drawPixel
+000414 9593                      	INC ypos
+000415 dd7b                      	RCALL drawPixel
+000416 9593                      	INC ypos
+000417 dd79                      	RCALL drawPixel
+000418 9583                      	INC xpos
+000419 dd77                      	RCALL drawPixel
+00041a 9583                      	INC xpos
+00041b dd75                      	RCALL drawPixel
+00041c 959a                      	DEC ypos
+00041d 959a                      	DEC ypos
+00041e 959a                      	DEC ypos
+00041f 959a                      	DEC ypos
+000420 958a                      	DEC xpos
+000421 dd6f                      	RCALL drawPixel
+000422 958a                      	DEC xpos
+000423 dd6d                      	RCALL drawPixel
+000424 9508                      	RET
+                                 
+                                 drawThree:
+                                 // Draws a 3 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+000425 dd6b                      	RCALL drawPixel
+000426 958a                      	DEC xpos
+000427 dd69                      	RCALL drawPixel
+000428 958a                      	DEC xpos
+000429 dd67                      	RCALL drawPixel
+00042a 9593                      	INC ypos
+00042b 9593                      	INC ypos
+00042c dd64                      	RCALL drawPixel
+00042d 9583                      	INC xpos
+00042e dd62                      	RCALL drawPixel
+00042f 9583                      	INC xpos
+000430 dd60                      	RCALL drawPixel
+000431 959a                      	DEC ypos
+000432 dd5e                      	RCALL drawPixel
+000433 9593                      	INC ypos
+000434 9593                      	INC ypos
+000435 dd5b                      	RCALL drawPixel
+000436 9593                      	INC ypos
+000437 dd59                      	RCALL drawPixel
+000438 958a                      	DEC xpos
+000439 dd57                      	RCALL drawPixel
+00043a 958a                      	DEC xpos
+00043b dd55                      	RCALL drawPixel
+00043c 959a                      	DEC ypos
+00043d 959a                      	DEC ypos
+00043e 959a                      	DEC ypos
+00043f 959a                      	DEC ypos
+000440 9508                      	RET
+                                 
+                                 drawFour:
+                                 // Draws a 4 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+000441 dd4f                      	RCALL drawPixel
+000442 958a                      	DEC xpos
+000443 958a                      	DEC xpos
+000444 dd4c                      	RCALL drawPixel
+000445 9593                      	INC ypos
+000446 dd4a                      	RCALL drawPixel
+000447 9593                      	INC ypos
+000448 dd48                      	RCALL drawPixel
+000449 9583                      	INC xpos
+00044a dd46                      	RCALL drawPixel
+00044b 9583                      	INC xpos
+00044c dd44                      	RCALL drawPixel
+00044d 959a                      	DEC ypos
+00044e dd42                      	RCALL drawPixel
+00044f 9593                      	INC ypos
+000450 9593                      	INC ypos
+000451 dd3f                      	RCALL drawPixel
+000452 9593                      	INC ypos
+000453 dd3d                      	RCALL drawPixel
+000454 9702                      	SBIW xpos,2
+000455 959a                      	DEC ypos
+000456 959a                      	DEC ypos
+000457 959a                      	DEC ypos
+000458 959a                      	DEC ypos
+000459 9508                      	RET
+                                 
+                                 drawFive:
+                                 // Draws a 5 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+00045a dd36                      	RCALL drawPixel
+00045b 958a                      	DEC xpos
+00045c dd34                      	RCALL drawPixel
+00045d 958a                      	DEC xpos
+00045e dd32                      	RCALL drawPixel
+00045f 9593                      	INC ypos
+000460 dd30                      	RCALL drawPixel
+000461 9593                      	INC ypos
+000462 dd2e                      	RCALL drawPixel
+000463 9583                      	INC xpos
+000464 dd2c                      	RCALL drawPixel
+000465 9583                      	INC xpos
+000466 dd2a                      	RCALL drawPixel
+000467 9593                      	INC ypos
+000468 dd28                      	RCALL drawPixel
+000469 9593                      	INC ypos
+00046a dd26                      	RCALL drawPixel
+00046b 958a                      	DEC xpos
+00046c dd24                      	RCALL drawPixel
+00046d 958a                      	DEC xpos
+00046e dd22                      	RCALL drawPixel
+00046f 959a                      	DEC ypos
+000470 959a                      	DEC ypos
+000471 959a                      	DEC ypos
+000472 959a                      	DEC ypos
+000473 9508                      	RET
+                                 
+                                 drawSix:
+                                 // Draws a 6 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+000474 dd1c                      	RCALL drawPixel
+000475 958a                      	DEC xpos
+000476 dd1a                      	RCALL drawPixel
+000477 958a                      	DEC xpos
+000478 dd18                      	RCALL drawPixel
+000479 9593                      	INC ypos
+00047a dd16                      	RCALL drawPixel
+00047b 9593                      	INC ypos
+00047c dd14                      	RCALL drawPixel
+00047d 9583                      	INC xpos
+00047e dd12                      	RCALL drawPixel
+00047f 9583                      	INC xpos
+000480 dd10                      	RCALL drawPixel
+000481 9593                      	INC ypos
+000482 dd0e                      	RCALL drawPixel
+000483 9593                      	INC ypos
+000484 dd0c                      	RCALL drawPixel
+000485 958a                      	DEC xpos
+000486 dd0a                      	RCALL drawPixel
+000487 958a                      	DEC xpos
+000488 dd08                      	RCALL drawPixel
+000489 959a                      	DEC ypos
+00048a dd06                      	RCALL drawPixel
+00048b 959a                      	DEC ypos
+00048c 959a                      	DEC ypos
+00048d 959a                      	DEC ypos
+00048e 9508                      	RET	
+                                 
+                                 drawSeven:
+                                 // Draws a 7 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+00048f dd01                      	RCALL drawPixel
+000490 958a                      	DEC xpos
+000491 dcff                      	RCALL drawPixel
+000492 958a                      	DEC xpos
+000493 dcfd                      	RCALL drawPixel
+000494 9583                      	INC xpos
+000495 9583                      	INC xpos
+000496 9593                      	INC ypos
+000497 dcf9                      	RCALL drawPixel
+000498 9593                      	INC ypos
+000499 dcf7                      	RCALL drawPixel
+00049a 958a                      	DEC xpos
+00049b dcf5                      	RCALL drawPixel
+00049c 9583                      	INC xpos
+00049d 9593                      	INC ypos
+00049e dcf2                      	RCALL drawPixel
+00049f 9593                      	INC ypos
+0004a0 dcf0                      	RCALL drawPixel
+0004a1 9702                      	SBIW xpos,2
+0004a2 959a                      	DEC ypos
+0004a3 959a                      	DEC ypos
+0004a4 959a                      	DEC ypos
+0004a5 959a                      	DEC ypos
+0004a6 9508                      	RET
+                                 
+                                 drawEight:
+                                 // Draws a 8 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+0004a7 dce9                      	RCALL drawPixel
+0004a8 958a                      	DEC xpos
+0004a9 dce7                      	RCALL drawPixel
+0004aa 958a                      	DEC xpos
+0004ab dce5                      	RCALL drawPixel
+0004ac 9593                      	INC ypos
+0004ad dce3                      	RCALL drawPixel
+0004ae 9593                      	INC ypos
+0004af dce1                      	RCALL drawPixel
+0004b0 9583                      	INC xpos
+0004b1 dcdf                      	RCALL drawPixel
+0004b2 9583                      	INC xpos
+0004b3 dcdd                      	RCALL drawPixel
+0004b4 959a                      	DEC ypos
+0004b5 dcdb                      	RCALL drawPixel
+0004b6 9593                      	INC ypos
+0004b7 9593                      	INC ypos
+0004b8 dcd8                      	RCALL drawPixel
+0004b9 9593                      	INC ypos
+0004ba dcd6                      	RCALL drawPixel
+0004bb 958a                      	DEC xpos
+0004bc dcd4                      	RCALL drawPixel
+0004bd 958a                      	DEC xpos
+0004be dcd2                      	RCALL drawPixel
+0004bf 959a                      	DEC ypos
+0004c0 dcd0                      	RCALL drawPixel
+0004c1 959a                      	DEC ypos
+0004c2 959a                      	DEC ypos
+0004c3 959a                      	DEC ypos
+0004c4 9508                      	RET	
+                                 	
+                                 drawNine:
+                                 // Draws a 9 with top right corner given by xpos, ypos
+                                 // Changed registers: /
+                                 // Called functions: drawPixel
+0004c5 dccb                      	RCALL drawPixel
+0004c6 958a                      	DEC xpos
+0004c7 dcc9                      	RCALL drawPixel
+0004c8 958a                      	DEC xpos
+0004c9 dcc7                      	RCALL drawPixel
+0004ca 9593                      	INC ypos
+0004cb dcc5                      	RCALL drawPixel
+0004cc 9593                      	INC ypos
+0004cd dcc3                      	RCALL drawPixel
+0004ce 9583                      	INC xpos
+0004cf dcc1                      	RCALL drawPixel
+0004d0 9583                      	INC xpos
+0004d1 dcbf                      	RCALL drawPixel
+0004d2 959a                      	DEC ypos
+0004d3 dcbd                      	RCALL drawPixel
+0004d4 9593                      	INC ypos
+0004d5 9593                      	INC ypos
+0004d6 dcba                      	RCALL drawPixel
+0004d7 9593                      	INC ypos
+0004d8 dcb8                      	RCALL drawPixel
+0004d9 958a                      	DEC xpos
+0004da dcb6                      	RCALL drawPixel
+0004db 958a                      	DEC xpos
+0004dc dcb4                      	RCALL drawPixel
+0004dd 959a                      	DEC ypos
+0004de 959a                      	DEC ypos
+0004df 959a                      	DEC ypos
+0004e0 959a                      	DEC ypos
+                                 .include "macros.INC"
+0004e1 9508                      
+                                 ; The dinosaur game ('The dino says Graaah!')
+                                 ;
+                                 ; Sensors and microsystem electronics
+                                 ; Year: 2017-2018
+                                 ; Authors : Remco Royen & Johan Jacobs
+                                 ;
+                                 ; macros.inc
+                                 
+                                  .MACRO MOD			; mod(@0,@1) -> mod(7,4) = 3
+                                 	PUSH @0			; Save current value
+                                 	subtract:
+                                 		SUB @0, @1
+                                 		BRSH subtract
+                                 	ADD @0,@1
+                                 	MOV tempRegister,@0
+                                 	POP @0
+                                 .include "random.INC"
+                                 
+                                 ; The dinosaur game ('The dino says Graaah!')
+                                 ;
+                                 ; Sensors and microsystem electronics
+                                 ; Year: 2017-2018
+                                 ; Authors : Remco Royen & Johan Jacobs
+                                 ;
+                                 ; random.inc
+                                 
+                                 random:
+                                 // Updates the SR's and uses their last bits to form the pseudo-randomNumber (5 bit long in this case)
+                                 // Changed registers: randomSR1,2,3,4,5 and randomNumber
+                                 // Called functions: updateSR
+0004e2 932f                      	PUSH tempregister
+0004e3 92df                      	PUSH passToFunctionRegister
+                                 
+0004e4 2cd6                      	mov passToFunctionRegister, randomSR1
+0004e5 d02c                      	RCALL updateSR
+0004e6 2c6d                      	mov randomSR1, passToFunctionRegister
+                                 
+0004e7 2cd7                      	mov passToFunctionRegister, randomSR2
+0004e8 d029                      	RCALL updateSR
+0004e9 2c7d                      	mov randomSR2, passToFunctionRegister
+                                 
+0004ea 2cd8                      	mov passToFunctionRegister, randomSR3
+0004eb d026                      	RCALL updateSR
+0004ec 2c8d                      	mov randomSR3, passToFunctionRegister
+                                 
+0004ed 2cd9                      	mov passToFunctionRegister, randomSR4
+0004ee d023                      	RCALL updateSR
+0004ef 2c9d                      	mov randomSR4, passToFunctionRegister
+                                 
+0004f0 2cda                      	mov passToFunctionRegister, randomSR5
+0004f1 d020                      	RCALL updateSR
+0004f2 2cad                      	mov randomSR5, passToFunctionRegister
+                                 
+0004f3 2722                      	CLR tempregister
+0004f4 fc60                      	SBRC randomSR1,0
+0004f5 6021                      	SBR tempregister,0b00000001
+0004f6 fc70                      	SBRC randomSR2,0
+0004f7 6022                      	SBR tempregister,0b00000010
+0004f8 fc80                      	SBRC randomSR3,0
+0004f9 6024                      	SBR tempregister,0b00000100
+0004fa fc90                      	SBRC randomSR4,0
+0004fb 6028                      	SBR tempregister,0b00001000
+0004fc fca0                      	SBRC randomSR5,0
+0004fd 6120                      	SBR tempregister,0b00010000
+                                 
+0004fe 2e52                      	MOV randomNumber,tempregister
+                                 
+0004ff 90df                      	POP passToFunctionRegister
+000500 912f                      	POP tempregister
+000501 9508                      	RET
+                                 
+                                 seedMaker:
+                                 // Uses the values of the timer at the time the 'start-button' is pressed to extract the initial values of the SR's
+                                 // Changed registers: randomSR1,2,3,4,5
+                                 // Called functions: /
+000502 932f                      	PUSH tempregister
+                                 	
+000503 9060 0084                 	LDS randomSR1,TCNT1L
+000505 9070 0085                 	LDS randomSR2,TCNT1H
+000507 b486                      	IN randomSR3,TCNT0
+000508 9090 00b2                 	LDS randomSR4,TCNT2
+00050a 9120 0084                 	LDS tempregister,TCNT1L
+00050c 702f                      	ANDI tempregister,0b00001111
+00050d 2ea2                      	MOV randomSR5,tempregister
+00050e 7f20                      	ANDI tempregister,0b11110000
+00050f 26a2                      	EOR randomSR5,tempregister
+                                 			
+000510 912f                      	POP tempregister
+000511 9508                      	RET
+                                 
+                                 updateSR:
+                                 // Updates the SR's, these are 8-stage 4-LFSR's
+                                 // Changed registers: passToFunctionRegister
+                                 // Functions called: /
+000512 932f                      	PUSH tempregister
+000513 930f                      	PUSH counter		; Is used as a temporary register to make a mask
+                                 
+000514 94d7                      	ROR passToFunctionRegister
+000515 2d2d                      	MOV tempregister,passToFunctionRegister
+000516 f018                      	BRBS 0,carryHigh
+000517 772f                      		CBR tempregister,0b10000000
+000518 e000                      		LDI counter, 0b00000000			; mask
+000519 c002                      		RJMP continueUpdatingSR
+                                 	carryHigh:
+00051a 6820                      		SBR tempregister,0b10000000
+00051b e308                      		LDI counter,0b00111000			; mask
+                                 
+                                 	continueUpdatingSR:
+00051c 2720                      	EOR tempregister,counter
+00051d 2ed2                      	MOV passToFunctionRegister,tempregister
+                                 
+00051e 910f                      	POP counter
+00051f 912f                      	POP tempregister
+                                 .include "interrupts.INC"
+000520 9508                      
+                                 ; The dinosaur game ('The dino says Graaah!')
+                                 ;
+                                 ; Sensors and microsystem electronics
+                                 ; Year: 2017-2018
+                                 ; Authors : Remco Royen & Johan Jacobs
+                                 ;
+                                 ; interrupts.inc
+                                 
+                                 Timer0OverflowInterrupt:
+                                 // Check if jump key (button 7) was pressed. If it has been pressed, the dinosaur will move up, float, and move down. 
+                                 // If you keep the button pressed for a longer duration, the dinosaur will float a bit longer.
+                                 // Changed registers: dinoJumping, 
+                                 // Functions called: /
+000521 93bf                      	PUSH XH
+000522 93af                      	PUSH XL
+000523 932f                      	PUSH tempRegister
+000524 b72f                      	IN tempRegister, SREG
+000525 932f                      	PUSH tempRegister
+                                 
+                                 	// Reset timer values 
+000526 bcf6                      	OUT TCNT0,timer0ResetVal
+                                 
+                                 	// Every 5 times the interrupt is called, the dinosaur will move up or down. Starting value for dinoJumping is at 4 to immediately move up the first moment the button is pressed.
+000527 3054                      	CPI dinoJumping, 4
+000528 f148                      	BRLO timer0Ret						; Branch if Lower
+                                 
+000529 9553                      	INC dinoJumping
+                                 
+00052a 315f                      	CPI dinoJumping, 31
+00052b f450                      	BRSH checkFloat						; if dinoJumping is higher than 30, it will have to stay up (if keyboard is pressed) or come back down
+                                 
+00052c e025                      	LDI tempRegister,5
+00052d 935f
+00052e 1b52
+00052f f7f0
+000530 0f52
+000531 2f25
+000532 915f                      	MOD dinoJumping,tempRegister		; Result will be in tempRegister such that we don't overwrite dinoJumping
+000533 3020                      	CPI tempRegister,0
+000534 f079                      	BREQ dinoJump
+000535 c01c                      	RJMP timer0Ret						; If you don't have to go up, just return (already checked for float and drop earlier)
+                                 
+                                 	// Check if we're holding down the keyboard (to jump for a longer duration)
+                                 	checkFloat:
+000536 ff33                      		SBRS flags,3
+000537 c002                      		RJMP checkDropping
+                                 	
+                                 	dinoFloat:
+000538 3c58                      		CPI dinoJumping,200				; This is the maximal amount of time the dinosaur will float
+000539 f0c0                      		BRLO timer0Ret
+                                 
+                                 	
+                                 	checkDropping:
+00053a e025                      		LDI tempRegister,5
+00053b 935f
+00053c 1b52
+00053d f7f0
+00053e 0f52
+00053f 2f25
+000540 915f                      		MOD dinoJumping,tempRegister	; Result will be in tempRegister such that we don't overwrite dinoJumping
+000541 3020                      		CPI tempRegister,0
+000542 f039                      		BREQ dinoDrop
+000543 c00e                      		RJMP timer0Ret					; Skip everything in other cases
+                                 
+                                 	// Move dino 1 pixel up
+                                 	dinoJump:
+000544 e0b3                      		LDI XH, HIGH(dinoMemory)
+000545 e5a1                      		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
+000546 912c                      		LD tempRegister, X				; Load old ypos
+000547 952a                      		DEC tempRegister				; Decrease ypos (go up)
+000548 932c                      		ST X,tempRegister				; Store ypos
+000549 c008                      		RJMP timer0Ret
+                                 
+                                 	// Move dino 1 pixel down
+                                 	dinoDrop:
+00054a e0b3                      		LDI XH, HIGH(dinoMemory)
+00054b e5a1                      		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
+00054c 912c                      		LD tempRegister, X				; Load old ypos
+00054d 9523                      		INC tempRegister				; Increase ypos (go down)
+00054e 932c                      		ST X,tempRegister				; Store ypos
+                                 
+                                 		// Clear dinoJumping if dino has landed (if its y position is equal to 8)
+00054f 3028                      		CPI tempRegister, 8			
+000550 f409                      		BRNE timer0Ret
+000551 2755                      		CLR dinoJumping
+                                 
+                                 	timer0Ret:
+000552 912f                      		POP tempRegister
+000553 bf2f                      		OUT SREG, tempRegister
+000554 912f                      		POP tempRegister
+000555 91af                      		POP XL
+000556 91bf                      		POP XH
+000557 9518                      		RETI
+                                 
+                                 Timer1OverflowInterrupt:
+                                 // Timer 1 (16 bit) is used to control the game logic. It makes sure the cacti move towards the dinosaur, it updates the score, it mirrors the screen at certain moments and it inverts the LEDS at certain moments.
+                                 // Changed registers: maxNmbrOfCacti, modeCounter
+                                 // Functions called: moveCactus, updateScore, newCactusOrNot, inverseDinoPos
+000558 932f                      	PUSH tempRegister
+000559 b72f                      	IN tempRegister, SREG
+00055a 932f                      	PUSH tempRegister
+00055b 930f                      	PUSH counter			; counter is here used as a temporary variable
+                                 
+                                 	// Reset timer values: The current speed of the cacti is saved in the Y-registers
+00055c 93d0 0085                 	STS TCNT1H, YH
+00055e 93c0 0084                 	STS TCNT1L, YL
+                                 
+000560 dafa                      	RCALL moveCactus		; Move the cacti
+000561 db68                      	RCALL updateScore		; Increments the score by one
+                                 
+000562 3070                      	CPI gameState,0
+000563 f4f9                      	BRNE timer1Ret			; The following code is only executed when gameState = 'playing'
+000564 db26                      	RCALL newCactusOrNot	; Make decision about new cactus or not
+                                 
+000565 2722                      	CLR tempregister
+000566 16b2                      	CP modeCounter,tempregister
+000567 f0d1                      	BREQ modeCounterInc
+                                 
+000568 e322                      	LDI tempregister,50
+000569 92bf
+00056a 1ab2
+00056b f7f0
+00056c 0eb2
+00056d 2d2b
+00056e 90bf                      	MOD modeCounter,tempregister
+00056f 3020                      	CPI tempregister,0		; Every 50 movements, increase maxNmbrOfCacti
+000570 f489                      	BRNE modeCounterInc
+000571 9433                      		INC maxNmbrOfCacti
+000572 e120                      		LDI tempregister, 0b00010000
+000573 2732                      		EOR flags, tempregister
+000574 db45                      		RCALL inverseDinoPos
+                                 
+000575 e624                      	LDI tempregister,100
+000576 92bf
+000577 1ab2
+000578 f7f0
+000579 0eb2
+00057a 2d2b
+00057b 90bf                      	MOD modeCounter,tempregister
+00057c 3020                      	CPI tempregister,0		; Every 100 movements, change normal/extreme
+00057d f421                      	BRNE modeCounterInc
+00057e e022                      		LDI tempregister, 0b00000010
+00057f 2732                      		EOR flags, tempregister
+000580 24bb                      		CLR modeCounter
+000581 c001                      		RJMP timer1Ret
+                                 
+                                 	modeCounterInc:
+000582 94b3                      		INC modeCounter
+                                 
+                                 	timer1Ret:
+000583 910f                      		POP counter
+000584 912f                      		POP tempRegister
+000585 bf2f                      		OUT SREG, tempRegister
+000586 912f                      		POP tempRegister
+000587 9518                      		RETI
+                                 
+                                 
+                                 Timer2OverflowInterrupt:
+                                 // Timer2 is used to increase the speed of the cacti at a constant rate or to sound the buzzer when you lose the game.
+                                 // Changed registers: YL, timer0ResetVal, buzzerCounter
+                                 // Functions called: /
+000588 932f                      	PUSH tempRegister
+000589 b72f                      	IN tempRegister, SREG
+00058a 932f                      	PUSH tempRegister
+                                 
+                                 	// Reset timer values
+00058b e020                      	LDI tempRegister, 0
+00058c 9320 00b2                 	STS TCNT2,tempRegister
+                                 
+00058e eb24                      	LDI tempRegister, 180
+00058f 16f2                      	CP timer0ResetVal, tempRegister			; Check if maximum jump speed was reached
+000590 f440                      	BRSH timer2Buzzer
+                                 
+000591 94e3                      	INC timer0ResetCounter
+000592 962a                      	ADIW YL, 10								; The Y registers will contain the reset values of the 16 bit timer. Increasing YL means the interrupt is called more often and the cacti speed increases
+                                 
+000593 94e3                      	INC timer0ResetCounter
+000594 e12e                      	LDI tempRegister, 30						; Update the dinosaur movement (with the 8 bit timer) at roughly the same rate as the cacti speed
+000595 16e2                      	CP timer0ResetCounter, tempRegister
+000596 f010                      	BRLO timer2Buzzer
+000597 94f3                      	INC timer0ResetVal
+000598 24ee                      	CLR timer0ResetCounter
+                                 
+                                 	timer2Buzzer:
+                                 
+000599 ff32                      		SBRS flags,2
+00059a c005                      		RJMP timer2Ret
+                                 
+00059b eb29                      		LDI tempRegister, initialTimeValueBuzzer
+00059c 9320 00b2                 		STS TCNT2,tempRegister
+00059e 9a19                      		SBI PINB,1
+00059f 94c3                      		INC buzzerCounter		; To limit the time the buzzer buzzes
+                                 
+                                 	timer2Ret:
+0005a0 912f                      	POP tempRegister
+0005a1 bf2f                      	OUT SREG, tempRegister
+0005a2 912f                      	POP tempRegister
+0005a3 9518                      
+                                 startUp:
+0005a4 d015                      	RCALL initGame
+                                 
+                                 main:
+                                 
+                                 	; STATE MACHINE
+0005a5 3070                      	CPI gameState,0
+0005a6 f429                      	BRNE notPlaying
+                                 		; STATE 0: PLAYING
+0005a7 dbd9                      		RCALL clearBuffer
+0005a8 dc5b                      		RCALL drawCactus
+0005a9 dc84                      		RCALL drawDino
+0005aa dc11                      		RCALL drawScore
+0005ab c00a                      		RJMP restOfMain
+                                 
+                                 	notPlaying:
+0005ac 3f7f                      	CPI gameState,0xFF
+0005ad f419                      	BRNE gameOver
+                                 		; STATE FF: MENU
+0005ae dbd2                      		RCALL clearBuffer
+0005af dc7e                      		RCALL drawDino
+0005b0 c005                      		RJMP restOfMain
+                                 
+                                 	gameOver:
+                                 		; STATE 1: GAME OVER
+0005b1 2d2c                      		MOV tempregister, buzzerCounter
+0005b2 3f2f                      		CPI tempregister,buzzerDuration
+0005b3 f010                      		BRLO restOfMain
+0005b4 7f3b                      		CBR flags,0b00000100	; Clear buzzer flag
+0005b5 9829                      		CBI PORTB,1				; Make sure buzzer is 'off' after use
+                                 
+                                 	restOfMain:
+0005b6 db35                      	RCALL checkKeyboard
+0005b7 db8c                      	RCALL flushMemory
+0005b8 da76                      	RCALL collisionHandler ; Check if collision has happened and react
+0005b9 cfeb                      	RJMP main
+                                 
+                                 initGame:
+                                 // Initiates all the game parameters: variables, in- and output pins, timers, interrupts and prepares the screen
+                                 // Registers changed: gameState, nmbrOfCacti, maxNmbrOfCacti, flags, dinoJumping, timer0ResetCounter, timer0ResetVal, tempregister, Y-pointer, Z-pointer
+                                 // Functions called: clearBuffer, initDino, addCactus
+                                 
+                                 	; To avoid flickering
+0005ba dbc6                      	RCALL clearBuffer
+                                 
+                                 	; Set variables
+0005bb ef7f                      	SER gameState ; Begin in idle state
+                                 
+0005bc 2444                      	CLR nmbrOfCacti ; No cacti drawn
+0005bd 2433                      	CLR maxNmbrOfCacti
+0005be 9433                      	INC maxNmbrOfCacti ; First level only one cactus
+                                 
+0005bf 2755                      	CLR dinoJumping ; Dino starts not jumping
+0005c0 24bb                      	CLR modeCounter
+0005c1 27ff                      	CLR ZH ; Score set to zero
+0005c2 27ee                      	CLR ZL ; Score set to zero
+                                 
+0005c3 2733                      	CLR flags
+                                 
+0005c4 24ee                      	CLR timer0ResetCounter
+0005c5 24ff                      	CLR timer0ResetVal
+                                 	
+                                 	; Configure output pin PB1 (Buzzer)
+0005c6 9a21                      	SBI DDRB,1					; Pin PB1 is an output
+0005c7 9829                      	CBI PORTB,1					; Output low => initial condition low!
+                                 
+                                 	; Configure output pin PB3 (Data input screen)
+0005c8 9a23                      	SBI DDRB,3					; Pin PB3 is an output
+0005c9 982b                      	CBI PORTB,3					; Output low => initial condition low!
+                                 
+                                 	; Configure output pin PB4 (Screen latching and enable'ing)
+0005ca 9a24                      	SBI DDRB,4					; Pin PB4 is an output
+0005cb 982c                      	CBI PORTB,4					; Output low => initial condition low!
+                                 
+                                 	; Configure output pin PB5 (Clock Screen)
+0005cc 9a25                      	SBI DDRB,5					; Pin PB5 is an output
+0005cd 982d                      	CBI PORTB,5					; Output low => initial condition low!
+                                 
+                                 	; Configure a LED as output (to test things)
+0005ce 9a3a                      	SBI DDRC,2					; Pin PC2 is an output 
+0005cf 9a42                      	SBI PORTC,2					; Output Vcc => upper LED turned off!
+                                 
+                                 	// Timer0 (8 bit timer) initialisation
+0005d0 e020                      	LDI tempRegister, 0x0	; Select normal counter mode
+0005d1 bd24                      	OUT TCCR0A, tempRegister
+                                 	
+0005d2 e025                      	LDI tempRegister, 0x05	; Set timer0 prescaler to 1024
+0005d3 bd25                      	OUT TCCR0B,tempRegister	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
+                                 
+0005d4 e32c                      	LDI tempRegister, 60
+0005d5 2ef2                      	MOV timer0ResetVal, tempRegister
+0005d6 bcf6                      	OUT TCNT0,timer0ResetVal		; TCNT0 = Timer/counter
+                                 
+                                 	// Timer1 (16 bit timer) initialisation
+                                 
+0005d7 e020                      	LDI tempRegister, 0x0	; Select normal counter mode
+0005d8 9320 0080                 	STS TCCR1A, tempRegister
+0005da e023                      	LDI tempRegister, 0x03	; Set timer1 prescaler to 64 == 011, 1024 == 101 (Important: this is different for 8 bit timer)
+0005db 9320 0081                 	STS TCCR1B,tempRegister
+                                 
+                                 		/* Initial timer value will be 5 Hz. As the game progresses, the frequency at which the cacti move should be increased. We will do this by adding an immediate to the Y registers and storing this in TCNT1.  */
+                                 		; Prescaler 64: 65536 - 16 000 000/64/5 = 65536 - 50000 = 15536 => 00111100 10110000
+0005dd e3dc                      	LDI YH, 0b00111100
+0005de ebc0                      	LDI YL, 0b10110000
+                                 
+0005df 93d0 0085                 	STS TCNT1H, YH
+0005e1 93c0 0084                 	STS TCNT1L, YL
+                                 
+                                 	// Timer2 (8 bit timer) initialisation
+                                 
+0005e3 e020                      	LDI tempRegister, 0x0	; Select normal counter mode
+0005e4 9320 00b0                 	STS TCCR2A, tempRegister
+0005e6 e027                      	LDI tempRegister, 0x07	; Set timer2 prescaler to 1024 == 111, 
+0005e7 9320 00b1                 	STS TCCR2B,tempRegister
+0005e9 e020                      	LDI tempRegister, 0		; Set correct ‘reload values’ 256 - 16 000 000/1024/61 = 0 (after rounding)
+0005ea 9320 00b2                 	STS TCNT2,tempRegister
+                                 
+                                 	// Enable interrupts
+                                 
+0005ec 9478                      	SEI									; (SEI: global interrupt enable)
+0005ed e021                      	LDI tempRegister, 1
+0005ee 9320 006f                 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
+0005f0 9320 006e                 	STS TIMSK0, tempRegister
+0005f2 9320 0070                 	STS TIMSK2, tempRegister
+                                 
+                                 	// Prepare Screen
+                                 
+0005f4 dab5                      	RCALL initDino ; Initialize dinosaur
+0005f5 da50                      	RCALL addCactus ; Prepare first cactus
 
 
 RESOURCE USE INFORMATION
@@ -1938,39 +3250,39 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega328P" register use summary:
-x  :  20 y  :   0 z  :   0 r0 :   1 r1 :   0 r2 :   3 r3 :   2 r4 :  11 
-r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  24 r17:  11 r18:  92 r19:   4 r20:   3 
-r21:  22 r22:   2 r23:   4 r24:  39 r25:  33 r26:  43 r27:  31 r28:   4 
-r29:   3 r30:   0 r31:   0 
-Registers used: 19 out of 35 (54.3%)
+x  :  23 y  :   0 z  :   0 r0 :   1 r1 :   0 r2 :   4 r3 :   6 r4 :  13 
+r5 :   2 r6 :   4 r7 :   4 r8 :   4 r9 :   4 r10:   5 r11:  14 r12:   3 
+r13:  15 r14:   5 r15:   6 r16:  49 r17:  11 r18: 211 r19:  21 r20:   0 
+r21:  18 r22:   2 r23:   7 r24: 360 r25: 140 r26:  48 r27:  37 r28:   4 
+r29:   3 r30:  12 r31:  10 
+Registers used: 31 out of 35 (88.6%)
 
 "ATmega328P" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   0 add   :   4 adiw  :   4 and   :   1 
-andi  :   1 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :  25 brge  :   0 brhc  :   0 
-brhs  :   0 brid  :   0 brie  :   0 brlo  :   3 brlt  :   0 brmi  :   0 
-brne  :   7 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :  24 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :  11 cls   :   0 
-clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   4 cpc   :   0 
-cpi   :  25 cpse  :   0 dec   :  22 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :  27 jmp   :   0 
-ld    :  10 ldd   :   0 ldi   :  49 lds   :   0 lpm   :   0 lsl   :  10 
-lsr   :   3 mov   :   6 movw  :   0 mul   :   1 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   1 ori   :   0 out   :   7 pop   :  49 
-push  :  49 rcall :  30 ret   :  12 reti  :   3 rjmp  :  33 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :  26 sbic  :   0 sbis  :   8 
-sbiw  :   1 sbr   :   0 sbrc  :   1 sbrs  :   0 sec   :   0 seh   :   0 
-sei   :   1 sen   :   0 ser   :   2 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :  10 std   :   0 sts   :  13 
-sub   :   0 subi  :   1 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 37 out of 113 (32.7%)
+.lds  :   0 .sts  :   0 adc   :   0 add   :  11 adiw  :   4 and   :   6 
+andi  :   3 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   1 
+brcc  :   0 brcs  :   0 break :   0 breq  :  18 brge  :   0 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   6 brlt  :   0 brmi  :   0 
+brne  :  23 brpl  :   0 brsh  :  12 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :  29 cbr   :   6 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :  23 cls   :   0 
+clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   8 cpc   :   0 
+cpi   :  38 cpse  :   0 dec   : 109 eor   :   4 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   4 inc   : 337 jmp   :   0 
+ld    :  12 ldd   :   0 ldi   :  95 lds   :   4 lpm   :   0 lsl   :  11 
+lsr   :   4 mov   :  32 movw  :   0 mul   :   1 muls  :   0 mulsu :   0 
+neg   :   0 nop   :   0 or    :   1 ori   :   0 out   :   7 pop   :  83 
+push  :  83 rcall : 297 ret   :  32 reti  :   3 rjmp  :  63 rol   :   0 
+ror   :   2 sbc   :   0 sbci  :   0 sbi   :  30 sbic  :   0 sbis  :   8 
+sbiw  :   4 sbr   :  10 sbrc  :  10 sbrs  :   6 sec   :   0 seh   :   0 
+sei   :   1 sen   :   0 ser   :   1 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :  11 std   :   0 sts   :  17 
+sub   :   6 subi  :   1 swap  :   0 tst   :   0 wdr   :   0 
+Instructions used: 46 out of 113 (40.7%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x000422   1000      0   1000   32768   3.1%
+[.cseg] 0x000000 0x000bee   2996      0   2996   32768   9.1%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

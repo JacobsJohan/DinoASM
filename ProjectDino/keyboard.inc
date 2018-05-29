@@ -1,15 +1,19 @@
-/*
- * keyboard.inc
- *
- *  Created: 2/05/2018 17:07:28
- *   Author: Johan Jacobs & Remco Royen
- */ 
+;
+; The dinosaur game ('The dino says Graaah!')
+;
+; Sensors and microsystem electronics
+; Year: 2017-2018
+; Authors : Remco Royen & Johan Jacobs
+;
+; keyboard.inc
 
- /* Registers R16, R17 and R18 are used in this function together with xpos (=R24) and ypos (=R25)*/
  checkKeyboard:
-	push R16
-	push R17
-	push R18
+ // Checks if button of keyboard is pressed and reacts
+ // Changed registers: flags, dinoJumping, gameState
+ // Functions called: initGame, seedMaker
+	PUSH R16
+	PUSH R17
+	PUSH R18
 	; Configure rows as inputs
 	CBI DDRD,4
 	SBI PORTD,4
@@ -24,7 +28,6 @@
 	SBI DDRD,1
 	SBI DDRD,2
 	SBI DDRD,3
-
 
 	; Two step method
 	; Set columns low (outputs): write zeros to outputs and check if we read something from input
@@ -101,107 +104,31 @@
 	CP R16, R18
 	BREQ buttonA
 
-	LDI R18, 0b10000010				; Evaluate button 1: 1000 0010
-	CP R16, R18
-	BREQ button1
-	RJMP checkKeyboardRet
+	RJMP checkKeyboardRet			; No useful key was pressed
 
 	button7:
-		CPI keyboardPressed,0
+		SBRC flags,3
+		RJMP checkKeyboardRet
+		CPI dinoJumping,0
 		BRNE checkKeyboardRet
-		INC keyboardPressed
-		;rcall dinoJump
+		SBR flags,0b00001000
+		LDI dinoJumping,4
 		RJMP checkKeyboardRet
 
 	buttonA:
-		CPI keyboardPressed,0
-		BRNE checkKeyboardRet
-		//LDS randomNumber,TCNT0 // THERE IS SOMETHING WRONG WITH THE SEED
-		//LDI randomNumber, 26
+		SBRC flags,3
+		RJMP checkKeyboardRet
+		SBR flags,0b00001000
+		RCALL seedMaker
+		RCALL initGame
 		CLR gameState
 		RJMP checkKeyboardRet
 
-	button1:
-		CPI keyboardPressed,0
-		BRNE checkKeyboardRet
-		INC keyboardPressed
-		RCALL addCactus
-		RJMP checkKeyboardRet
-
-
-	/*
-	LDI R18, 0x84				; Evaluate button 4: 1000 0100
-	CP R16, R18
-	BREQ button4
-
-	LDI R18, 0x88				; Evaluate button 7: 1000 1000
-	CP R16, R18
-	BREQ button7
-
-
-
-	
-	turnOffLeds:
-		SBI PORTC,2									; Output Vcc => upper LED turned off!
-		SBI PORTC,3									; Output Vcc => lower LED is turned off!
-		ret
-
-	button4: 
-	CBI PORTC,3
-	RJMP checkKeyboard
-	button8:
-	CBI PORTC,2
-	RJMP checkKeyboard
-	button7:
-	CBI PORTC,2
-	CBI PORTC,3
-	RJMP checkKeyboard*/
-
 	nothingPressed:
-		CPI keyboardPressed, 117			; Check if dino has landed
-		BRLO checkKeyboardRet
-		CLR keyboardPressed				; Only reset this register if the key has been released
+		CBR flags,0b00001000
 
 	checkKeyboardRet:
-		pop R18
-		pop R17
-		pop R16
-		ret
-
-/*dinoJumpold:
-	push ypos
-	push tempRegister
-	push XH
-	push XL
-
-	dinoJump:
-		LDI XH, HIGH(dinoMemory)
-		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-		LD tempRegister, X				; Load old ypos
-		DEC tempRegister				; Decrease ypos (go up)
-		ST X,tempRegister				; Store ypos
-		RJMP timer0Ret
-
-	dinoDrop:
-		LDI XH, HIGH(dinoMemory)
-		LDI XL, LOW(dinoMemory+1)		; The xposition of the dinosaur never changes, so we can just load the address of the y position and change that value
-		LD tempRegister, X				; Load old ypos
-		INC tempRegister				; Increase ypos (go down)
-		ST X,tempRegister				; Store ypos
-		RJMP timer0Ret
-
-
-	dinoJumpRet:
-		pop XL
-		pop XH
-		pop tempRegister
-		pop ypos
-		ret*/
-
-
-/* Keyboard layout for evaluation */
-
-/* Button 7: 1000 1000 | Button 8: 0100 1000 | Button 9: 0010 1000 | Button F: 0001 1000 */
-/* Button 4: 1000 0100 | Button 5: 0100 0100 | Button 6: 0010 0100 | Button E: 0001 0100 */
-/* Button 1: 1000 0010 | Button 2: 0100 0010 | Button 3: 0010 0010 | Button D: 0001 0010 */
-/* Button A: 1000 0001 | Button 0: 0100 0001 | Button B: 0010 0001 | Button C: 0001 0001 */
+		POP R18
+		POP R17
+		POP R16
+		RET
