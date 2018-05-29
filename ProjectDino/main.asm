@@ -31,7 +31,7 @@
 
 .def passToFunctionRegister = R13 ; Is used in random to pass a value to a function
 
-.def timer0ResetCounter = R14	; Count to X before increasing speed of dinosaur jumps
+.def timer0ResetCounter = R14	; Count to 100 before increasing speed of dinosaur jumps
 .def timer0ResetVal = R15		; Value to increase TCNT0 over time (faster interrupts)
 
 .def counter = R16				; Register that serves for all kind of counter actions
@@ -174,20 +174,21 @@ initGame:
 	OUT TCCR0A, tempRegister
 	
 	LDI tempRegister, 0x05	; Set timer0 prescaler to 1024
-	OUT TCCR0B,tempRegister	
+	OUT TCCR0B,tempRegister	;set correct ‘reload values’ 256 - 16 000 000/1024/62 = 4 (after rounding)
 
-	LDI tempRegister, 60	; Set initial reset value
+	LDI tempRegister, 60
 	MOV timer0ResetVal, tempRegister
 	OUT TCNT0,timer0ResetVal		; TCNT0 = Timer/counter
 
 	// Timer1 (16 bit timer) initialisation
+
 	LDI tempRegister, 0x0	; Select normal counter mode
 	STS TCCR1A, tempRegister
 	LDI tempRegister, 0x03	; Set timer1 prescaler to 64 == 011, 1024 == 101 (Important: this is different for 8 bit timer)
 	STS TCCR1B,tempRegister
 
-	/* Initial timer value will be 5 Hz. As the game progresses, the frequency at which the cacti move should be increased. We will do this by adding an immediate to the Y registers and storing this in TCNT1.  */
-	; Prescaler 64: 65536 - 16 000 000/64/5 = 65536 - 50000 = 15536 => 00111100 10110000
+		/* Initial timer value will be 5 Hz. As the game progresses, the frequency at which the cacti move should be increased. We will do this by adding an immediate to the Y registers and storing this in TCNT1.  */
+		; Prescaler 64: 65536 - 16 000 000/64/5 = 65536 - 50000 = 15536 => 00111100 10110000
 	LDI YH, 0b00111100
 	LDI YL, 0b10110000
 
@@ -195,6 +196,7 @@ initGame:
 	STS TCNT1L, YL
 
 	// Timer2 (8 bit timer) initialisation
+
 	LDI tempRegister, 0x0	; Select normal counter mode
 	STS TCCR2A, tempRegister
 	LDI tempRegister, 0x07	; Set timer2 prescaler to 1024 == 111, 
@@ -203,6 +205,7 @@ initGame:
 	STS TCNT2,tempRegister
 
 	// Enable interrupts
+
 	SEI									; (SEI: global interrupt enable)
 	LDI tempRegister, 1
 	STS TIMSK1, tempRegister			; set peripheral interrupt flag
